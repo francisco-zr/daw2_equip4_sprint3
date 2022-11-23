@@ -1,0 +1,92 @@
+[
+    {   "id":0,
+        "nombre":"Inseguretat detectada 1", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":0,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" make my self"
+    },
+    {   "id":1,
+        "nombre":"Inseguretat detectada 2", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":1,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" Pymeralia"
+    },
+    {   "id":2,
+        "nombre":"Inseguretat detectada  3", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":2,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" Ignore"
+    },
+    {   "id":3,
+        "nombre":"Inseguretat detectada 4", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":3,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" Pymeralia"
+    },
+    {   "id":4,
+        "nombre":"Inseguretat detectada 5", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":4,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" Pymeralia"
+    },
+    {   "id":5,
+        "nombre":"Inseguretat detectada 6", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":5,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" ignore"
+    },
+    {   "id":6,
+        "nombre":"Inseguretat detectada 7", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":6,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" make my self"
+    },
+    {   "id":7,
+        "nombre":"Inseguretat detectada 8", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":7,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" make my self"
+    },
+    {   "id":8,
+        "nombre":"Inseguretat detectada 9", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":8,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" Pymeralia"
+    },
+    {   "id":9,
+        "nombre":"Inseguretat detectada 10", 
+        "descripcion inseguridad": "No se cambia la contrasenya del router cada x tiempo",
+        "recomendacion": { 
+            "id":9,
+            "descripcion":"Crear tasques" 
+            },
+        "eleccio":" ignore"
+    }
+]

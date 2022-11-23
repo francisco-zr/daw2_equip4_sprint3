@@ -1,0 +1,50 @@
+.solucio{
+	color: green !important
+}
+
+.inseguretat{
+	color: crimson
+}
+
+.boto{
+border: rgb(255, 255, 255);
+font-size: 20px;
+}
+
+.dreta{
+	float: right;
+}
+
+.esquerra{
+	float: left;
+}
+
+.centre{
+	margin: 0 auto;
+}
+#container0{
+	width: 900px;
+	height: 500px;
+	margin: auto;
+	padding: 20px 20px 20px 20px;
+}
+#container1{
+	background-color: rgb(255, 255, 255);
+	border: 1px solid;
+	border-radius: 10px;
+	border-color: black; 
+	color: rgb(0, 0, 0);
+	font-size: 17px !important;
+	margin: auto;
+	margin-bottom: 20px; 
+	padding: 5%!important;
+	text-align: left!important;
+	padding: 30px 10px 10px 10px;
+}	
+#textcuadro{
+	padding: top 100px;
+	color:rgb(255, 255, 255);
+}
+#check{
+	text-align: left!important;
+}

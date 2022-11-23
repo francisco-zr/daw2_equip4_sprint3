@@ -1,0 +1,105 @@
+body {
+  background-color: #ffffff;
+  font-family: 'Montserrat';
+  font-size: 14px;
+}
+
+header {
+  background-color: #FF6720;
+}
+
+.nav-item img {
+  height: 50px;
+}
+
+#main-navbar {
+  background-color: #ff9950;
+}
+
+#logo {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nav-link {
+  color: rgb(23, 23, 23);
+}
+
+i {
+  margin-right: 5px;
+}
+
+#menu-user {
+  position: absolute;
+  inset: 0px 0px auto auto;
+  margin: 0px;
+  transform: translate3d(0px, 34.4px, 0px);
+}
+
+#menu-dropdown i {
+  font-size: 30px;
+}
+
+footer {
+  color: white;
+}
+
+footer a {
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c43400 !important;
+}
+
+#footer-rrss {
+  font-size: 24px;
+}
+
+#title-footer {
+  font-weight: bolder;
+}
+
+@media (max-width: 575.98px) {
+  .nav-item img {
+    height: 32px;
+  }
+
+  #menu-dropdown i {
+    font-size: 18px;
+  }
+}
+
+main {
+  padding: 25px 5px;
+}
+
+.pymeshield-kanban {
+  min-height: 400px;
+  height: 100%
+}
+
+#gantt table tr td {
+  border-left: 0.5px dashed #bdbdbd;
+}
+
+#gantt table tr td:last-child {
+  border-right: 0.5px dashed #bdbdbd;
+}
+
+#gantt td.event-cell {
+  font-weight: bolder;
+  border-radius: 0.375rem;
+}
+
+#gantt table tr td.event-cell:last-child {
+  border-right: none;
+}
+
+#gantt td.event-cell span {
+  background-color: #212529;
+  padding: 5px 10px;
+  border-radius: 25px;
+  margin-right: 10px;
+  color: #ffffff;
+}

@@ -1,0 +1,123 @@
+[
+    {   "id":0,
+        "nombre":"Tasca prova", 
+        "assinament": "usuari1",
+        "Recomendacions": [{ 
+            "id":0,
+            "descripcion":"Crear tasques", 
+            "estado":"TO DO"
+            },{ 
+                "id":0,
+                "descripcion":"Crear tasques", 
+                "estado":"TO DO"
+                }]
+
+    },
+    {   "id":1,
+        "nombre":"Antivirus", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":1,
+            "descripcion":"Instal·lar antivirus", 
+            "estado":"DONE"
+            }
+
+    },
+    {   "id":2,
+        "nombre":"Contrasenya routter", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":2,
+            "descripcion":"Canviar contrasenya de routter", 
+            "estado":"TO DO"
+            }
+
+    },
+    {   "id":3,
+        "nombre":"Seguritat pasiva", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":3,
+            "descripcion":"Control d'acces als servidors", 
+            "estado":"IN PROGRESS"
+            }
+
+    },{   "id":4,
+        "nombre":"Contrassenya correu", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":4,
+            "descripcion":"Canviar la contrasenya del correu corporatiu cada cert temps", 
+            "estado":"DONE"
+            }
+
+    },
+    {   "id":5,
+        "nombre":"SQUID3", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":5,
+            "descripcion":"Bloquejar pagines web noautoritzades", 
+            "estado":"DONE"
+            }
+
+    },
+    {   "id":6,
+        "nombre":"SAI", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":6,
+            "descripcion":"Instal·lar un SAI", 
+            "estado":"TO DO"
+            }
+
+    },
+    {   "id":7,
+        "nombre":"firewall", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":7,
+            "descripcion":"Instal·lar i configurar firewall", 
+            "estado":"DONE"
+            }
+
+    },
+    {   "id":8,
+        "nombre":"VPN", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":8,
+            "descripcion":"Instal·lar i configurar VPN", 
+            "estado":"DONE"
+            }
+
+    },{   "id":9,
+        "nombre":"permisos ", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":9,
+            "descripcion":"Configurar permisos", 
+            "estado":"DONE"
+            }
+
+    },{   "id":10,
+        "nombre":"manteniment servidor www", 
+        "assinament": "usuari1",
+        "Recomendacions": { 
+            "id":10,
+            "descripcion":"revisar el contigut i actualitzar la web", 
+            "estado":"DONE"
+            }
+
+    }
+]
+
+
+
+
+
+ 
+  
+
+  
+

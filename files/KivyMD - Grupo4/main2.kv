@@ -1,0 +1,90 @@
+MDScreen:
+
+    MDBottomNavigation:
+        text_color_active: "black"
+
+#Primera pantalla
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Tasca'
+            icon: 'checkbox-marked-circle-plus-outline'
+
+            MDLabel:
+                text: 'Llistat Tasques'
+                halign: 'center'
+
+#Segona pantalla
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Kanban'
+            icon: 'clipboard-check-multiple'
+            Image:
+                source: 'files/KivyMD/ImgProva/Kanban.png'
+
+            MDLabel:
+#                text: 'Kanban'
+                halign: 'center'
+
+#Tercera pantalla
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Gantt'
+            icon: 'calendar-multiple'
+            Image:
+                source: 'files/KivyMD/ImgProva/Gantt.png'
+
+            MDLabel:
+#                text: 'Gantt'
+                halign: 'center'
+            
+
+#menu desplegable
+    MDNavigationLayout:
+
+        MDScreenManager:
+
+            MDScreen:
+
+                MDTopAppBar:
+                    title: "PymeShield"
+                    elevation: 4
+                    pos_hint: {"top": 1}
+                    md_bg_color: "#ff6720"
+                    specific_text_color: "black"
+                    left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Image:
+                    source: '../Img/PymeShield.png'
+
+                MDLabel:
+                    text: '   "Usuari"'
+                    font_style: 'Subtitle1'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+                MDLabel:
+                    text: '     pymeshield@gmail.com'
+                    font_style: 'Caption'
+                    size_hint_y: None
+                    height: self.texture_size[1]
+
+    #Falta fer les screens per a cada "menu"
+                ScrollView:
+                    MDList:
+                        OneLineListItem:
+                            text: 'Menu'
+                        OneLineListItem:
+                            text: 'Kanban'
+                        OneLineListItem:
+                            text: 'Gantt'
+                        OneLineListItem:
+                            text: 'Contacte'
+                        OneLineListItem:
+                            text: 'Tanca Sessio'
