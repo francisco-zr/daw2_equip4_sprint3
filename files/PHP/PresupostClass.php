@@ -11,11 +11,11 @@ $_SESSION['id'] = 1;
         private $ocult;
 
 
-        /**
+    /**
      * __construct
      *
      * @param  mixed $idUsuari
-     * @return void
+     * return void
      */
 
     function __construct(){
@@ -37,7 +37,7 @@ $_SESSION['id'] = 1;
 	/**
      * constructor1 --> IDUsuari
      *
-     * @return void
+     * return void
      */
     function __construct1()
 	{
@@ -82,15 +82,19 @@ $_SESSION['id'] = 1;
 
         /* Mètodes / Funcions */
 
-        public function calcularPresupost($presupost_1, $presupost_2, $presupost_3){
+        public function crearPressupost($presupost_1, $presupost_2, $presupost_3){
             
         }
 
-        public function modificarPresupost($id, $presupost){
+        public function calcularPressupost($presupost_1, $presupost_2, $presupost_3){
+            
+        }
+
+        public function modificarPressupost($id, $presupost){
     
         }
 
-        public function eliminarPresupost($id){
+        public function eliminarPressupost($id){
             include_once 'connexioBDD.php';
             if ($linea = mysqli_query ($query= "DELETE ...;")){
                 printf ("Pressupost eliminat");

@@ -15,7 +15,7 @@ class Tasca
     * __construct
     *
     * @param  mixed $idUsuari
-    * @return void
+    * return void
     */
    function __construct()
    {
@@ -37,13 +37,14 @@ class Tasca
    /**
     * constructor1 --> IDUsuari
     *
-    * @return void
+    * return void
     */
    function __construct1($Estat)
    {
       $this->id = $_SESSION['id'];
       $this->Estat = $Estat;
    }
+
    public function getId()
    {
       return $this->id;
@@ -92,7 +93,7 @@ class Tasca
     * actualiza el estado del kanban y le pone un porcentaje acorde
     *
     * @param  mixed $id
-    * @return void
+    * return void
     */
    function modificarTasca($id)
    {
@@ -113,7 +114,7 @@ class Tasca
     *
     * @param  mixed $id
     * @param  mixed $porcentaje
-    * @return void
+    * return void
     */
    function modificarPorcentaje($id, $porcentaje)
    {
@@ -129,19 +130,25 @@ class Tasca
          mysqli_query($connexioDB, $query);
       }
    }
+
    function assignarTasca()
    {
+
    }
-   function desassignarasca()
+
+   function desassignarTasca()
    {
+
    }
+
    function modificarEstatTasca()
    {
+
    }
    /**
     * Lista la fila del kanban según el estado del objeto, este puede ser; ToDo, InProgress, Done
     *
-    * @return void
+    * return void
     */
    function listarKanban()
    {
@@ -174,7 +181,7 @@ class Tasca
    /**
     * Sirve para pasarle un json al archivo gantt.js y que pueda crear un objeto
     *
-    * @return void
+    * return void
     */
    function jsonGantt()
    {
@@ -189,7 +196,7 @@ class Tasca
    /**
     * Modal para la sección Gantt
     *
-    * @return void
+    * return void
     */
    function modalGantt()
    {
@@ -225,7 +232,7 @@ class Tasca
    /**
     * imprimirTareas
     *
-    * @return void
+    * return void
     */
    function imprimirTareas()
    {
