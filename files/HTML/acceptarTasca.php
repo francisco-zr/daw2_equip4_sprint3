@@ -1,57 +1,17 @@
 <?php 
 session_start();
 $_SESSION['id'] = 1;?>
+
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../CSS/style.css">
+  <link rel="stylesheet" href="../CSS/modalTasca.css">
   <title>Pymeshield Aceptar Presupuesto</title>
   <?php require_once("head.php");?>
-  <style>
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-/* The Close Button */
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-</style>
 </head>
 
 <body class="d-flex flex-column min-vh-100" >
@@ -125,22 +85,7 @@ $_SESSION['id'] = 1;?>
                     ?>
                     </select>
                 </div>
-                <!-- Enviem el form segons si la acepta + id pimeralia o +id empresa Auditada (opcio de crear 2 arxius amb el id de la empresa i crear tasca desde alli)-->
-                <!-- 
-                  #Boto pymeralia
-                  function assignarPymeralia()
-                  include_once '../PHP/connexioBDD.php';
-                  $id_user=$_SESSION['id'] ;             
-                  $query= "SELECT * FROM tasks WHERE tasks.id_user= '$id_user'";
-                  $linies = mysqli_query($connexioDB,$query);
-                  $linia = mysqli_fetch_array($linies);
-                  if($linia['assing']==null){
-                    $pymeralia= 1;
-                    $query= "SELECT * FROM tasks WHERE tasks.id_user= '$id_user'";
-
-                  }
-                ?>
-                -->
+                
                 <div class="form-group mt-3">
                 <p class="h4">¿Quién quiero que me lo gestione?</p>
                 <select class="form-select form-select-lg" id='gestio' placeholder="select">
@@ -166,92 +111,29 @@ $_SESSION['id'] = 1;?>
       </div>
 
                 </main>
-        <footer class="bg-black text-center text-lg-center mt-auto">
-            <?php require_once("footer.php");?>
+            <footer class="bg-black text-center text-lg-center mt-auto">
+                <?php require_once("footer.php");?>
             </footer>
           </body>
+
+
+
           <!-- The Modal -->
           <div id="myModal" class="modal">
-
-          <!-- Modal content -->
-          <div class="modal-content" style="margin:10%;">
-            <span class="close">&times;</span>
-            <h1 style="margin-left:10%; text-align:center!important;">Confirma los datos:</h1>
-            <p style="margin-left:10%;">Solucion seleccionada:    <label id="texto_nav1"></label></p>
-            <p style="margin-left:10%;">Aceptas la tarea:     <label id="texto_nav2"></label></p>
-            <p style="margin-left:10%;">Quien gestiona la tarea:     <label id="texto_nav3"></label></p>
-            <button type="button" class="btn btn-primary" id="myBtn" onclick='guarda()'>Guardar</button>          </div>
-
+            <!-- Modal content -->
+            <div class="modal-content" style="margin:10%;">
+              <span class="close">&times;</span>
+              <h1 style="margin-left:10%; text-align:center!important;">Confirma los datos:</h1>
+              <p style="margin-left:10%;">Solucion seleccionada:<label id="texto_nav1"></label></p>
+              <p style="margin-left:10%;">Aceptas la tarea:<label id="texto_nav2"></label></p>
+              <p style="margin-left:10%;">Quien gestiona la tarea:<label id="texto_nav3"></label></p>
+              <button type="button" class="btn btn-primary" id="myBtn" onclick='guarda()'>Guardar</button>
+            </div>
           </div>
+
+
+
+
           <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-          <script>
-            function validador(){
-              let solucio="";
-              let gridcheck;
-              let gestio="";
-              solucio = document.getElementById("solucio").value;
-              gridcheck = document.getElementById("gridCheck").checked;
-              gestio = document.getElementById("gestio").value;
-              if(gridcheck!=false){
-                gridcheck=" SI ";
-              }else if(gridcheck==false){
-                gridcheck=" NO "
-              }
-              var campo1 = document.getElementById('texto_nav1');
-              campo1.innerHTML = solucio;
-              var campo2 = document.getElementById('texto_nav2');
-              campo2.innerHTML = gridcheck;
-              var campo3 = document.getElementById('texto_nav3');
-              campo3.innerHTML = gestio;
-
-              // Get the modal
-                var modal = document.getElementById("myModal");
-
-                // Get the button that opens the modal
-                var btn = document.getElementById("myBtn");
-
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
-
-                // When the user clicks the button, open the modal 
-                btn.onclick = function() {
-                  modal.style.display = "block";
-                }
-
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function() {
-                  modal.style.display = "none";
-                }
-
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
-                  if (event.target == modal) {
-                    modal.style.display = "none";
-                  }
-                }          
-              }
-              function guarda(){
-              let solucio="";
-              let gridcheck;
-              let gestio="";
-              var modal = document.getElementById("myModal");
-              solucio = document.getElementById("solucio").value;
-              gridcheck = document.getElementById("gridCheck").checked;
-              gestio = document.getElementById("gestio").value;
-              
-                
-                $.ajax({
-                  type:'POST',
-                  url:'inserirTasca.php',
-                  data: {solucio,gridcheck,gestio},
-                  success:function(data){
-                  console.log("enviado");
-                }
-              })
-                modal.style.display = "none";
-
-
-              }
-          </script>
-
+          <script src="../JavaScript/validadorTasca.js"></script>
           </html>

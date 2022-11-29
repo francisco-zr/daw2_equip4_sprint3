@@ -33,16 +33,15 @@ class Tasca
       }
    }
 
-   //ahora declaro una serie de métodos constructores que aceptan diversos números de parámetros
+   //Ahora declaro una serie de métodos constructores que aceptan diversos números de parámetros
    /**
     * constructor1 --> IDUsuari
     *
     * return void
     */
-   function __construct1($Estat)
+   function __construct1($id)
    {
-      $this->id = $_SESSION['id'];
-      $this->Estat = $Estat;
+      $this->id = $id;
    }
 
    public function getId()
@@ -240,5 +239,59 @@ class Tasca
       //query a mejorar, ahora solo imprime tareas en general
       $query = "SELECT * FROM `tasks`";
       return $connexioDB->query($query);
+   }
+
+
+
+
+   function mostrarRecomendacionTarea(){
+      //Conexión a base de datos
+      include 'connexioBDD.php';
+
+      //Generamos la consulta
+      $query = "SELECT `recommendations`.`name_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
+      FROM `recommendations`
+      INNER JOIN answers ON recommendations.id_answer = answers.id_answer
+      INNER JOIN questions ON answers.id_question = questions.id_question
+      INNER JOIN questionnaries ON questions.id_questionary = questionnaries.id_questionary
+      WHERE questionnaries.id_questionary = $this->id";
+
+      //Generamos la consulta contra la conexión a la BBDD
+      $mostrarRT = $connexioDB->query($query);
+
+      while ($row = mysqli_fetch_array($mostrarRT, MYSQLI_ASSOC))
+      {
+         echo '<tbody>
+                  <tr>
+                     <th>'.$row['name_questionary'].'</th>
+                     <td>'.$row['description_question'].'</td>
+                     <td>'.$row['name_recommendation'].'</td>
+                     <td>
+                     <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <label class="form-check-label" for="exampleRadios1">
+                           Aceptar
+                        </label>
+                     </div>
+                     <td>
+                     <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <label class="form-check-label" for="exampleRadios2">
+                           Rechazar
+                        </label>
+                     </div>
+                     </td>
+                     <td>
+                     <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
+                        <label class="form-check-label" for="exampleRadios3">
+                           No hacer nada 
+                        </label>
+                     </div>
+                     </td>
+                     </td>
+                  </tr>
+               </tbody>';
+      }
    }
 }
