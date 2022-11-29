@@ -46,6 +46,7 @@
         <li class="nav-item"><a class="nav-link" href="FormulariPresupost.php"><i class="fa-solid fa-square-poll-vertical"></i>Presupuestar Tareas</a>
         </li>
         <li class="nav-item"><a class="nav-link" href="acceptarTasca.php"><i class="fa-solid fa-clipboard-question"></i>Aceptar Tareas</a></li>
+        <li class="nav-item"><a class="nav-link" href="ListadoPresupuestos.php"><i class="fa-solid fa-clipboard-question"></i>Listado Empresas</a></li>
         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-qrcode"></i>QR</a>
         </li>
       </ul>

@@ -102,17 +102,18 @@ $_SESSION['id'] = 1;
             $connexioDB->close();
         }
 
+        
         public function mostrarTasca(){
             include 'connexioBDD.php';
             
-            $query = "SELECT * FROM tasks ;";
+            $query = "SELECT tasks.name_task FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = 1 AND tasks.accepted = 1;";
             return $connexioDB->query($query);
         }
 
         public function afegirPreuTasca($valor, $id_task){
             include 'connexioBDD.php';
 
-          $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, 1)";
+          $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, $this->id)";
           return $connexioDB->query($query);
         }
     }
