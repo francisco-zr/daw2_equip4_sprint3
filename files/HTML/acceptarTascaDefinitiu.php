@@ -14,7 +14,6 @@ require_once("../PHP/TascaClass.php");
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pymeshield Aceptar Tareas</title>
   <?php require_once("head.php"); ?>
-  <script src="../JavaScript/gantt.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">

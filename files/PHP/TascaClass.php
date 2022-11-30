@@ -280,14 +280,14 @@ class Tasca
                      <td>'.$row['name_recommendation'].'</td>
                      <td>
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1">
                         <label class="form-check-label" for="exampleRadios1">
                            Aceptar
                         </label>
                      </div>
                      <td>
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2">
                         <label class="form-check-label" for="exampleRadios2">
                            Rechazar
                         </label>
@@ -295,10 +295,11 @@ class Tasca
                      </td>
                      <td>
                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" >
-                        <label class="form-check-label" for="exampleRadios3">
-                           No hacer nada 
-                        </label>
+                        <select class="form-select form-select-sm" aria-label="form-select-sm" id="selector-tareas">
+                        <option selected>Seleccionar una opción</option>
+                        <option value="Empresa Auditada">Lo gestiono personalmente</option>
+                        <option value="Pymeralia">Lo gestiona Pymeralia</option>
+                     </select>
                      </div>
                      </td>
                   </tr>
