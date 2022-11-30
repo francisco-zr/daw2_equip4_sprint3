@@ -2,6 +2,7 @@
 # VARIABLES GLOBALS
 session_start();
 $_SESSION['id'] = 1;
+$id_sesion = $_SESSION['id'];
 
 class Tasca
 {
@@ -44,18 +45,29 @@ class Tasca
       $this->id = $id;
    }
 
+   function __construct2($Estat, $id_sesion)
+   {
+      $this->id = $id_sesion;
+      $this->Estat = $Estat;
+
+
+   }
+
    public function getId()
    {
       return $this->id;
    }
+
    public function getNom()
    {
       return $this->Nom;
    }
+
    public function getParticipant()
    {
       return $this->Participant;
    }
+
    public function getEstat()
    {
       return $this->Estat;
@@ -288,7 +300,6 @@ class Tasca
                            No hacer nada 
                         </label>
                      </div>
-                     </td>
                      </td>
                   </tr>
                </tbody>';
