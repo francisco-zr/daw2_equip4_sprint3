@@ -26,7 +26,7 @@ require_once("../PHP/TascaClass.php");
     </div>
     <div class="table-responsive rounded-top" id="gantt"></div>
     <?php
-    $ganntt1 = new Tasca;
+    $ganntt1 = new Tasca($id_sesion);
     $ganntt1->modalGantt();
     ?>
   </main>

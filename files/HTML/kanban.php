@@ -24,7 +24,7 @@ require_once("../PHP/TascaClass.php");
           <p><strong>To-Do</strong></p>
           <div class="flex-container">
             <?php
-            $tasca1 = new Tasca('ToDo', $id_sesion);
+            $tasca1 = new Tasca($id_sesion, 'ToDo');
             $tasca1->listarKanban();
             ?>
           </div>
@@ -32,14 +32,14 @@ require_once("../PHP/TascaClass.php");
         <div class="col-4 pymeshield-kanban border-end" id="InProgress" ondrop="drop(event)" ondragover="allowDrop(event)">
           <p><strong>In Progress</strong></p>
           <?php
-          $tasca2 = new Tasca('InProgress', $id_sesion);
+          $tasca2 = new Tasca($id_sesion, 'InProgress');
           $tasca2->listarKanban();
           ?>
         </div>
         <div class="col-4 pymeshield-kanban" id="Done" ondrop="drop(event)" ondragover="allowDrop(event)">
           <p><strong>Done</strong></p>
           <?php
-          $tasca3 = new Tasca('Done', $id_sesion);
+          $tasca3 = new Tasca($id_sesion, 'Done');
           $tasca3->listarKanban();
           ?>
         </div>
