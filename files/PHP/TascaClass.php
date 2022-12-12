@@ -306,4 +306,8 @@ class Tasca
                </tbody>';
       }
    }
+
+   function enviarTasquesAcceptades(){
+      echo "Hola";
+   }
 }
