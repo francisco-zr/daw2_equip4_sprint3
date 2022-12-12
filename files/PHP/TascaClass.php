@@ -45,9 +45,9 @@ class Tasca
       $this->id = $id;
    }
 
-   function __construct2($Estat, $id_sesion)
+   function __construct2($id, $Estat)
    {
-      $this->id = $id_sesion;
+      $this->id = $id;
       $this->Estat = $Estat;
 
 
