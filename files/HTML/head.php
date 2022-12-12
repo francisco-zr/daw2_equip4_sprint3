@@ -10,3 +10,6 @@
 <link href="../CSS/brands.min.css" rel="stylesheet">
 <link href="../CSS/solid.min.css" rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+<link rel="stylesheet" href="../node_modules/bootstrap-table/dist/bootstrap-table.min.css">
+<link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+<script src="../node_modules/bootstrap-table/dist/bootstrap-table.min.js"></script>
