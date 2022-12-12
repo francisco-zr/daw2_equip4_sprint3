@@ -23,7 +23,7 @@ require_once("../PHP/PresupostClass.php");
     <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-url="./getPresupuesto.php">
       <thead>
         <tr>
-          <th data-field="id_task_budget">ID</th>
+          <th data-sortable="true" data-field="id_task_budget">ID</th>
           <th data-field="id_budget">ID</th>
           <th data-field="id_task">Item Name</th>
           <th data-field="price">Item Price</th>
