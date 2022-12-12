@@ -1,5 +1,5 @@
 <?php
-require_once("../PHP/TascaClass.php");
+require_once("../PHP/PresupostClass.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -19,6 +19,17 @@ require_once("../PHP/TascaClass.php");
   <main>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3 border-bottom">
       <h1 class="h2">{Por hacer}</h1>
+    </div>
+    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-url="./getPresupuesto.php">
+      <thead>
+        <tr>
+          <th data-field="id_task_budget">ID</th>
+          <th data-field="id_budget">ID</th>
+          <th data-field="id_task">Item Name</th>
+          <th data-field="price">Item Price</th>
+        </tr>
+      </thead>
+    </table>
   </main>
   <footer class="bg-black text-center text-lg-center mt-auto">
     <?php require_once("footer.php"); ?>
