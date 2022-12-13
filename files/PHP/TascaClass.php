@@ -307,7 +307,7 @@ class Tasca
       }
    }
 
-   function enviarTasquesAcceptades(){
-      echo "Hola";
+   public static function enviarTasquesAcceptades(){
+      print_r("Hola");
    }
 }
