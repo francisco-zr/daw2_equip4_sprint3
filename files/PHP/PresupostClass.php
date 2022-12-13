@@ -110,6 +110,7 @@ class Presupost
         if ($linea = mysqli_query($query = "DELETE ...;")) {
             printf("Pressupost eliminat");
         }
+        $connexioDB->close();
     }
 
     public function mostrarPresupostos()
