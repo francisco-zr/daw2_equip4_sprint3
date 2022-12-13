@@ -1,0 +1,12 @@
+{
+    "personas":{
+            "nombre": "Juan",
+            "edad": 35,
+            "direccion": "Calle Falsa 123"
+        },
+        "humanos":{
+            "nombre": "María",
+            "edad": 28,
+            "direccion": "Avenida Siempre Viva 456"
+        }
+}
