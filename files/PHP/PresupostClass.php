@@ -131,22 +131,6 @@ class Presupost
         echo '<div class="vr"></div>';
     }
 
-    public function mostrarPresupostos(){
-        include_once 'dbconn.php';
-        $conn = conn();
-        $query = "SELECT * FROM  WHERE email = '$this->email'";
-        $result = mysqli_query($conn,$query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($conn), E_USER_ERROR);
-        $row = $result -> fetch_assoc();
-
-            echo '<div class=" d-flex align-items-start flex-column">',
-                    '<span class="p-lg-3" id="name">' . $row['name_user'] . '</span>',
-                    '<span class="p-lg-3" id="last-name">' . $row['last_name'] . '</span>',
-                    '<span class="p-lg-3" id="dni">' . $row['dni'] . '</span>',
-                    '<span class="p-lg-3" id="empresa">' . $row['id_company'] . '</span>',
-                '</div>';
-
-            echo '<div class="vr"></div>';  
-    }
 
     public function mostrarTasca()
     {
