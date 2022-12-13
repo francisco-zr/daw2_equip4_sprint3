@@ -13,3 +13,4 @@
 <link rel="stylesheet" href="../node_modules/bootstrap-table/dist/bootstrap-table.min.css">
 <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
 <script src="../node_modules/bootstrap-table/dist/bootstrap-table.min.js"></script>
+<script src="../node_modules/bootstrap-table/dist/bootstrap-table-locale-all.min.js"></script>

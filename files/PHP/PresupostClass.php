@@ -134,13 +134,14 @@ class Presupost
     {
         include 'connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
-        $query = "SELECT * FROM `task_budget`";
+        $query = "SELECT tasks.id_task, tasks.name_task, tasks.description_task, tasks.accepted, task_budget.price
+        FROM `task_budget` 
+	    INNER JOIN `tasks` ON `task_budget`.`id_task` = `tasks`.`id_task`;";
         $resultado = $connexioDB->query($query);
         $array = array();
-        while($row =mysqli_fetch_assoc($resultado))
-    {
-        $array[] = $row;
-    }
+        while ($row = mysqli_fetch_assoc($resultado)) {
+            $array[] = $row;
+        }
         return json_encode($array);
     }
 }
