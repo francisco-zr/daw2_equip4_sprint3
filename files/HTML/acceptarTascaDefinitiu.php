@@ -28,11 +28,11 @@ require_once("../PHP/TascaClass.php");
             <h1 class="h2">Aceptar Tareas Cuestionario X</h1>
         </div>
 
-        <div class="container-fluid">
+        <div class="container table-responsive">
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Nombre Cuestionario</th>
+                        <th scope="col">Nombre Cuestionario (Provisional)</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Recomendación</th>
                         <th scope="col"></th>
@@ -48,6 +48,10 @@ require_once("../PHP/TascaClass.php");
                 $tascaUsuari->mostrarRecomendacionTarea();
                 ?> 
             </table>   
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary" type="button" onclick="enviarTasquesAcceptadesJS()">Enviar Tareas</button>
+            </div>
         </div>  
     </main>
 
@@ -55,6 +59,7 @@ require_once("../PHP/TascaClass.php");
     <footer class="bg-black text-center text-lg-center mt-auto">
         <?php require_once("footer.php"); ?>
     </footer>
+    <script src="../JavaScript/enviarTasquesAcceptades.js"></script>
 </body>
 
 </html>
