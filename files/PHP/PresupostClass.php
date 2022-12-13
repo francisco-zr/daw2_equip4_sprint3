@@ -110,9 +110,7 @@ class Presupost
         if ($linea = mysqli_query($query = "DELETE ...;")) {
             printf("Pressupost eliminat");
         }
-<<<<<<< HEAD
         $connexioDB->close();
-=======
     }
 
     public function mostrarPresupostos()
@@ -131,7 +129,6 @@ class Presupost
         '</div>';
 
         echo '<div class="vr"></div>';
->>>>>>> 44b11465197fa6440930b660ad728c5c57988dcb
     }
 
     public function mostrarPresupostos(){
