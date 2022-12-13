@@ -20,13 +20,15 @@ require_once("../PHP/PresupostClass.php");
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3 border-bottom">
       <h1 class="h2">{Por hacer}</h1>
     </div>
-    <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-url="./getPresupuesto.php">
+    <table id="table" data-locale="es-ES" data-click-to-select="true" data-toggle="table" data-pagination="true" data-search="true" data-url="./getPresupuesto.php">
       <thead>
         <tr>
-          <th data-sortable="true" data-field="id_task_budget">ID</th>
-          <th data-field="id_budget">ID</th>
-          <th data-field="id_task">Item Name</th>
-          <th data-field="price">Item Price</th>
+          <th data-field="state" data-checkbox="true"></th>
+          <th data-sortable="true" data-field="id_task">ID</th>
+          <th data-sortable="true" data-field="name_task">Nombre</th>
+          <th data-sortable="true" data-field="description_task">Descripción</th>
+          <th data-sortable="true" data-field="accepted">Aceptado</th>
+          <th data-sortable="true" data-field="price">Precio</th>
         </tr>
       </thead>
     </table>

@@ -50,7 +50,7 @@ require_once("../PHP/TascaClass.php");
             </table>   
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" type="button" onclick="enviarTasquesAcceptadesJS()">Enviar Tareas</button>
+                <button class="btn btn-primary" type="button" onclick="javascript">Enviar Tareas</button>
             </div>
         </div>  
     </main>

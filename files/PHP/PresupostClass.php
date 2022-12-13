@@ -110,7 +110,28 @@ class Presupost
         if ($linea = mysqli_query($query = "DELETE ...;")) {
             printf("Pressupost eliminat");
         }
+<<<<<<< HEAD
         $connexioDB->close();
+=======
+    }
+
+    public function mostrarPresupostos()
+    {
+        include_once 'dbconn.php';
+        $conn = conn();
+        $query = "SELECT * FROM  WHERE email = '$this->email'";
+        $result = mysqli_query($conn, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($conn), E_USER_ERROR);
+        $row = $result->fetch_assoc();
+
+        echo '<div class=" d-flex align-items-start flex-column">',
+        '<span class="p-lg-3" id="name">' . $row['name_user'] . '</span>',
+        '<span class="p-lg-3" id="last-name">' . $row['last_name'] . '</span>',
+        '<span class="p-lg-3" id="dni">' . $row['dni'] . '</span>',
+        '<span class="p-lg-3" id="empresa">' . $row['id_company'] . '</span>',
+        '</div>';
+
+        echo '<div class="vr"></div>';
+>>>>>>> 44b11465197fa6440930b660ad728c5c57988dcb
     }
 
     public function mostrarPresupostos(){
@@ -150,13 +171,14 @@ class Presupost
     {
         include 'connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
-        $query = "SELECT * FROM `task_budget`";
+        $query = "SELECT tasks.id_task, tasks.name_task, tasks.description_task, tasks.accepted, task_budget.price
+        FROM `task_budget` 
+	    INNER JOIN `tasks` ON `task_budget`.`id_task` = `tasks`.`id_task`;";
         $resultado = $connexioDB->query($query);
         $array = array();
-        while($row =mysqli_fetch_assoc($resultado))
-    {
-        $array[] = $row;
-    }
+        while ($row = mysqli_fetch_assoc($resultado)) {
+            $array[] = $row;
+        }
         return json_encode($array);
     }
 }
