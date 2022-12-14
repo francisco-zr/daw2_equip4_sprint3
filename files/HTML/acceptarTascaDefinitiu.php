@@ -28,26 +28,43 @@ require_once("../PHP/TascaClass.php");
             <h1 class="h2">Aceptar Tareas Cuestionario X</h1>
         </div>
 
-        <div class="container-fluid">
-            <table class="table">
+        <div class="container table-responsive">
+            <!--<table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Nombre Cuestionario</th>
+                        <th scope="col">Nombre Cuestionario (Provisional)</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Recomendación</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
-                </thead>
+                </thead>-->
                 
-                <?php 
+                <!--php 
                 //Instanciamos el objeto
                 $tascaUsuari = new Tasca($_SESSION['id']);
                 //Mediante el objeto llamamos al método
                 $tascaUsuari->mostrarRecomendacionTarea();
-                ?> 
-            </table>   
+                ?>
+
+
+            </table>-->   
+
+            <table id="table" data-locale="es-ES" data-click-to-select="true" data-toggle="table" data-pagination="true" data-search="true" data-url="./getTasques.php">
+                <thead>
+                    <tr>
+                        <th data-field="state" data-checkbox="true"></th>
+                        <th data-sortable="true" data-field="name_questionary">Nombre Cuestionario</th>
+                        <th data-sortable="true" data-field="description_question">Descripción</th>
+                        <th data-sortable="true" data-field="name_recommendation">Recomendación</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-primary" type="button" onclick="">Enviar Tareas</button>
+            </div>
         </div>  
     </main>
 
@@ -55,6 +72,7 @@ require_once("../PHP/TascaClass.php");
     <footer class="bg-black text-center text-lg-center mt-auto">
         <?php require_once("footer.php"); ?>
     </footer>
+    <script src="../JavaScript/enviarTasquesAcceptades.js"></script>
 </body>
 
 </html>
