@@ -144,7 +144,22 @@ class Presupost
     {
         include 'connexioBDD.php';
 
-          $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, $this->id)";
-          return $connexioDB->query($query);
-        }
+        $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, $this->id)";
+        return $connexioDB->query($query);
     }
+
+    public function aceptarPresupuesto()
+    {
+        include 'connexioBDD.php';
+        //query a mejorar, ahora solo imprime tareas en general
+        $query = "SELECT tasks.id_task, tasks.name_task, tasks.description_task, tasks.accepted, task_budget.price
+        FROM `task_budget` 
+	    INNER JOIN `tasks` ON `task_budget`.`id_task` = `tasks`.`id_task`;";
+        $resultado = $connexioDB->query($query);
+        $array = array();
+        while ($row = mysqli_fetch_assoc($resultado)) {
+            $array[] = $row;
+        }
+        return json_encode($array);
+    }
+}
