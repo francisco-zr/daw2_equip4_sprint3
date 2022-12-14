@@ -1,5 +1,13 @@
+// your custom ajax request here
+function ajaxRequest(params) {
+    var url = '../HTML/getPresupuesto.php'
+    $.get(url).then(function(res) {
+        params.success(JSON.parse(res))
+    })
+  }
+
 function idFormatter() {
-    return 'Total'
+    return 'Total Presupuesto'
 }
 
 function nameFormatter(data) {
