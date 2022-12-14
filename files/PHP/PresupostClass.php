@@ -113,7 +113,17 @@ $_SESSION['id'] = 1;
         public function afegirPreuTasca($valor, $id_task){
             include 'connexioBDD.php';
 
-          $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, $this->id)";
+            $query = "INSERT INTO budgets(id_budget) VALUES ($id_budget)";
+
+
+          $query .= "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, $this->id)";
+          /*
+          if (mysqli_multi_query($conn, $sql)) {
+            echo "New records created successfully";
+          } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+          }
+          */
           return $connexioDB->query($query);
         }
     }
