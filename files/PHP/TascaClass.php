@@ -95,7 +95,7 @@ class Tasca
    public static function showFormularis(){ //es un metode estatic per a mostrar els camps de la base de dades a la web
       include_once "connexioBDD.php"; //fitxe de conexio a la base de dades
       //consulta
-      $sql = "SELECT tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary;";
+      $sql = "SELECT tasks.state, users.name_user, users.last_name, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary;      ";
       $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
       return $result;
    }

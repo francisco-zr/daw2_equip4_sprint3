@@ -39,6 +39,7 @@ require_once("../PHP/TascaClass.php");
     <tr>
       <th class="text-center" data-field="Estado">Estado</th>
       <th class="text-center" data-field="Nombre Cliente">Nombre Cliente</th>
+      <th class="text-center" data-field="Nombre Cliente">Apellido Cliente</th>
       <th class="text-center" data-field="Nombre Empresa">Nombre Empresa</th>
       <th class="text-center" data-field="Nombre Cuestionario">Nombre del cuestionario </th>
       <th class="text-center" data-filed="Fecha">Fecha</th>
@@ -54,6 +55,7 @@ require_once("../PHP/TascaClass.php");
 		<tr class="table-warning"> <!-- Per mostrar els camps fem lo seguent i fiquem lo nom de les columnes que volem mostrar -->
 			<th ><center><?php echo $mostrar['state'] ?></center> </th>
      		<th ><center><?php echo $mostrar['name_user'] ?></center> </th>
+         <th ><center><?php echo $mostrar['last_name'] ?></center> </th>
 			<td><center><?php echo $mostrar['name_company'] ?></center></td>
 			<td><center><?php echo $mostrar['name_questionary']?></center></td>
 			<td><center><?php echo $mostrar['date_questionary']?></center></td>
