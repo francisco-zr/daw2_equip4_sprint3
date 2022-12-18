@@ -18,28 +18,26 @@ require_once("../PHP/PresupostClass.php");
     <?php require_once("header.php"); ?>
   </header>
   <main>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3 border-bottom">
-      <h1 class="h2">{Por hacer}</h1>
-    </div>
-    <table id="table" data-locale="es-ES" data-click-to-select="true" data-toggle="table" data-pagination="true" data-page-size="10"
-  data-page-list="[5, 10, 20]" data-search="true" data-show-footer="true" data-footer-style="footerStyle" data-ajax="ajaxRequest">
-      <thead>
-        <tr>
-          <th data-field="state" data-checkbox="true"></th>
-          <th data-sortable="true" data-field="id_task" data-footer-formatter="idFormatter">ID</th>
-          <th data-sortable="true" data-field="name_task" data-footer-formatter="nameFormatter">Nombre</th>
-          <th data-sortable="true" data-field="description_task">Descripción</th>
-          <th data-sortable="true" data-field="accepted">Aceptado</th>
-          <th data-sortable="true" data-field="price" data-footer-formatter="priceFormatter">Precio</th>
-        </tr>
-      </thead>
-    </table>
-    <div class="d-flex justify-content-end flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3 border-bottom">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Por hacer</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="#" target="_blank" type="button" class="btn btn-dark"><i class="fa-solid fa-file-pdf"></i>Aceptar Presupuesto</a></div>
-        <div class="btn-toolbar mb-2 mb-md-0">
-        <a href="#" target="_blank" type="button" class="btn btn-light"><i class="fa-solid fa-file-pdf"></i>Modificar Presupuesto</a>
+        <div class="btn-group me-2">
+          <a href="#" target="_blank" type="button" class="btn btn-dark"><i class="fa-solid fa-check"></i>Aceptar Presupuesto</a>
+        </div>
+        <button type="button" class="btn btn-secondary" id="editando" value="activar edit"><i class="fa-solid fa-pen-to-square"></i>Modificar Presupuesto</button>
       </div>
+    </div>
+    <div class="container">
+      <table id="table" data-locale="es-ES" data-click-to-select="true" data-toggle="table" data-pagination="true" data-page-size="10" data-page-list="[5, 10, 20]" data-search="true" data-show-footer="true" data-footer-style="footerStyle" data-ajax="ajaxRequest">
+        <thead>
+          <tr>
+            <th data-sortable="true" data-field="name_task" data-footer-formatter="idFormatter">Nombre</th>
+            <th data-sortable="true" data-field="description_task">Descripción</th>
+            <th data-field="accepted" data-sortable="true" data-formatter="statusFormatter">Estado</th>
+            <th data-sortable="true" data-field="price" data-footer-formatter="priceFormatter">Precio</th>
+          </tr>
+        </thead>
+      </table>
     </div>
   </main>
   <footer class="bg-black text-center text-lg-center mt-auto">

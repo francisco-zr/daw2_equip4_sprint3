@@ -148,7 +148,7 @@ class Presupost
         return $connexioDB->query($query);
     }
 
-    public function aceptarPresupuesto()
+    public function mostrarAceptarPresupuesto()
     {
         include 'connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
@@ -161,5 +161,12 @@ class Presupost
             $array[] = $row;
         }
         return json_encode($array);
+    }
+
+    public function aceptarPresupuesto()
+    {
+        include 'connexioBDD.php';
+        $query = "UPDATE `budgets` SET `accepted` = '1' WHERE `budgets`.`id_budget` = 1;";
+        $connexioDB->query($query);
     }
 }
