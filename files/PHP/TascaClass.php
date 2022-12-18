@@ -92,6 +92,14 @@ class Tasca
       $this->Estat = $Estat;
    }
 
+   public static function showFormularis(){ //es un metode estatic per a mostrar els camps de la base de dades a la web
+      include_once "connexioBDD.php"; //fitxe de conexio a la base de dades
+      //consulta
+      $sql = "SELECT tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary;";
+      $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
+      return $result;
+   }
+
 
 
    /*  function crearTasca(){
@@ -261,7 +269,7 @@ class Tasca
       include 'connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT `recommendations`.`id_recommendation`,`recommendations`.`name_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
+      $query = "SELECT `recommendations`.`name_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
       FROM `recommendations`
       INNER JOIN answers ON recommendations.id_answer = answers.id_answer
       INNER JOIN questions ON answers.id_question = questions.id_question
@@ -283,12 +291,11 @@ class Tasca
       return json_encode($array); 
    }
 
+   #public static function enviarTasquesAcceptades(){
+      #print_r("Hola");
+  # }
 
-
-
-
-   
-   public static function enviarTasquesAcceptades(){
-      print_r("Hola");
-   }
+   #public static function enviarTasquesAcceptades(){
+     # print_r("Hola");
+   #}
 }
