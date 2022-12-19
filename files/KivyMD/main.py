@@ -15,7 +15,12 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget #import para c
 import json #importamos la libreria de python que nos permite trabajar con json
 
 
+def sacar_nombres():
+    with open('data.json') as f:
+        places = json.load(f)
+    return places
 
+#items = sacar_nombres()
 
 
 
@@ -48,7 +53,7 @@ class MyApp (MDApp):
 
     def on_start(self): #creamos la clase on_start
         # Cargamos los datos desde el archivo data.json
-        with open('assets/data.json') as json_file:
+        with open("data.json") as json_file:
             data = json.load(json_file)
             
                 
