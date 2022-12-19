@@ -51,19 +51,19 @@ require_once("../PHP/TascaClass.php");
 
             </table>-->
             <!-- data-url="./getTasques.php" -->
-            <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequest" data-page-list="[1, 2, 3, 8, 100, all]" data-page-size="1">
+            <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequest" data-page-list="[3, 6, 9, 15, 100, all]" data-page-size="10">
                 <thead>
                     <tr>
                         <th data-sortable="true" data-field="name_questionary" data-events="operateEvents">Nombre Cuestionario</th>
                         <th data-sortable="true" data-field="description_question">Descripción</th>
                         <th data-sortable="true" data-field="name_recommendation">Recomendación</th>
-                        <th data-sortable="true" data-events="operateEvents" data-formatter="operateFormatter">Aceptar /</th>
+                        <th data-sortable="true" data-events="operateEvents" data-formatter="operateFormatter">Aceptar / Rechazar</th>
                     </tr>
                 </thead>
             </table>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" type="button" onclick="">Enviar Tareas</button>
+                <button class="btn btn-primary" id="enviar-prueba" type="button" value="cualquier">Enviar Tareas</button>
             </div>
         </div>
     </main>
@@ -75,26 +75,38 @@ require_once("../PHP/TascaClass.php");
     <script src="../JavaScript/enviarTasquesAcceptades.js"></script>
     <script src="../JavaScript/ajaxRequestAcceptarTasca.js"></script>
 
-
     <script>
         window.operateEvents = {
-            'click #flexSwitchCheckDefault': function(e, value, row) {
-                alert('You click like action, row: ' + JSON.stringify(row))
+            'click .form-check-input': function(e, value, row) {
+                //console.log(row.id_recommendation)
+                var checkeado = e.target.checked;
+                var accepted = 0;
+
+                if (checkeado == true) {
+                    accepted = 1;
+                } else {
+                    accepted = 0;
+                }
             }
         }
 
+        $(document).ready(function(){
+                    $('#enviar-prueba').click(function(){
+                        alert(JSON.stringify($('#table').bootstrapTable('getData')));
+                    });
+                });
+
         function operateFormatter(value, row, index) {
-            console.log(row.id_recommendation);
-            return [
-                '<div class="right">',
-                '<div class="form-check form-switch">',
-                '<input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row.id_recommendation">',
-                '<label class="form-check-label" for="flexSwitchCheckDefault"></label>',
-                '</div>'
-            ].join('')
+            return `
+                <div class="right">
+                <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${row.id_recommendation}" value="0">
+                <input id="valor-escondido-${row.id_recommendation}" value="${row.id_recommendation}">
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+            `;
         }
     </script>
-
 </body>
 
 </html>
