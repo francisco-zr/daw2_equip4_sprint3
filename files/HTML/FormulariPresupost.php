@@ -1,4 +1,8 @@
-<?php require_once("../PHP/PresupostClass.php"); ?>
+<?php require_once("../PHP/PresupostClass.php"); 
+if (isset($_GET['id_presupuesto'])) {
+    $id = $_GET['id_presupuesto'];
+  }
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -35,9 +39,9 @@
                     echo '$(document).ready(function(){ $(".toast").toast("show") });';
                     echo '</script>';
                 } ?>
-                <form action="enviarPressupost.php?" method="post" name="formuario" class="row">
+                <form action="enviarPressupost.php?id_presupuesto=<?php echo"$id"; ?>" method="post" name="formuario" class="row">
                     <?php
-                    $presupuesto = new Presupost();
+                    $presupuesto = new Presupost($id);
                     $resultat = $presupuesto->mostrarTasca();
 
                     foreach ($resultat as $row) {

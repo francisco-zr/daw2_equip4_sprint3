@@ -138,7 +138,7 @@ class Presupost
     {
         include 'connexioBDD.php';
 
-        $query = "SELECT tasks.name_task, tasks.id_task  FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = 1 AND tasks.accepted = 1;";
+        $query = "SELECT tasks.name_task, tasks.id_task  FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
         return $connexioDB->query($query);
     }
 
@@ -146,7 +146,7 @@ class Presupost
     {
         include 'connexioBDD.php';
 
-        $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, 1)";
+        $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, $this->id)";
         return $connexioDB->query($query);
     }
 
