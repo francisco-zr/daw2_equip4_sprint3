@@ -10,6 +10,7 @@ class Presupost
     private $preu;
     private $acceptat;
     private $ocult;
+    private $presupost;
 
 
     /**
@@ -41,9 +42,10 @@ class Presupost
      *
      * return void
      */
-    function __construct1()
+    function __construct1($presupost)
     {
         $this->id = $_SESSION['id'];
+        $this->presupost = $presupost;
     }
 
     /* Getters */
