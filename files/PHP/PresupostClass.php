@@ -10,6 +10,7 @@ class Presupost
     private $preu;
     private $acceptat;
     private $ocult;
+    private $presupost;
 
 
     /**
@@ -41,9 +42,10 @@ class Presupost
      *
      * return void
      */
-    function __construct1()
+    function __construct1($presupost)
     {
         $this->id = $_SESSION['id'];
+        $this->presupost = $presupost;
     }
 
     /* Getters */
@@ -115,28 +117,29 @@ class Presupost
 
     public function mostrarPresupostos()
     {
-        include_once 'dbconn.php';
-        $conn = conn();
-        $query = "SELECT * FROM  WHERE email = '$this->email'";
-        $result = mysqli_query($conn, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($conn), E_USER_ERROR);
-        $row = $result->fetch_assoc();
-
-        echo '<div class=" d-flex align-items-start flex-column">',
-        '<span class="p-lg-3" id="name">' . $row['name_user'] . '</span>',
-        '<span class="p-lg-3" id="last-name">' . $row['last_name'] . '</span>',
-        '<span class="p-lg-3" id="dni">' . $row['dni'] . '</span>',
-        '<span class="p-lg-3" id="empresa">' . $row['id_company'] . '</span>',
-        '</div>';
-
-        echo '<div class="vr"></div>';
+        include 'connexioBDD.php';
+        //query a mejorar, ahora solo imprime tareas en general
+        $query = "SELECT budgets.*, users.id_user, questionnaries.name_questionary 
+        FROM budgets 
+        INNER JOIN task_budget ON task_budget.id_budget = budgets.id_budget
+        INNER JOIN tasks ON tasks.id_task = task_budget.id_task
+        INNER JOIN users ON users.id_user = tasks.id_user
+        INNER JOIN questionnary_user ON questionnary_user.id_user = users.id_user
+        INNER JOIN questionnaries ON questionnaries.id_questionary = questionnary_user.id_questionary
+        WHERE users.id_user = 1;";
+        $resultado = $connexioDB->query($query);
+        $array = array();
+        while ($row = mysqli_fetch_assoc($resultado)) {
+            $array[] = $row;
+        }
+        return json_encode($array);
     }
-
 
     public function mostrarTasca()
     {
         include 'connexioBDD.php';
 
-        $query = "SELECT tasks.name_task FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = 1 AND tasks.accepted = 1;";
+        $query = "SELECT tasks.name_task, tasks.id_task  FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
         return $connexioDB->query($query);
     }
 
@@ -148,7 +151,7 @@ class Presupost
         return $connexioDB->query($query);
     }
 
-    public function aceptarPresupuesto()
+    public function mostrarAceptarPresupuesto()
     {
         include 'connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
@@ -161,5 +164,12 @@ class Presupost
             $array[] = $row;
         }
         return json_encode($array);
+    }
+
+    public function aceptarPresupuesto()
+    {
+        include 'connexioBDD.php';
+        $query = "UPDATE `budgets` SET `accepted` = '1' WHERE `budgets`.`id_budget` = 1;";
+        $connexioDB->query($query);
     }
 }

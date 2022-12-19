@@ -1,4 +1,8 @@
-<?php require_once("../PHP/PresupostClass.php"); ?>
+<?php require_once("../PHP/PresupostClass.php"); 
+if (isset($_GET['id_presupuesto'])) {
+    $id = $_GET['id_presupuesto'];
+  }
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -35,9 +39,9 @@
                     echo '$(document).ready(function(){ $(".toast").toast("show") });';
                     echo '</script>';
                 } ?>
-                <form action="enviarPressupost.php" method="post" name="formuario" class="row">
+                <form action="enviarPressupost.php?id_presupuesto=<?php echo"$id"; ?>" method="post" name="formuario" class="row">
                     <?php
-                    $presupuesto = new Presupost();
+                    $presupuesto = new Presupost($id);
                     $resultat = $presupuesto->mostrarTasca();
 
                     foreach ($resultat as $row) {
@@ -45,7 +49,7 @@
                         '<label for="preg2" class="form-label mb-0"><p class="h5">' . $row['name_task'] . '</p></label>',
                         '<div class="input-group has-validation mb-3">',
                         '<span class="input-group-text">€</span>',
-                        '<input type="number" min="0" class="form-control form-control-lg" placeholder="Coste" required/>',
+                        '<input type="number" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" required/>',
                         '</div></div>';
                     };
                     ?>
