@@ -35,7 +35,7 @@
                     echo '$(document).ready(function(){ $(".toast").toast("show") });';
                     echo '</script>';
                 } ?>
-                <form action="enviarPressupost.php" method="post" name="formuario" class="row">
+                <form action="enviarPressupost.php?" method="post" name="formuario" class="row">
                     <?php
                     $presupuesto = new Presupost();
                     $resultat = $presupuesto->mostrarTasca();
@@ -45,7 +45,7 @@
                         '<label for="preg2" class="form-label mb-0"><p class="h5">' . $row['name_task'] . '</p></label>',
                         '<div class="input-group has-validation mb-3">',
                         '<span class="input-group-text">€</span>',
-                        '<input type="number" min="0" class="form-control form-control-lg" placeholder="Coste" required/>',
+                        '<input type="number" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" required/>',
                         '</div></div>';
                     };
                     ?>
