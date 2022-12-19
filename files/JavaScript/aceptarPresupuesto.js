@@ -1,9 +1,13 @@
-function idFormatter() {
-    return 'Total'
+// your custom ajax request here
+function ajaxRequest(params) {
+    var url = '../HTML/getPresupuesto.php'
+    $.get(url).then(function (res) {
+        params.success(JSON.parse(res))
+    })
 }
 
-function nameFormatter(data) {
-    return data.length
+function idFormatter(data) {
+    return 'Total ' + data.length
 }
 
 function priceFormatter(data) {
@@ -32,3 +36,18 @@ function footerStyle(column) {
         }
     }[column.field]
 }
+function statusFormatter(value, row, index) {
+    return `
+      <div class="form-check form-switch">
+        <input type="checkbox" class="form-check-input" role="switch" id="customSwitch${index}" disabled ${value == 1 ? 'checked' : ''}>
+        <label class="form-check-label" for="customSwitch${index}"></label>
+      </div>
+    `;
+}
+
+$(document).ready(function () {
+    $('#editando').click(function () {
+        $('.form-check-input').prop("disabled", false);
+
+    });
+});
