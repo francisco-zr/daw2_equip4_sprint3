@@ -10,6 +10,7 @@ class Presupost
     private $preu;
     private $acceptat;
     private $ocult;
+    private $presupost;
 
 
     /**
@@ -41,9 +42,10 @@ class Presupost
      *
      * return void
      */
-    function __construct1()
+    function __construct1($presupost)
     {
         $this->id = $_SESSION['id'];
+        $this->presupost = $presupost;
     }
 
     /* Getters */
@@ -137,7 +139,7 @@ class Presupost
     {
         include 'connexioBDD.php';
 
-        $query = "SELECT tasks.name_task FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = 1 AND tasks.accepted = 1;";
+        $query = "SELECT tasks.name_task, tasks.id_task  FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = 1 AND tasks.accepted = 1;";
         return $connexioDB->query($query);
     }
 
@@ -145,11 +147,11 @@ class Presupost
     {
         include 'connexioBDD.php';
 
-        $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, $this->id)";
+        $query = "INSERT INTO task_budget(price, id_task, id_budget) VALUES ($valor, $id_task, 1)";
         return $connexioDB->query($query);
     }
 
-    public function aceptarPresupuesto()
+    public function mostrarAceptarPresupuesto()
     {
         include 'connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
@@ -162,5 +164,12 @@ class Presupost
             $array[] = $row;
         }
         return json_encode($array);
+    }
+
+    public function aceptarPresupuesto()
+    {
+        include 'connexioBDD.php';
+        $query = "UPDATE `budgets` SET `accepted` = '1' WHERE `budgets`.`id_budget` = 1;";
+        $connexioDB->query($query);
     }
 }

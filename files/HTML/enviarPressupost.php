@@ -1,7 +1,7 @@
 <?
 include_once '../PHP/PresupostClass.php';
 
-$presupuesto = new Presupost();
+$presupuesto = new Presupost($id_presupuesto);
 
 foreach ($_POST as $id_task => $row) {
     //echo $id_task . '-' . $row . '<br>';

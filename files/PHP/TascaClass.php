@@ -92,6 +92,14 @@ class Tasca
       $this->Estat = $Estat;
    }
 
+   public static function showFormularis(){ //es un metode estatic per a mostrar els camps de la base de dades a la web
+      include_once "connexioBDD.php"; //fitxe de conexio a la base de dades
+      //consulta
+      $sql = "SELECT tasks.state, users.name_user, users.last_name, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary;      ";
+      $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
+      return $result;
+   }
+
 
 
    /*  function crearTasca(){
@@ -269,45 +277,25 @@ class Tasca
       WHERE questionnaries.id_questionary = $this->id";
 
       //Generamos la consulta contra la conexión a la BBDD
-      $mostrarRT = $connexioDB->query($query);
+      $mostrarResultado = $connexioDB->query($query);
 
-      while ($row = mysqli_fetch_array($mostrarRT, MYSQLI_ASSOC))
-      {
-         echo '<tbody>
-                  <tr>
-                     <th>'.$row['name_questionary'].'</th>
-                     <td>'.$row['description_question'].'</td>
-                     <td>'.$row['name_recommendation'].'</td>
-                     <td>
-                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1">
-                        <label class="form-check-label" for="exampleRadios1">
-                           Aceptar
-                        </label>
-                     </div>
-                     <td>
-                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2">
-                        <label class="form-check-label" for="exampleRadios2">
-                           Rechazar
-                        </label>
-                     </div>
-                     </td>
-                     <td>
-                     <div class="form-check">
-                        <select class="form-select form-select-sm" aria-label="form-select-sm" id="selector-tareas">
-                        <option selected>Seleccionar una opción</option>
-                        <option value="Empresa Auditada">Lo gestiono personalmente</option>
-                        <option value="Pymeralia">Lo gestiona Pymeralia</option>
-                     </select>
-                     </div>
-                     </td>
-                  </tr>
-               </tbody>';
+      //Creamos un array vacío
+      $array = array();
+
+      //creamos un bucle while que recorre la table de la BBDD y recoge el resultao y lo guarda en la variable $row
+      while ($row = mysqli_fetch_assoc($mostrarResultado)) {
+         //Guarda los resultaos de $row en el $array
+         $array[] = $row;
       }
+      //Retornamos un Json al que le guardamos el array
+      return json_encode($array); 
    }
 
-   public static function enviarTasquesAcceptades(){
-      print_r("Hola");
-   }
+   #public static function enviarTasquesAcceptades(){
+      #print_r("Hola");
+  # }
+
+   #public static function enviarTasquesAcceptades(){
+     # print_r("Hola");
+   #}
 }
