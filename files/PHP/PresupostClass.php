@@ -117,22 +117,23 @@ class Presupost
 
     public function mostrarPresupostos()
     {
-        include_once 'dbconn.php';
-        $conn = conn();
-        $query = "SELECT * FROM  WHERE email = '$this->email'";
-        $result = mysqli_query($conn, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($conn), E_USER_ERROR);
-        $row = $result->fetch_assoc();
-
-        echo '<div class=" d-flex align-items-start flex-column">',
-        '<span class="p-lg-3" id="name">' . $row['name_user'] . '</span>',
-        '<span class="p-lg-3" id="last-name">' . $row['last_name'] . '</span>',
-        '<span class="p-lg-3" id="dni">' . $row['dni'] . '</span>',
-        '<span class="p-lg-3" id="empresa">' . $row['id_company'] . '</span>',
-        '</div>';
-
-        echo '<div class="vr"></div>';
+        include 'connexioBDD.php';
+        //query a mejorar, ahora solo imprime tareas en general
+        $query = "SELECT budgets.*, users.id_user, questionnaries.name_questionary 
+        FROM budgets 
+        INNER JOIN task_budget ON task_budget.id_budget = budgets.id_budget
+        INNER JOIN tasks ON tasks.id_task = task_budget.id_task
+        INNER JOIN users ON users.id_user = tasks.id_user
+        INNER JOIN questionnary_user ON questionnary_user.id_user = users.id_user
+        INNER JOIN questionnaries ON questionnaries.id_questionary = questionnary_user.id_questionary
+        WHERE users.id_user = 1;";
+        $resultado = $connexioDB->query($query);
+        $array = array();
+        while ($row = mysqli_fetch_assoc($resultado)) {
+            $array[] = $row;
+        }
+        return json_encode($array);
     }
-
 
     public function mostrarTasca()
     {
