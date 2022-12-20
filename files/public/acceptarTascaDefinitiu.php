@@ -63,7 +63,7 @@ require_once("../src/class/TascaClass.php");
             </table>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" id="enviar-prueba" type="button" value="cualquier">Enviar Tareas</button>
+                <button class="btn btn-primary" id="enviar-tareas" type="button" value="cualquier">Enviar Tareas</button>
             </div>
         </div>
     </main>
@@ -84,20 +84,21 @@ require_once("../src/class/TascaClass.php");
 
                 if (checkeado == true) {
                     accepted = 1;
-                    document.getElementById('valor-escondido-1').hidden = false;
-                    console.log(1)
+                    document.getElementById('gestion-tareas-1').disabled = false;
+                    console.log(row.id_recommendation)
+                    console.log(e);
                 } else {
                     accepted = 0;
-                    document.getElementById('valor-escondido-1').hidden = true;
-                    console.log(0)
+                    document.getElementById('gestion-tareas-1').disabled = true;
+                    console.log(e);
                 }
             }
         }
 
         $(document).ready(function(){
-                    $('#enviar-prueba').click(function(){
+                    $('#enviar-tareas').click(function(){
                         const objectJSON1 = JSON.stringify($('#table').bootstrapTable('getData'));
-                        const objectJSON2 = JSON.stringify($('#flexSwitchCheckDefault-row-1'));
+                        const objectJSON2 = JSON.stringify($('.form-check-input').value);
                         const resultJSON = objectJSON1 + objectJSON2;
                         alert(resultJSON);
                     });
@@ -107,9 +108,12 @@ require_once("../src/class/TascaClass.php");
             return `
                 <div class="right">
                 <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${index + 1}" value="0">
-                <input id="valor-escondido-${index + 1}" value="${index + 1}" hidden>
-                <select >
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${row.id_recommendation}" value="1">
+                <input id="valor-escondido-${row.id_recommendation}" value="${row.id_recommendation}" hidden>
+                <select id="gestion-tareas-${row.id_recommendation}" name="gestion-tareas" disabled>
+                    <option value="">Seleccionar una opción</option>
+                    <option value="Pymeralia">Lo gestiona Pymeralia</option>
+                    <option value="Personalmente">Lo gestiono personalmente</option>
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </div>
             `;

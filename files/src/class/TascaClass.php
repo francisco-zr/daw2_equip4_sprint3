@@ -269,7 +269,7 @@ class Tasca
       include '../config/connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT `recommendations`.`name_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
+      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
       FROM `recommendations`
       INNER JOIN answers ON recommendations.id_answer = answers.id_answer
       INNER JOIN questions ON answers.id_question = questions.id_question
