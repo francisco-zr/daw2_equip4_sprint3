@@ -148,6 +148,8 @@ class Presupost
         include '../config/connexioBDD.php';
 
         $query = "UPDATE task_budget SET `price`='$valor' WHERE `id_task`='$id_task'";
+        $query = "UPDATE task SET `start_date`='$valor',`final_date`='$valor' WHERE `id_task`='$id_task'";
+
         return $connexioDB->query($query);
     }
 
