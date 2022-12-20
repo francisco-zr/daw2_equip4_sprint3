@@ -84,15 +84,22 @@ require_once("../PHP/TascaClass.php");
 
                 if (checkeado == true) {
                     accepted = 1;
+                    document.getElementById('valor-escondido-1').hidden = false;
+                    console.log(1)
                 } else {
                     accepted = 0;
+                    document.getElementById('valor-escondido-1').hidden = true;
+                    console.log(0)
                 }
             }
         }
 
         $(document).ready(function(){
                     $('#enviar-prueba').click(function(){
-                        alert(JSON.stringify($('#table').bootstrapTable('getData')));
+                        const objectJSON1 = JSON.stringify($('#table').bootstrapTable('getData'));
+                        const objectJSON2 = JSON.stringify($('#flexSwitchCheckDefault-row-1'));
+                        const resultJSON = objectJSON1 + objectJSON2;
+                        alert(resultJSON);
                     });
                 });
 
@@ -100,8 +107,9 @@ require_once("../PHP/TascaClass.php");
             return `
                 <div class="right">
                 <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${row.id_recommendation}" value="0">
-                <input id="valor-escondido-${row.id_recommendation}" value="${row.id_recommendation}">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${index + 1}" value="0">
+                <input id="valor-escondido-${index + 1}" value="${index + 1}" hidden>
+                <select >
                 <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                 </div>
             `;
