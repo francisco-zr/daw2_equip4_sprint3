@@ -39,7 +39,7 @@ function footerStyle(column) {
 function statusFormatter(value, row, index) {
     return `
       <div class="form-check form-switch">
-        <input type="checkbox" class="form-check-input" role="switch" id="customSwitch${index}" disabled ${value == 1 ? 'checked' : ''}>
+        <input type="checkbox" class="form-check-input" role="switch" id="customSwitch${index}" disabled ${value == true ? 'checked' : ''}>
         <label class="form-check-label" for="customSwitch${index}"></label>
       </div>
     `;
@@ -48,6 +48,13 @@ function statusFormatter(value, row, index) {
 $(document).ready(function () {
     $('#editando').click(function () {
         $('.form-check-input').prop("disabled", false);
+
+    });
+});  
+
+  $(document).ready(function () {
+    $('#enviar_presupuesto').click(function () {
+        alert(JSON.stringify($('#table').bootstrapTable('getData')));
 
     });
 });
