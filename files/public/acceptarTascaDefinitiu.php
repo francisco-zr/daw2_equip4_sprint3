@@ -1,5 +1,5 @@
 <?php
-require_once("../PHP/TascaClass.php");
+require_once("../src/class/TascaClass.php");
 //* Importamos la sesión de un usuario imaginario para hacer pruebas
 //session_start();
 //$idUsuari = $_SESSION['id'] = 1;
@@ -13,13 +13,13 @@ require_once("../PHP/TascaClass.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pymeshield Aceptar Tareas</title>
-    <?php require_once("head.php"); ?>
+    <?php require_once("../src/includes/head.php"); ?>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <!--header-->
     <header class="sticky-top">
-        <?php require_once("header.php"); ?>
+        <?php require_once("../src/includes/header.php"); ?>
     </header>
 
     <!--main-->
@@ -70,10 +70,10 @@ require_once("../PHP/TascaClass.php");
 
     <!--footer-->
     <footer class="bg-black text-center text-lg-center mt-auto">
-        <?php require_once("footer.php"); ?>
+        <?php require_once("../src/includes/footer.php"); ?>
     </footer>
-    <script src="../JavaScript/enviarTasquesAcceptades.js"></script>
-    <script src="../JavaScript/ajaxRequestAcceptarTasca.js"></script>
+    <script src="../js/enviarTasquesAcceptades.js"></script>
+    <script src="../js/ajaxRequestAcceptarTasca.js"></script>
 
     <script>
         window.operateEvents = {

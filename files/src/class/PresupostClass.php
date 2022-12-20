@@ -108,7 +108,7 @@ class Presupost
 
     public function eliminarPressupost($id)
     {
-        include_once 'connexioBDD.php';
+        include_once '../config/connexioBDD.php';
         if ($linea = mysqli_query($query = "DELETE ...;")) {
             printf("Pressupost eliminat");
         }
@@ -117,7 +117,7 @@ class Presupost
 
     public function mostrarPresupostos()
     {
-        include 'connexioBDD.php';
+        include '../config/connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
         $query = "SELECT budgets.*, users.id_user, questionnaries.name_questionary 
         FROM budgets 
@@ -137,7 +137,7 @@ class Presupost
 
     public function mostrarTasca()
     {
-        include 'connexioBDD.php';
+        include '../config/connexioBDD.php';
 
         $query = "SELECT tasks.name_task, tasks.id_task, task_budget.price FROM `tasks` LEFT JOIN task_budget ON task_budget.id_task = tasks.id_task INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
         return $connexioDB->query($query);
@@ -145,7 +145,7 @@ class Presupost
 
     public function afegirPreuTasca($valor, $id_task)
     {
-        include 'connexioBDD.php';
+        include '../config/connexioBDD.php';
 
         $query = "UPDATE task_budget SET `price`='$valor' WHERE `id_task`='$id_task'";
         return $connexioDB->query($query);
@@ -153,7 +153,7 @@ class Presupost
 
     public function mostrarAceptarPresupuesto()
     {
-        include 'connexioBDD.php';
+        include '../config/connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
         $query = "SELECT tasks.id_task, tasks.name_task, tasks.description_task, tasks.accepted, task_budget.price
         FROM `task_budget` 
@@ -168,7 +168,7 @@ class Presupost
 
     public function aceptarPresupuesto()
     {
-        include 'connexioBDD.php';
+        include '../config/connexioBDD.php';
         $query = "UPDATE `budgets` SET `accepted` = '1' WHERE `budgets`.`id_budget` = 1;";
         $connexioDB->query($query);
     }

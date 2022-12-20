@@ -1,5 +1,5 @@
 <?php 
-include "/../../TascaClas.php";
+include "../src/class/TascaClass.php";
 # VARIABLES GLOBALS
 session_start();
 $_SESSION['id'] = 2;
@@ -14,7 +14,7 @@ $gestio=$_POST["gestio"];
 
 
 function insertarTarea($solucio,$gridcheck,$gestio){
-    include_once '../PHP/connexioBDD.php';
+    include_once '../config/connexioBDD.php';
 
     $id_user=$_SESSION['id'] ;             
     $query= "
@@ -38,7 +38,7 @@ function insertarTarea($solucio,$gridcheck,$gestio){
 
 # Consulta insidencia
 function consultaincidencia(){
-    include_once 'connexioBDD.php';
+    include_once '../config/connexioBDD.php';
     $id_user= $SESSION["id"];
     $id_user=$_SESSION['id'] ;             
     $query= "
@@ -62,7 +62,7 @@ function consultaincidencia(){
 
 # Consulta les dades necessaries
 function consultaDades(){
-    include_once 'connexioBDD.php';
+    include_once '../config/connexioBDD.php';
     $id_user= $SESSION["id"];
 
     $query= "
@@ -108,7 +108,7 @@ function anteriorDataDiv($linies){
 
 # Conta cuantes linies te la consulta per mostrar el num de pag
 function contarLinies(){
-    include_once 'connexioBDD.php';
+    include_once '../config/connexioBDD.php';
     $query= "
         SELECT COUNT(column_name)
         FROM table_name

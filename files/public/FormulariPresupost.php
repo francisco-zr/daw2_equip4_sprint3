@@ -1,4 +1,4 @@
-<?php require_once("../PHP/PresupostClass.php"); 
+<?php require_once("../src/class/PresupostClass.php"); 
 if (isset($_GET['id_presupuesto'])) {
     $id = $_GET['id_presupuesto'];
   }
@@ -11,12 +11,12 @@ if (isset($_GET['id_presupuesto'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pymeshield Presupuesto</title>
-    <?php require_once("head.php"); ?>
+    <?php require_once("../src/includes/head.php"); ?>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <header class="sticky-top">
-        <?php require_once("header.php"); ?>
+        <?php require_once("../src/includes/header.php"); ?>
     </header>
     <main>
         <div class="container p-1">
@@ -60,7 +60,7 @@ if (isset($_GET['id_presupuesto'])) {
             </div>
     </main>
     <footer class="bg-black text-center text-lg-center mt-auto">
-        <?php require_once("footer.php"); ?>
+        <?php require_once("../src/includes/footer.php"); ?>
     </footer>
 </body>
 

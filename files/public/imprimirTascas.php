@@ -1,6 +1,6 @@
 <?php
-require_once("../PHP/TascaClass.php");
-require('../PHP/fpdf.php');
+require_once("../src/class/TascaClass.php");
+require('../src/fpdf.php');
 
 class PDF extends FPDF
 {
@@ -8,7 +8,7 @@ class PDF extends FPDF
 function Header()
 {
     // Logo
-    $this->Image('../Img/logo_pymeshield.png',10,8,20);
+    $this->Image('../img/logo_pymeshield.png',10,8,20);
     // Arial bold 15
     $this->SetFont('Arial','B',15);
     // Movernos a la derecha

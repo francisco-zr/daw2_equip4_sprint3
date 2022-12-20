@@ -1,5 +1,5 @@
 <?
-include_once '../PHP/PresupostClass.php';
+include_once '../src/class/PresupostClass.php';
 if (isset($_GET['id_presupuesto'])) {
     $id = $_GET['id_presupuesto'];
   }

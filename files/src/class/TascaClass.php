@@ -93,7 +93,7 @@ class Tasca
    }
 
    public static function showFormularis(){ //es un metode estatic per a mostrar els camps de la base de dades a la web
-      include_once "connexioBDD.php"; //fitxe de conexio a la base de dades
+      include_once "../config/connexioBDD.php"; //fitxe de conexio a la base de dades
       //consulta
       $sql = "SELECT tasks.state, users.name_user, users.last_name, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary;      ";
       $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
@@ -116,7 +116,7 @@ class Tasca
     */
    function modificarTasca($id)
    {
-      include 'connexioBDD.php';
+      include '../config/connexioBDD.php';
       if ($this->Estat == "InProgress") {
          $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 50 WHERE `tasks`.`id_task` = $id";
          mysqli_query($connexioDB, $query);
@@ -137,7 +137,7 @@ class Tasca
     */
    function modificarPorcentaje($id, $porcentaje)
    {
-      include 'connexioBDD.php';
+      include '../config/connexioBDD.php';
       if ($porcentaje > 0 && $porcentaje < 100) {
          $query = "UPDATE `tasks` SET `state` = 'InProgress', `percentage` = $porcentaje WHERE `tasks`.`id_task` = $id";
          mysqli_query($connexioDB, $query);
@@ -171,7 +171,7 @@ class Tasca
     */
    function listarKanban()
    {
-      include 'connexioBDD.php';
+      include '../config/connexioBDD.php';
       /* query por mejorar, ahora solo lista todas por estado, 
       habrá que filtrar por id de usuario(con la sesión cargada en el objeto por ejemplo)*/
       $query = "SELECT * FROM `tasks` WHERE `state` = '$this->Estat';";
@@ -204,7 +204,7 @@ class Tasca
     */
    function jsonGantt()
    {
-      include 'connexioBDD.php';
+      include '../config/connexioBDD.php';
       $query = $connexioDB->prepare('SELECT name_task, `start_date`, final_date, importance, `percentage`, id_task FROM `tasks`');
       $query->execute();
       $result = $query->get_result();
@@ -219,7 +219,7 @@ class Tasca
     */
    function modalGantt()
    {
-      include 'connexioBDD.php';
+      include '../config/connexioBDD.php';
       // query por mejorar, idem como el método listarKanban
       $query = "SELECT * FROM `tasks`";
       $modal = $connexioDB->query($query);
@@ -255,7 +255,7 @@ class Tasca
     */
    function imprimirTareas()
    {
-      include 'connexioBDD.php';
+      include '../config/connexioBDD.php';
       //query a mejorar, ahora solo imprime tareas en general
       $query = "SELECT * FROM `tasks`";
       return $connexioDB->query($query);
@@ -266,7 +266,7 @@ class Tasca
 
    function mostrarRecomendacionTarea(){
       //Conexión a base de datos
-      include 'connexioBDD.php';
+      include '../config/connexioBDD.php';
 
       //Generamos la consulta
       $query = "SELECT `recommendations`.`name_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`

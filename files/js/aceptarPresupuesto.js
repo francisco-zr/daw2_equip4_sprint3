@@ -1,6 +1,6 @@
 // your custom ajax request here
 function ajaxRequest(params) {
-    var url = '../HTML/getPresupuesto.php'
+    var url = '../public/getPresupuesto.php'
     $.get(url).then(function (res) {
         params.success(JSON.parse(res))
     })

@@ -1,5 +1,5 @@
 <?php
-require_once("../PHP/TascaClass.php");
+require_once("../src/class/TascaClass.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -9,13 +9,13 @@ require_once("../PHP/TascaClass.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pymeshield Kanban</title>
-  <?php require_once("head.php"); ?>
-  <script src="../JavaScript/kanban.js"></script>
+  <?php require_once("../src/includes/head.php"); ?>
+  <script src="../js/kanban.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <header class="sticky-top">
-    <?php require_once("header.php"); ?>
+    <?php require_once("../src/includes/header.php"); ?>
   </header>
   <main>
     <div class="container-fluid text-center">
@@ -57,7 +57,7 @@ require_once("../PHP/TascaClass.php");
     </div>
   </main>
   <footer class="bg-black text-center text-lg-center mt-auto">
-    <?php require_once("footer.php"); ?>
+    <?php require_once("../src/includes/footer.php"); ?>
   </footer>
 </body>
 
