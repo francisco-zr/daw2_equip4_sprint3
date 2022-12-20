@@ -20,14 +20,14 @@ require_once("../PHP/TascaClass.php");
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3 border-bottom">
       <h1 class="h2">Listados Presupuestos</h1>
     </div>
-    <table id="table" data-locale="es-ES" data-click-to-select="true" data-toggle="table" data-pagination="true" data-search="true" data-url="./getPresupuesto.php">
+    <table id="table" data-locale="es-ES" data-click-to-select="true" data-toggle="table" data-pagination="true" data-search="true" data-url="./getPresupuestos.php">
       <thead>
         <tr>
           <th data-field="state" data-checkbox="true"></th>
-          <th data-sortable="true" data-field="id_presupost">ID Presupuesto</th>
-          <th data-sortable="true" data-field="nombre">Nombre</th>
-          <th data-sortable="true" data-field="precio">Precio</th>
-          <th data-sortable="true" data-field="acceptado">Aceptado</th>
+          <th data-sortable="true" data-field="id_budget">ID Presupuesto</th>
+          <th data-sortable="true" data-field="name_questionary">Nombre</th>
+          <th data-sortable="true" data-field="price">Precio</th>
+          <th data-sortable="true" data-field="accepted">Aceptado</th>
         </tr>
       </thead>
     </table>
