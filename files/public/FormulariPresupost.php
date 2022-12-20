@@ -50,6 +50,8 @@ if (isset($_GET['id_presupuesto'])) {
                         '<div class="input-group has-validation mb-3">',
                         '<span class="input-group-text">€</span>',
                         '<input type="number" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['price'] .'" required/>',
+                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['start_date'] .'" required/>',
+                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['final_date'] .'" required/>',
                         '</div></div>';
                     };
                     ?>
