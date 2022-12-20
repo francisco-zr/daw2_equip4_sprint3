@@ -1,5 +1,5 @@
 <?php
-require_once("../PHP/TascaClass.php");
+require_once("../src/class/TascaClass.php");
 
 //Instanciamos el objeto
 //$tascaUsuari = new Tasca($_SESSION['id']);

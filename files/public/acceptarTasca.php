@@ -8,15 +8,15 @@ $_SESSION['id'] = 1;?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../CSS/style.css">
-  <link rel="stylesheet" href="../CSS/modalTasca.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/modalTasca.css">
   <title>Pymeshield Aceptar Presupuesto</title>
-  <?php require_once("head.php");?>
+  <?php require_once("../src/includes/head.php");?>
 </head>
 
 <body class="d-flex flex-column min-vh-100" >
   <header class="sticky-top">
-  <?php require_once("header.php");?>
+  <?php require_once("../src/includes/header.php");?>
   </header class="sticky-top">
   <main class="pt-0">
 
@@ -30,7 +30,7 @@ $_SESSION['id'] = 1;?>
 
               // Cal arreglar per a que agafi la ruta i no tenir tot el codi aqui dins
 
-              include_once '../PHP/connexioBDD.php';
+              include_once '../config/connexioBDD.php';
               $id_user=$_SESSION['id'] ;             
               $query= "
               SELECT name_recommendation 
@@ -61,7 +61,7 @@ $_SESSION['id'] = 1;?>
 
                     // Cal arreglar per a que agafi la ruta i no tenir tot el codi aqui dins
                     
-                    include_once '../PHP/connexioBDD.php';
+                    include_once '../config/connexioBDD.php';
 
                     $id_user=$_SESSION['id'] ;             
                     $query= "
@@ -112,7 +112,7 @@ $_SESSION['id'] = 1;?>
 
                 </main>
             <footer class="bg-black text-center text-lg-center mt-auto">
-                <?php require_once("footer.php");?>
+                <?php require_once("../src/includes/footer.php");?>
             </footer>
           </body>
 
@@ -135,5 +135,5 @@ $_SESSION['id'] = 1;?>
 
 
           <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-          <script src="../JavaScript/validadorTasca.js"></script>
+          <script src="../js/validadorTasca.js"></script>
           </html>

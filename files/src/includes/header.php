@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm p-0" id="header-logo">
   <div class="container-fluid d-flex flex-row justify-content-between navbar-nav ">
     <div class="p-2" id="logo">
-      <li class="nav-item"><a class="nav-link" href="#"><img src="../Img/logo_pymeshield.png" alt="Logo" class="d-inline-block align-text-middle">
+      <li class="nav-item"><a class="nav-link" href="#"><img src="../img/logo_pymeshield.png" alt="Logo" class="d-inline-block align-text-middle">
           pymeshield</a></li>
     </div>
     <!--Ruptura del responsive en 576px a 575px-->
@@ -41,11 +41,11 @@
     <div class="collapse navbar-collapse p-0" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="kanban.php"><i class="fa-solid fa-diagram-project"></i>Kanban</a></li>
-        <li class="nav-item"><a class="nav-link" href="DiagramaGantt.php"><i class="fa-solid fa-chart-gantt"></i>Gantt</a></li>
-        <li class="nav-item"><a class="nav-link" href="FormulariPresupost.php"><i class="fa-solid fa-square-poll-vertical"></i>Presupuestar Tareas</a>
+        <li class="nav-item"><a class="nav-link" href="../../public/kanban.php"><i class="fa-solid fa-diagram-project"></i>Kanban</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../public/DiagramaGantt.php"><i class="fa-solid fa-chart-gantt"></i>Gantt</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../public/FormulariPresupost.php"><i class="fa-solid fa-square-poll-vertical"></i>Presupuestar Tareas</a>
         </li>
-        <li class="nav-item"><a class="nav-link" href="acceptarTasca.php"><i class="fa-solid fa-clipboard-question"></i>Aceptar Tareas</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../public/acceptarTasca.php"><i class="fa-solid fa-clipboard-question"></i>Aceptar Tareas</a></li>
         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-qrcode"></i>QR</a>
         </li>
       </ul>

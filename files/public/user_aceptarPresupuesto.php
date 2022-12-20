@@ -1,5 +1,5 @@
 <?php
-require_once("../PHP/PresupostClass.php");
+require_once("../src/class/PresupostClass.php");
 if (isset($_GET['presupuesto'])) {
   $presupuesto = $_GET['presupuesto'];
 }
@@ -12,13 +12,13 @@ if (isset($_GET['presupuesto'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pymeshield Aceptar Presupuesto</title>
-  <?php require_once("head.php"); ?>
-  <script src="../JavaScript/aceptarPresupuesto.js"></script>
+  <?php require_once("../src/includes/head.php"); ?>
+  <script src="../js/aceptarPresupuesto.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <header class="sticky-top">
-    <?php require_once("header.php"); ?>
+    <?php require_once("../src/includes/header.php"); ?>
   </header>
   <main>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -44,7 +44,7 @@ if (isset($_GET['presupuesto'])) {
     </div>
   </main>
   <footer class="bg-black text-center text-lg-center mt-auto">
-    <?php require_once("footer.php"); ?>
+    <?php require_once("../src/includes/footer.php"); ?>
   </footer>
 </body>
 

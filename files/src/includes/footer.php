@@ -2,7 +2,7 @@
   <div class="fluid-container">
     <div class="row">
       <div id="logo-footer" class="col-6 col-md-3">
-        <a class="text-light" href="#"><img src="../Img/logo_pymeshield_black.png" alt="Logo" width="50px" style="margin-right: 5px;" class="d-inline-block align-text-middle"><i class="fa-solid fa-copyright"></i>pymeshield
+        <a class="text-light" href="#"><img src="../img/logo_pymeshield_black.png" alt="Logo" width="50px" style="margin-right: 5px;" class="d-inline-block align-text-middle"><i class="fa-solid fa-copyright"></i>pymeshield
           by Pymeralia</a>
       </div>
       <div class="col-6 col-md-3">

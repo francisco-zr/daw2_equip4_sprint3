@@ -1,6 +1,6 @@
 <?php 
-include "/../../TascaClas.php";
-include_once '../PHP/connexioBDD.php';
+include "../src/class/TascaClass.php";
+include_once '../config/connexioBDD.php';
 
     /*# VARIABLES GLOBALS
     session_start();

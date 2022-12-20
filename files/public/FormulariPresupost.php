@@ -1,4 +1,4 @@
-<?php require_once("../PHP/PresupostClass.php"); 
+<?php require_once("../src/class/PresupostClass.php"); 
 if (isset($_GET['id_presupuesto'])) {
     $id = $_GET['id_presupuesto'];
   }
@@ -11,12 +11,12 @@ if (isset($_GET['id_presupuesto'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pymeshield Presupuesto</title>
-    <?php require_once("head.php"); ?>
+    <?php require_once("../src/includes/head.php"); ?>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
     <header class="sticky-top">
-        <?php require_once("header.php"); ?>
+        <?php require_once("../src/includes/header.php"); ?>
     </header>
     <main>
         <div class="container p-1">
@@ -49,7 +49,9 @@ if (isset($_GET['id_presupuesto'])) {
                         '<label for="preg2" class="form-label mb-0"><p class="h5">' . $row['name_task'] . '</p></label>',
                         '<div class="input-group has-validation mb-3">',
                         '<span class="input-group-text">€</span>',
-                        '<input type="number" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['id_task'] .'" required/>',
+                        '<input type="number" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['price'] .'" required/>',
+                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="' . $row['start_date'] . ' " placeholder="Coste" value="'. $row['start_date'] .'" required/>',
+                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="' . $row['final_date'] . ' " placeholder="Coste" value="'. $row['final_date'] .'" required/>',
                         '</div></div>';
                     };
                     ?>
@@ -60,7 +62,7 @@ if (isset($_GET['id_presupuesto'])) {
             </div>
     </main>
     <footer class="bg-black text-center text-lg-center mt-auto">
-        <?php require_once("footer.php"); ?>
+        <?php require_once("../src/includes/footer.php"); ?>
     </footer>
 </body>
 

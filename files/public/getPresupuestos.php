@@ -1,4 +1,4 @@
 <?php
-require_once("../PHP/PresupostClass.php");
+require_once("../src/class/PresupostClass.php");
 $presupuesto = new Presupost;
 echo $presupuesto->mostrarPresupostos();
