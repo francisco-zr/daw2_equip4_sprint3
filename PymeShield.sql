@@ -147,6 +147,7 @@ CREATE TABLE `budgets` (
   `price` double NOT NULL,
   `accepted` boolean,
   `hidden` date
+  `status` ENUM ('Pending', 'Done','Waiting' )
 );
 
 CREATE TABLE `activities` (
