@@ -10,7 +10,7 @@ require_once("../src/class/TascaClass.php");
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pymeshield Gantt</title>
   <?php require_once("../src/includes/head.php"); ?>
-  <script src="../JavaScript/gantt.js"></script>
+  <script src="../js/gantt.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
