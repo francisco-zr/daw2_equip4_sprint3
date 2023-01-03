@@ -54,9 +54,14 @@ var tareas = []; //Array donde guardamos todas las tareas aceptadas
             
         }
 
+
+
         $(document).ready(function(){
             $('#enviar-tareas').click(function(){
-                       
+                    const jeison = JSON.stringify(tareas);
+                    console.log(jeison);
+
+                    /** poner aqui el envio del json al php */
             });
         });
 
