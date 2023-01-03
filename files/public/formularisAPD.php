@@ -28,52 +28,48 @@ require_once("../src/class/PresupostClass.php");
     <?php require_once("../src/includes/header.php"); ?>
   </header>
   <table
-  data-toggle="table"
-  data-search="true"
-  data-show-columns="true">
-  <thead>
-    <tr class="tr-class-1">
-      
-      <th class="text-center" colspan="5">Presupuestos de cada cliente</th>
-    </tr>
-    <tr>
-      <th class="text-center" data-field="Estado">Estado</th>
-      <th class="text-center" data-field="Nombre Cliente">Nombre Cliente</th>
-      <th class="text-center" data-field="Apellido Cliente">Apellido Cliente</th>
-      <th class="text-center" data-field="Nombre Empresa">Nombre Empresa</th>
-      <th class="text-center" data-field="Nombre Cuestionario">Presupuesto</th>    
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-	$result = Presupost::showPresupost();// tasca es el nom de la classe . showFormularis()es un metode
-
-	while($mostrar = mysqli_fetch_array($result)){ //crear bucle
-
-	?>
-		<tr class="table-warning"> <!-- Per mostrar els camps fem lo seguent i fiquem lo nom de les columnes que volem mostrar -->
-			<td><center><?php echo $mostrar['status'] ?></center> </td>
-     	<td><center><?php echo $mostrar['name_user'] ?></center> </td>
-       <td><center><?php echo $mostrar['last_name'] ?></center> </td>
-			<td><center><?php echo $mostrar['name_company'] ?></center></td>
-			<td><center><?php echo $mostrar['price']?></center></td>
-		</tr> 
-    
-		
-		<?php
-		} //Tanquem bucle
-		?>
-
-</tbody>
-    
-</table>
-
-
-
-
-<footer class="bg-black text-center text-lg-center mt-auto">
+    data-toggle="table"
+    data-search="true"
+    data-show-columns="true"
+    data-pagination="true"
+    data-page-size="10">
+    <thead>
+      <tr class="tr-class-1">
+        <th class="text-center" colspan="5">Presupuestos de cada cliente</th>
+      </tr>
+      <tr>
+        <th class="text-center" data-field="Estado">Estado</th>
+        <th class="text-center" data-field="Nombre Cliente">Nombre Cliente</th>
+        <th class="text-center" data-field="Apellido Cliente">Apellido Cliente</th>
+        <th class="text-center" data-field="Nombre Empresa">Nombre Empresa</th>
+        <th class="text-center" data-field="Nombre Cuestionario">Presupuesto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php
+        $result = Presupost::showPresupost();// Pressupost es el nom de la clase . showFormularis()es un metode
+        while($mostrar = mysqli_fetch_array($result)){ //crear bucle
+      ?>
+        <tr class="table-warning">
+          <!-- Per mostrar els camps fem lo seguent i fiquem lo nom de les columnes que volem mostrar -->
+          <td><center><?php echo $mostrar['status'] ?></center> </td>
+          <td><center><?php echo $mostrar['name_user'] ?></center> </td>
+          <td><center><?php echo $mostrar['last_name'] ?></center> </td>
+          <td><center><?php echo $mostrar['name_company'] ?></center></td>
+          <td><center><?php echo $mostrar['price']?></center></td>
+        </tr> 
+  <?php
+        } //Tanquem bucle
+      ?>
+    </tbody>
+    <style>
+      .bootstrap-table .fixed-table-pagination {
+        justify-content: center;
+          }
+    </style>
+  </table>
+  <footer class="bg-black text-center text-lg-center mt-auto">  
     <?php require_once("../src/includes/footer.php"); ?>
   </footer>
 </body>
-
 </html>
