@@ -146,7 +146,8 @@ CREATE TABLE `budgets` (
   `id_budget` int PRIMARY KEY AUTO_INCREMENT,
   `price` double NOT NULL,
   `accepted` boolean,
-  `hidden` date
+  `hidden` date,
+  `status` ENUM ('Pending', 'Done','Waiting')
 );
 
 CREATE TABLE `activities` (

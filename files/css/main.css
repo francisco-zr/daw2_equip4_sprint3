@@ -25,6 +25,10 @@ header {
   color: rgb(23, 23, 23);
 }
 
+.navbar-nav .nav-link.active {
+  background-color: #ffffff;
+}
+
 i {
   margin-right: 5px;
 }

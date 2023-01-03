@@ -94,6 +94,16 @@ class Presupost
 
     /* Mètodes / Funcions */
 
+    public static function showPresupost(){ //es un metode estatic per a mostrar els camps de la base de dades a la web
+        include '../config/connexioBDD.php';        //fitxe de conexio a la base de dades
+        //consulta
+        $sql = "SELECT DISTINCT budgets.status, users.name_user, users.last_name, companies.name_company, budgets.price FROM budgets INNER JOIN task_budget ON task_budget.id_budget = budgets.id_budget INNER JOIN tasks ON tasks.id_task = task_budget.id_task INNER JOIN users ON users.id_user = tasks.id_user INNER JOIN companies ON companies.id_company = users.id_company;";
+        $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
+        return $result;
+     }
+
+
+
     public function crearPressupost($presupost_1, $presupost_2, $presupost_3)
     {
     }
@@ -106,14 +116,14 @@ class Presupost
     {
     }
 
-    public function eliminarPressupost($id)
-    {
-        include_once '../config/connexioBDD.php';
-        if ($linea = mysqli_query($query = "DELETE ...;")) {
-            printf("Pressupost eliminat");
-        }
-        $connexioDB->close();
-    }
+   // public function eliminarPressupost($id)
+    //{
+       // include_once '../config/connexioBDD.php';
+       // if ($linea = mysqli_query($query = "DELETE ...;")) {
+       //     printf("Pressupost eliminat");
+        //}
+       // $connexioDB->close();
+   // }
 
     public function mostrarPresupostos()
     {

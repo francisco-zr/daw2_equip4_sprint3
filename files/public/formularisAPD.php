@@ -1,5 +1,5 @@
 <?php
-require_once("../src/class/TascaClass.php");
+require_once("../src/class/PresupostClass.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -10,6 +10,7 @@ require_once("../src/class/TascaClass.php");
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pymeshield Kanban</title>
   <?php require_once("../src/includes/head.php"); ?>
+  <script src="../JavaScript/kanban.js"></script>
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.css">
 
@@ -33,31 +34,29 @@ require_once("../src/class/TascaClass.php");
   <thead>
     <tr class="tr-class-1">
       
-      <th class="text-center" colspan="5">Formularios</th>
+      <th class="text-center" colspan="5">Presupuestos de cada cliente</th>
     </tr>
     <tr>
       <th class="text-center" data-field="Estado">Estado</th>
       <th class="text-center" data-field="Nombre Cliente">Nombre Cliente</th>
-      <th class="text-center" data-field="Nombre Cliente">Apellido Cliente</th>
+      <th class="text-center" data-field="Apellido Cliente">Apellido Cliente</th>
       <th class="text-center" data-field="Nombre Empresa">Nombre Empresa</th>
-      <th class="text-center" data-field="Nombre Cuestionario">Nombre del cuestionario </th>
-      <th class="text-center" data-filed="Fecha">Fecha</th>
+      <th class="text-center" data-field="Nombre Cuestionario">Presupuesto</th>    
     </tr>
   </thead>
   <tbody>
     <?php
-	$result = Tasca::showFormularis();// tasca es el nom de la classe . showFormularis()es un metode
+	$result = Presupost::showPresupost();// tasca es el nom de la classe . showFormularis()es un metode
 
 	while($mostrar = mysqli_fetch_array($result)){ //crear bucle
 
 	?>
 		<tr class="table-warning"> <!-- Per mostrar els camps fem lo seguent i fiquem lo nom de les columnes que volem mostrar -->
-			<th ><center><?php echo $mostrar['state'] ?></center> </th>
-     		<th ><center><?php echo $mostrar['name_user'] ?></center> </th>
-         <th ><center><?php echo $mostrar['last_name'] ?></center> </th>
+			<td><center><?php echo $mostrar['status'] ?></center> </td>
+     	<td><center><?php echo $mostrar['name_user'] ?></center> </td>
+       <td><center><?php echo $mostrar['last_name'] ?></center> </td>
 			<td><center><?php echo $mostrar['name_company'] ?></center></td>
-			<td><center><?php echo $mostrar['name_questionary']?></center></td>
-			<td><center><?php echo $mostrar['date_questionary']?></center></td>
+			<td><center><?php echo $mostrar['price']?></center></td>
 		</tr> 
     
 		
