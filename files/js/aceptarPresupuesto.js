@@ -44,17 +44,62 @@ function statusFormatter(value, row, index) {
       </div>
     `;
 }
+// para activar los checkboxs al pulsar modificar presupuesto
+$(document).ready(function () {
+    var editar = false;
+    $('#editando').click(function () {
+        if (!editar) {
+            enviar_presupuesto.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Enviar modificación';
+            editando.innerHTML = '<i class="fa-solid fa-xmark"></i>Cancelar edición';
+            $('.form-check-input').prop("disabled", false);
+            editar = true;
+        } else {
+            $('#table').bootstrapTable('refresh')
+            enviar_presupuesto.innerHTML = '<i class="fa-solid fa-check"></i>Aceptar Presupuesto';
+            editando.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Modificar Presupuesto';
+            $('#table').data("changed", false);
+            editar = false;
+        }
+    });
+});
+
+// para ver si se ha modificado el presupuesto
+$(document).ready(function () {
+    $('#table').on('change', 'input[type=checkbox]', function () {
+        if (!this.checked) {
+            $('#table').bootstrapTable('updateCell', {
+                // aquí se saca la id del checkbox
+                index: $(this).attr('id').replace(/customSwitch/, ''),
+                field: 'accepted',
+                value: `0`,
+                reinit: false
+            })
+            $('.form-check-input').prop("disabled", false);
+        }
+        else if (this.checked) {
+            //$(this).attr("checked", true);
+            $('#table').bootstrapTable('updateCell', {
+                // aquí se saca la id del checkbox
+                index: $(this).attr('id').replace(/customSwitch/, ''),
+                field: 'accepted',
+                value: `1`,
+                reinit: false
+            })
+            $('.form-check-input').prop("disabled", false);
+        }
+        $('#table').data("changed", true);
+    });
+});
 
 $(document).ready(function () {
-    $('#editando').click(function () {
-        $('.form-check-input').prop("disabled", false);
-
-    });
-});  
-
-  $(document).ready(function () {
     $('#enviar_presupuesto').click(function () {
-        alert(JSON.stringify($('#table').bootstrapTable('getData')));
+        if ($("#table").data("changed")) {
+            // submit the form
+            console.log("Presupuesto enviado para modificar");
+            alert(JSON.stringify($('#table').bootstrapTable('getData')));
+        }
+
+        else console.log("Aceptar presupuesto sin más");
 
     });
 });
