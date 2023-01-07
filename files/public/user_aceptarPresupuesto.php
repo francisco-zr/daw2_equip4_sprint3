@@ -32,7 +32,6 @@ if (isset($_GET['presupuesto'])) {
       </div>
     </div>
     <div class="container">
-      <input type="hidden" id="scanCode" name="SCANCODE"></input>
       <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-page-size="10" data-page-list="[5, 10, 20]" data-search="true" data-show-footer="true" data-footer-style="footerStyle" data-ajax="ajaxRequest">
         <thead>
           <tr>
