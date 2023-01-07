@@ -2,7 +2,8 @@
 require_once("../src/class/PresupostClass.php");
 if (isset($_GET['presupuesto'])) {
   $presupuesto = $_GET['presupuesto'];
-}
+  setcookie("Presupuesto", $presupuesto);
+} else setcookie("Presupuesto", 0);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -22,15 +23,16 @@ if (isset($_GET['presupuesto'])) {
   </header>
   <main>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 class="h2">Por hacer</h1>
+      <h1 class="h2">Aceptar Presupuesto</h1>
       <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
-          <button type="button" class="btn btn-dark" id="enviar_presupuesto" value="enviar_presupuesto"><i class="fa-solid fa-check"></i>Aceptar Presupuesto</button>
+          <button type="button" class="btn btn-warning" id="enviar_presupuesto" value="enviar_presupuesto"><i class="fa-solid fa-check"></i>Aceptar Presupuesto</button>
         </div>
         <button type="button" class="btn btn-secondary" id="editando" value="activar_edit"><i class="fa-solid fa-pen-to-square"></i>Modificar Presupuesto</button>
       </div>
     </div>
     <div class="container">
+      <input type="hidden" id="scanCode" name="SCANCODE"></input>
       <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-page-size="10" data-page-list="[5, 10, 20]" data-search="true" data-show-footer="true" data-footer-style="footerStyle" data-ajax="ajaxRequest">
         <thead>
           <tr>

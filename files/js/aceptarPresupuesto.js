@@ -92,14 +92,37 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const presupuesto = urlParams.get('presupuesto');
     $('#enviar_presupuesto').click(function () {
         if ($("#table").data("changed")) {
             // submit the form
             console.log("Presupuesto enviado para modificar");
-            alert(JSON.stringify($('#table').bootstrapTable('getData')));
+            var tareas = JSON.stringify($('#table').bootstrapTable('getData'));
+            $.ajax({
+                url: 'ajaxAceptarPresupuesto.php',
+                data: { tareas: tareas, presupuesto: presupuesto },
+                type: 'POST',
+                success: function () {
+                    console.log("enviado la modificación");
+                }
+            });
         }
 
-        else console.log("Aceptar presupuesto sin más");
-
+        else {
+            console.log(presupuesto);
+            $.ajax({
+                url: "ajaxAceptarPresupuesto.php",
+                type: "POST",
+                data: { presupuesto: presupuesto },
+                cache: false,
+                success: function () {
+                    // mostrar toast
+                    //$(".toast").toast("show")
+                    console.log("enviar presupuesto sin más")
+                }
+            });
+        }
     });
 });
