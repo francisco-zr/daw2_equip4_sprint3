@@ -4,7 +4,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
+<link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/main.css">
 <link href="../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
 <link href="../node_modules/@fortawesome/fontawesome-free/css/brands.min.css" rel="stylesheet">
