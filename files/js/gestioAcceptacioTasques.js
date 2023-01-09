@@ -5,19 +5,17 @@ window.operateEvents = {
   /** Eventos que se ejecutan cuando se hace click en el elemento con la clase form-check-input */
   "click .form-check-input": function (e, value, row) {
     var checkeado = e.target.checked; //Guardamos el valor de e.target.checked tanto si es true como false
-    var accepted = 0; //variable donde gaurdamos el resultado de aceptado o no
     var gestion = document.getElementById(
       "gestion-tareas-" + row.id_recommendation
     ); //recuperamos el desplegable mediante el DOM
 
+    if(checkeado == false){
+      console.log("soy false");
+    }
 
     if (checkeado == true) {
-      accepted = 1; //ponemos que la tarea está aceptada
-      document.getElementById(
-        "gestion-tareas-" + row.id_recommendation + ""
-      ).disabled = false; //habilitamos el desplegable para poder seleccionar quien gestiona la tarea
-      console.log(gestion);
-
+      document.getElementById( "gestion-tareas-" + row.id_recommendation + "").disabled = false; //habilitamos el desplegable para poder seleccionar quien gestiona la tarea
+      
       /** Evento que se ejecuta cuando en el desplegable se selecciona una opción */
       gestion.addEventListener("change", function () {
         //Comprueba si el valor de gestion no está vacio
@@ -28,29 +26,75 @@ window.operateEvents = {
             gestion: gestion.value,
           }); //insertamos en el array la tarea seleccionada
 
-          //Comprueba si el id de la tarea que estamos trabajando es igual que vamos a insertar, si es igual borrará todos los anteriores y creará uno nuevo con la nueva gestión seleccionada
-          if (tareas[row.id_recommendation - 1].id == row.id_recommendation) {
-            tareas.splice(row.id_recommendation - 1, 50);
-            tareas.push({
-              id: row.id_recommendation,
-              accepted: true,
-              gestion: gestion.value,
-            }); //insertamos el nuevo valor en el array la tarea seleccionada
-          }
+          var contador = 0;
+
+          tareas.forEach(e => {
+            //Comprueba si el id de la tarea que estamos trabajando es igual que vamos a insertar, si es igual borrará todos los anteriores y creará uno nuevo con la nueva gestión seleccionada
+            /*if(tareas.id_recommendation == e.id_recommendation){
+              tareas.splice(e.id_recommendation, 1, {
+                id: row.id_recommendation,
+                accepted: true,
+                gestion: gestion.value,
+              });*/
+              if(e.id == row.id_recommendation){
+                console.log("El índice es" + contador);
+
+                tareas.splice(contador, 1) //elimina
+              
+                
+                tareas[contador] = {
+                  id: row.id_recommendation,
+                  accepted: true,
+                  gestion: gestion.value,
+                  } 
+
+                contador = 0;
+              }else{
+                contador++;
+              }
+          });
+
           console.log(tareas);
         } else {
           console.log(tareas);
         }
       });
-
       console.log(tareas);
-    } else {
-      accepted = 0;
+
+    } else { //Si checked es igual a false
       document.getElementById(
         "gestion-tareas-" + row.id_recommendation + ""
       ).disabled = true;
-      //gestion.value = "";
-      tareas.splice(row.id_recommendation - 1, 1);
+
+      document.getElementById(
+        "gestion-tareas-" + row.id_recommendation + ""
+      ).value = "";
+
+
+      var contador2 = 0;
+
+          tareas.forEach(e => {
+            //Comprueba si el id de la tarea que estamos trabajando es igual que vamos a insertar, si es igual borrará todos los anteriores y creará uno nuevo con la nueva gestión seleccionada
+            /*if(tareas.id_recommendation == e.id_recommendation){
+              tareas.splice(e.id_recommendation, 1, {
+                id: row.id_recommendation,
+                accepted: true,
+                gestion: gestion.value,
+              });*/
+              if(e.id == row.id_recommendation){
+                tareas.splice(contador2, 1) //elimina
+                tareas.push({
+                  id: row.id_recommendation,
+                  accepted: false,
+                  gestion: "",
+                });
+                contador2 = 0;
+              }else{
+                contador2++;
+              }
+          });
+      
+      //tareas.splice(row.id_recommendation, 1);
       console.log(e);
       console.log(tareas);
     }
