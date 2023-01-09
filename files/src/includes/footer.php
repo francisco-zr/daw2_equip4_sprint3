@@ -9,16 +9,32 @@
         <h6 id="title-footer">Acerca de Pymeralia</h6>
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="#" class="text-light">Política de privacidad</a>
+            <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-white">Política de privacidad</a></i>
+              </div>
+            </div>
           </li>
           <li>
-            <a href="#" class="text-light">Política de cookies</a>
+            <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-light">Política de cookies</a></i>
+              </div>
+            </div>
           </li>
           <li>
-            <a href="#" class="text-light">Aviso legal</a>
+            <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-light">Aviso legal</a></i>
+              </div>
+            </div>
           </li>
           <li>
-            <a href="#" class="text-light">Ley de protección</a>
+          <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-light">Ley de protección</a></i>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
