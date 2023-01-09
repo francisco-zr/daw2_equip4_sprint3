@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/FormulariPressupost.scss">
+
+  <title>Document</title>
+</head>
+<body>
+  
+
 <div class="text-center p-3">
   <div class="fluid-container">
     <div class="row">
@@ -9,16 +22,32 @@
         <h6 id="title-footer">Acerca de Pymeralia</h6>
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="#" class="text-light">Política de privacidad</a>
+            <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-white">Política de privacidad</a></i>
+              </div>
+            </div>
           </li>
           <li>
-            <a href="#" class="text-light">Política de cookies</a>
+            <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-light">Política de cookies</a></i>
+              </div>
+            </div>
           </li>
           <li>
-            <a href="#" class="text-light">Aviso legal</a>
+            <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-light">Aviso legal</a></i>
+              </div>
+            </div>
           </li>
           <li>
-            <a href="#" class="text-light">Ley de protección</a>
+          <div class="row">
+              <div class="block">
+                <i class="hovicon effect-9 sub-b"><a href="#" class="text-light">Ley de protección</a></i>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -45,3 +74,5 @@
     </div>
   </div>
 </div>
+</body>
+</html>
