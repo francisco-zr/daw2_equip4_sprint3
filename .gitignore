@@ -2,3 +2,4 @@ database/
 DS_Store
 .vscode/settings.json
 files/node_modules/
+files/vendor

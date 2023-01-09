@@ -12,6 +12,7 @@ require_once("../src/class/TascaClass.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/animacion-boton-tasca.css">
     <title>Pymeshield Aceptar Tareas</title>
     <?php require_once("../src/includes/head.php"); ?>
 </head>
@@ -57,13 +58,13 @@ require_once("../src/class/TascaClass.php");
                         <th data-sortable="true" data-field="name_questionary" data-events="operateEvents">Nombre Cuestionario</th>
                         <th data-sortable="true" data-field="description_question">Descripción</th>
                         <th data-sortable="true" data-field="name_recommendation">Recomendación</th>
-                        <th data-sortable="true" data-events="operateEvents" data-formatter="operateFormatter">Aceptar / Rechazar</th>
+                        <th data-sortable="true" data-events="operateEvents" data-formatter="operateFormatter">Aceptar</th>
                     </tr>
                 </thead>
             </table>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" id="enviar-prueba" type="button" value="cualquier">Enviar Tareas</button>
+                <button class="btn btn-primary" id="enviar-tareas" type="button" value="cualquier">Enviar Tareas</button>
             </div>
         </div>
     </main>
@@ -74,47 +75,7 @@ require_once("../src/class/TascaClass.php");
     </footer>
     <script src="../js/enviarTasquesAcceptades.js"></script>
     <script src="../js/ajaxRequestAcceptarTasca.js"></script>
-
-    <script>
-        window.operateEvents = {
-            'click .form-check-input': function(e, value, row) {
-                //console.log(row.id_recommendation)
-                var checkeado = e.target.checked;
-                var accepted = 0;
-
-                if (checkeado == true) {
-                    accepted = 1;
-                    document.getElementById('valor-escondido-1').hidden = false;
-                    console.log(1)
-                } else {
-                    accepted = 0;
-                    document.getElementById('valor-escondido-1').hidden = true;
-                    console.log(0)
-                }
-            }
-        }
-
-        $(document).ready(function(){
-                    $('#enviar-prueba').click(function(){
-                        const objectJSON1 = JSON.stringify($('#table').bootstrapTable('getData'));
-                        const objectJSON2 = JSON.stringify($('#flexSwitchCheckDefault-row-1'));
-                        const resultJSON = objectJSON1 + objectJSON2;
-                        alert(resultJSON);
-                    });
-                });
-
-        function operateFormatter(value, row, index) {
-            return `
-                <div class="right">
-                <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${index + 1}" value="0">
-                <input id="valor-escondido-${index + 1}" value="${index + 1}" hidden>
-                <select >
-                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                </div>
-            `;
-        }
-    </script>
+    <script src="../js/gestioAcceptacioTasques.js"></script>
 </body>
 
 </html>

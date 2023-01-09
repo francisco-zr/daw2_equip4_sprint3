@@ -49,8 +49,6 @@ class Tasca
    {
       $this->id = $id;
       $this->Estat = $Estat;
-
-
    }
 
    public function getId()
@@ -92,7 +90,8 @@ class Tasca
       $this->Estat = $Estat;
    }
 
-   public static function showFormularis(){ //es un metode estatic per a mostrar els camps de la base de dades a la web
+   public static function showFormularis()
+   { //es un metode estatic per a mostrar els camps de la base de dades a la web
       include_once "../config/connexioBDD.php"; //fitxe de conexio a la base de dades
       //consulta
       $sql = "SELECT tasks.state, users.name_user, users.last_name, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary;      ";
@@ -152,17 +151,14 @@ class Tasca
 
    function assignarTasca()
    {
-
    }
 
    function desassignarTasca()
    {
-
    }
 
    function modificarEstatTasca()
    {
-
    }
    /**
     * Lista la fila del kanban según el estado del objeto, este puede ser; ToDo, InProgress, Done
@@ -177,7 +173,7 @@ class Tasca
       $query = "SELECT * FROM `tasks` WHERE `state` = '$this->Estat';";
       $result = mysqli_query($connexioDB, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($connexioDB), E_USER_ERROR);
       while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-         echo '<div class="alert alert-' . $row["importance"] . '" id="tasca' . $row["id_task"] . '" data-bs-toggle="modal" data-bs-target="#modal' . $row["id_task"] . '" draggable="true" ondragstart="drag(event)">';
+         echo '<div class="alert alert-' . $row["importance"] . ' card-kanban" id="tasca' . $row["id_task"] . '" data-bs-toggle="modal" data-bs-target="#modal' . $row["id_task"] . '" draggable="true" ondragstart="drag(event)">';
          echo $row["name_task"];
          echo '</div>';
          echo '<div class="modal fade" id="modal' . $row["id_task"] . '" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
@@ -189,7 +185,7 @@ class Tasca
                   </div>
                   <div class="modal-body py-0"><h2 class="fs-5"><i class="fa-regular fa-clipboard"></i>Descripción</h2><p>'
             . $row["description_task"] .
-            '</p><hr><h2 class="fs-5"><i class="fa-regular fa-clock"></i>Fecha</h2><p>' . $row["start_date"] . ' a ' . $row["final_date"] .
+            '</p><hr><h2 class="fs-5"><i class="fa-regular fa-clock"></i>Fecha</h2><p>' . date("d-m-Y", strtotime($row["start_date"])) . ' a ' . date("d-m-Y", strtotime($row["final_date"])) .
             '</p></div>
                 </div>
               </div>
@@ -264,12 +260,13 @@ class Tasca
 
 
 
-   function mostrarRecomendacionTarea(){
+   function mostrarRecomendacionTarea()
+   {
       //Conexión a base de datos
       include '../config/connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT `recommendations`.`name_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
+      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
       FROM `recommendations`
       INNER JOIN answers ON recommendations.id_answer = answers.id_answer
       INNER JOIN questions ON answers.id_question = questions.id_question
@@ -288,14 +285,21 @@ class Tasca
          $array[] = $row;
       }
       //Retornamos un Json al que le guardamos el array
-      return json_encode($array); 
+      return json_encode($array);
+   }
+
+   function modTarea()
+   {
+      include '../config/connexioBDD.php';
+      $query = "UPDATE `tasks` SET `accepted` = $this->Estat WHERE `tasks`.`id_task` = $this->id";
+      $connexioDB->query($query);
    }
 
    #public static function enviarTasquesAcceptades(){
-      #print_r("Hola");
-  # }
+   #print_r("Hola");
+   # }
 
    #public static function enviarTasquesAcceptades(){
-     # print_r("Hola");
+   # print_r("Hola");
    #}
 }

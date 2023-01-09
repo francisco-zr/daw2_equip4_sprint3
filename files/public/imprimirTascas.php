@@ -1,6 +1,7 @@
 <?php
 require_once("../src/class/TascaClass.php");
-require('../src/fpdf.php');
+require('../vendor/fpdf/fpdf/src/Fpdf/Fpdf.php');
+use Fpdf\Fpdf;
 
 class PDF extends FPDF
 {
@@ -27,7 +28,7 @@ function Footer()
     // Arial italic 8
     $this->SetFont('Arial','I',8);
     // Número de página
-    $this->Cell(0,10, utf8_decode('Página ').$this->PageNo().'/{nb}',0,0,'C');
+    $this->Cell(0,10, iconv('UTF-8', 'windows-1252', 'Página ').$this->PageNo().'/{nb}',0,0,'C');
 }
 }
 
@@ -40,7 +41,7 @@ $tareas = new Tasca($_SESSION['id']);
 $consulta = $tareas->imprimirTareas();
 
 while ($row = mysqli_fetch_array($consulta, MYSQLI_ASSOC)) {
-    $pdf->Cell(0,10, utf8_decode($row['name_task']. ' - '.$row['description_task'].', Estado: '. $row['state'].', Porcentaje: '. $row['percentage'] . '%'),0,1);
+    $pdf->Cell(0,10, iconv('UTF-8', 'windows-1252', $row['name_task']. ' - '.$row['description_task'].', Estado: '. $row['state'].', Porcentaje: '. $row['percentage'] . '%'),0,1);
 }
 $pdf->Output();
 ?>

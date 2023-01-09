@@ -1,0 +1,28 @@
+
+/* seleccionamos el elemento mediante el id*/
+#enviar-tareas{
+    animation-name: change-color; /*Ponemos nombre a la animación*/
+    animation-duration: 5s; /*Le damos tiempo a la animación*/
+    animation-timing-function: linear; /*Le decimos cual va a ser la forma que se va a ejecutas la animación*/
+    animation-iteration-count: infinite; /*Le indicamos cuantas veces se va a repetir la animación, en este caso infinitas veces*/
+ }
+
+ /* indicamos que el elemento haga una acción al pasar por encima con el ratón*/
+ #enviar-tareas:hover {
+    animation-play-state: paused; /* Le indicamos que cuando el ratón esté encima del botón se quede bloqueado en el color de ese momento*/
+ }
+
+ /* Creamos la animación con el keyframe y la nombramos*/
+ @keyframes change-color {
+    0% { /*Le decimos que cuando la animación esté al 0% (este caso al segundo 0) haga lo que está entre las llaves, y así con todos los porcentajes del keyframes*/
+        background-color: #0d6efd;
+    }
+
+    50% {
+        background-color: #3CB371;
+    }
+
+    100% {
+        background-color: #3292D1;
+    }
+ }

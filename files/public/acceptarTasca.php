@@ -1,4 +1,5 @@
 <?php 
+//CREO QUE HAY QUE BORRAR ESTO
 session_start();
 $_SESSION['id'] = 1;?>
 
