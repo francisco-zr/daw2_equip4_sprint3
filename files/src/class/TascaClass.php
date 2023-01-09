@@ -173,7 +173,7 @@ class Tasca
       $query = "SELECT * FROM `tasks` WHERE `state` = '$this->Estat';";
       $result = mysqli_query($connexioDB, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($connexioDB), E_USER_ERROR);
       while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-         echo '<div class="alert alert-' . $row["importance"] . '" id="tasca' . $row["id_task"] . '" data-bs-toggle="modal" data-bs-target="#modal' . $row["id_task"] . '" draggable="true" ondragstart="drag(event)">';
+         echo '<div class="alert alert-' . $row["importance"] . ' card-kanban" id="tasca' . $row["id_task"] . '" data-bs-toggle="modal" data-bs-target="#modal' . $row["id_task"] . '" draggable="true" ondragstart="drag(event)">';
          echo $row["name_task"];
          echo '</div>';
          echo '<div class="modal fade" id="modal' . $row["id_task"] . '" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
