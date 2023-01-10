@@ -120,8 +120,8 @@ class Presupost
         //Consulta per a fer l'insert a la BBDD
         $sql = "INSERT INTO `budgets`(`price`, `accepted`, `status`) VALUES (0.0 ,null,'Pending')";
 
-        //Generem la consulta i la guardem a una variable
-        $result = mysqli_query($connexioDB, $sql);
+        //Generem la consulta i la retornem
+        return mysqli_query($connexioDB, $sql);
     }
 
 

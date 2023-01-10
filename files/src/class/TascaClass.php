@@ -163,7 +163,7 @@ class Tasca
    function crearTasca(){
       include '../config/connexioBDD.php';
 
-      $query = "INSERT INTO `tasks`(`accepted`, `state`, `id_user`, `id_questionary`, `id_recommendation`, `percentage`, `importance`) VALUES (1,'ToDo', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, 0, 'danger')";
+      $query = "INSERT INTO `tasks`(`accepted`, `state`, `price`, `id_user`, `id_questionary`, `id_recommendation`, `percentage`, `importance`) VALUES (1, 'ToDo', 0, $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, 0, 'danger')";
 
       mysqli_query($connexioDB, $query);
    }
