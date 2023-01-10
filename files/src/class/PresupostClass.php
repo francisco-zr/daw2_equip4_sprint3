@@ -118,10 +118,20 @@ class Presupost
         include '../config/connexioBDD.php';
 
         //Consulta per a fer l'insert a la BBDD
-        $sql = "INSERT INTO `budgets`(`price`, `accepted`, `status`) VALUES (0.0 ,null,'Pending')";
+        $sql = "INSERT INTO `budgets` (`price`, `accepted`, `status`) 
+        VALUES (0.0 ,null,'Pending'); SELECT LAST_INSERT_ID";
+
+        
 
         //Generem la consulta i la retornem
-        return mysqli_query($connexioDB, $sql);
+        //$connexioDB->query($sql);
+
+        $connexioDB->query($sql);
+         
+        printf("Hola funciona porfavor, ", $connexion->insert_id);
+        echo $connexion->insert_id;
+        return $connexion->insert_id;
+        //mysqli_insert_id($connexioDB);
     }
 
 
