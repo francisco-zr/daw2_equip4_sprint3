@@ -12,6 +12,10 @@ if($data != null){
     $crearPresupuesto = new Presupost();
     $crearPresupuesto->crearPressupost();
 
-    
+    /** BUCLE PARA QUE ITERE TODO EL ARRAY RECIBIDO */ /** FALTA RECOGER DATOS EN EL MÉTODO PARA QUE SE AUTOCOMPLETEN, DEL CAMPO DANGER */
+    foreach ($data as $arrayTasques){
+        $insertarTareas = new Tasca($arrayTasques['questionary'], $arrayTasques['id'], $id_sesion);
+        $insertarTareas->crearTasca();
+    }
 }
 ?>

@@ -23,6 +23,7 @@ window.operateEvents = {
             id: row.id_recommendation,
             accepted: true,
             gestion: gestion.value,
+            questionary: row.id_questionary
           }); 
 
           /** PARA MODIFICAR EL VALOR DEL SELECTOR
@@ -45,6 +46,7 @@ window.operateEvents = {
                   id: row.id_recommendation,
                   accepted: true,
                   gestion: gestion.value,
+                  questionary: row.id_questionary
                   } 
 
                 //Reinicia el contador a 0
@@ -81,6 +83,7 @@ window.operateEvents = {
                 //   id: row.id_recommendation,
                 //   accepted: false,
                 //   gestion: "",
+                //   questionary: row.id_questionary
                 // });
                 contador2 = 0;
               }else{
@@ -102,6 +105,7 @@ function operateFormatter(value, row, index) {
                 <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${row.id_recommendation}" value="false">
                 <input id="valor-escondido-${row.id_recommendation}" value="${row.id_recommendation}" hidden>
+                <input class="form-check-input" type="checkbox" id="id-questionari-${row.id_questionary}" value="false">
                 <select id="gestion-tareas-${row.id_recommendation}" name="gestion-tareas" class="gestion-tareas" disabled>
                     <option value="">Seleccionar una opción</option>
                     <option value="Pymeralia">Lo gestiona Pymeralia</option>
@@ -120,9 +124,6 @@ function operateFormatter(value, row, index) {
 
 
   
-
-
-
 
 /** RELLENAR EL ARRAY CON DATOS VACIOS AL INCIAR EL DOCUMENTO */
 $(document).ready(function () {

@@ -11,6 +11,9 @@ class Tasca
    private $Descripcio;
    private $Participant;
    private $Estat;
+   private $idQuestionari;
+   private $idRecomanacio;
+   private $idUsuariSessio;
 
    /**
     * __construct
@@ -49,6 +52,13 @@ class Tasca
    {
       $this->id = $id;
       $this->Estat = $Estat;
+   }
+
+   function __construct3($idQuestionari, $idRecomendacio, $idUsuari)
+   {
+      $this->idRecomanacio = $idRecomendacio;
+      $this->idQuestionari = $idQuestionari;
+      $this->idUsuariSessio = $idUsuari;
    }
 
    public function getId()
@@ -148,6 +158,18 @@ class Tasca
          mysqli_query($connexioDB, $query);
       }
    }
+
+
+   function crearTasca(){
+      include '../config/connexioBDD.php';
+
+      $query = "INSERT INTO `tasks`(`accepted`, `state`, `id_user`, `id_questionary`, `id_recommendation`, `percentage`, `importance`) VALUES (1,'ToDo', $this->idUsuariSessio,$this->idQuestionari, $this->idRecomanacio, 0, 'danger')";
+
+      mysqli_query($connexioDB, $query);
+   }
+
+
+
 
    function assignarTasca()
    {
@@ -266,7 +288,7 @@ class Tasca
       include '../config/connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`questions`.`description_question`
+      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`recommendations`.`description_recommendation`, `questionnaries`.`id_questionary`
       FROM `recommendations`
       INNER JOIN answers ON recommendations.id_answer = answers.id_answer
       INNER JOIN questions ON answers.id_question = questions.id_question
