@@ -52,7 +52,7 @@ require_once("../src/class/TascaClass.php");
 
             </table>-->
             <!-- data-url="./getTasques.php" -->
-            <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequest" data-page-list="[3, 6, 9, 15, 100, all]" data-page-size="10">
+            <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequest" data-page-list="[3, 6, 9, 15, 100, all]" data-page-size="100">
                 <thead>
                     <tr>
                         <th data-sortable="true" data-field="name_questionary" data-events="operateEvents">Nombre Cuestionario</th>
