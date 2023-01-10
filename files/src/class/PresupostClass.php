@@ -171,23 +171,15 @@ class Presupost
         return $connexioDB->query($query);
     }
 
-    public function afegirPreuTasca($valor, $id_task)
+    public function afegirPreuTasca($valor, $id_task, $data_i, $data_f)
     {
         include '../config/connexioBDD.php';
 
-        $query = "UPDATE task_budget SET `price`='$valor' WHERE `id_task`='$id_task'";
+        $query = "UPDATE tasks SET `price`='$valor',`start_date`='$data_i',`final_date`='$data_f' WHERE `id_task`='$id_task'";
 
         return $connexioDB->query($query);
     }
-    public function actualitzarData($valor, $id_task)
-    {
-        include '../config/connexioBDD.php';
-
-        $query = "UPDATE tasks SET `start_date`='$valor',`final_date`='$valor' WHERE `id_task`='$id_task'";
-
-        return $connexioDB->query($query);
-    }
-
+    
     public function mostrarAceptarPresupuesto()
     {
         include '../config/connexioBDD.php';

@@ -49,9 +49,10 @@ if (isset($_GET['id_presupuesto'])) {
                         '<label for="preg2" class="form-label mb-0"><p class="h5">' . $row['name_recommendation'] . '</p></label>',
                         '<div class="input-group has-validation mb-3">',
                         '<span class="input-group-text">€</span>',
-                        '<input type="number" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['price'] .'" required/>',
-                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="' . $row['start_date'] . ' " placeholder="Coste" value="'. $row['start_date'] .'" required/>',
-                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="' . $row['final_date'] . ' " placeholder="Coste" value="'. $row['final_date'] .'" required/>',
+                        '<input type="hidden" min="0" class="form-control form-control-lg" name="id_task_' . $row['id_task'] . ' "  placeholder="Coste" value="'. $row['id_task'] .'" type="hidden"/>',
+                        '<input type="number" min="0" class="form-control form-control-lg" name="price_' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['price'] .'" required/>',
+                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="data_i'. $row['id_task'] . '" placeholder="Coste" value="'. $row['start_date'] .'" required/>',
+                        '<input type="datetime-local" min="0" class="form-control form-control-lg" name="data_f'. $row['id_task'] . '" placeholder="Coste" value="'. $row['final_date'] .'" required/>',
                         '</div></div>';
                     };
                     ?>
