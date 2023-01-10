@@ -167,7 +167,7 @@ class Presupost
     {
         include '../config/connexioBDD.php';
 
-        $query = "SELECT tasks.name_task, tasks.id_task, task_budget.price, tasks.start_date, tasks.final_date FROM `tasks` LEFT JOIN task_budget ON task_budget.id_task = tasks.id_task INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
+        $query = "SELECT recommendations.name_recommendation, tasks.id_task, tasks.price, tasks.start_date, tasks.final_date FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
         return $connexioDB->query($query);
     }
 
