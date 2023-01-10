@@ -110,7 +110,7 @@ class Presupost
      *
      * Método para crear un presupuesto vacío
      * 
-     * return void
+     * return last_id
      */
     public function crearPressupost()
     {
@@ -119,19 +119,19 @@ class Presupost
 
         //Consulta per a fer l'insert a la BBDD
         $sql = "INSERT INTO `budgets` (`price`, `accepted`, `status`) 
-        VALUES (0.0 ,null,'Pending'); SELECT LAST_INSERT_ID";
+        VALUES (0.0 ,null,'Pending');";
 
         
 
-        //Generem la consulta i la retornem
-        //$connexioDB->query($sql);
-
+        //Generem la consulta
         $connexioDB->query($sql);
-         
-        printf("Hola funciona porfavor, ", $connexion->insert_id);
-        echo $connexion->insert_id;
-        return $connexion->insert_id;
-        //mysqli_insert_id($connexioDB);
+
+        //Recuperar el ID del último registro insertado
+        $last_id = $connexioDB->insert_id;
+        
+        //Devuelve el valor de la variable $last_id
+        return $last_id;
+        
     }
 
 

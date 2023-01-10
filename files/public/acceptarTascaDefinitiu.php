@@ -3,6 +3,10 @@ require_once("../src/class/TascaClass.php");
 //* Importamos la sesión de un usuario imaginario para hacer pruebas
 //session_start();
 //$idUsuari = $_SESSION['id'] = 1;
+
+/** CREACIÓN COOKIE DE INICIO */
+$expire = time() + (7 * 24 * 60 * 60); // 7 days
+setcookie('cookieSesion', $id_sesion, $expire);
 ?>
 
 <!DOCTYPE html>
