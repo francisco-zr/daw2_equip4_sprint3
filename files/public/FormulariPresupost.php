@@ -46,7 +46,7 @@ if (isset($_GET['id_presupuesto'])) {
 
                     foreach ($resultat as $row) {
                         echo '<div class="mb-3 col-md-6">',
-                        '<label for="preg2" class="form-label mb-0"><p class="h5">' . $row['name_task'] . '</p></label>',
+                        '<label for="preg2" class="form-label mb-0"><p class="h5">' . $row['name_recommendation'] . '</p></label>',
                         '<div class="input-group has-validation mb-3">',
                         '<span class="input-group-text">€</span>',
                         '<input type="number" min="0" class="form-control form-control-lg" name="' . $row['id_task'] . ' " placeholder="Coste" value="'. $row['price'] .'" required/>',
