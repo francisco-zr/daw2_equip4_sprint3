@@ -251,11 +251,12 @@ class Tasca
                      </div>
                      <div class="modal-body py-0"><h2 class="fs-5"><i class="fa-regular fa-clipboard"></i>Descripción</h2><p>'
             . $row["description_task"] .
-            '</p><hr><h2 class="fs-5"><i class="fa-regular fa-clock"></i>Fecha</h2><p>' . date("d-m-Y", strtotime($row["start_date"])) . ' a ' . date("d-m-Y", strtotime($row["start_date"])) .
+            '</p><hr><h2 class="fs-5"><i class="fa-regular fa-clock"></i>Fecha</h2><p>' . date("d-m-Y", strtotime($row["start_date"])) . ' a ' . date("d-m-Y", strtotime($row["final_date"])) .
             '</p>
                    <hr><h2 class="fs-5"><label for="customRange2" class="form-label"><i class="fa-solid fa-percent"></i>Progreso</label></h2></p><p>
                    <form action="saveGantt.php?id=' . $row["id_task"] . '" method="POST">
-                   <input type="range" name="porcentaje" class="form-range" min="0" max="100" id="customRange'  . $row["id_task"] .  '"></p></div>
+                   <input type="range" name="porcentaje" class="form-range" min="0" max="100" id="customRange" oninput="this.nextElementSibling.value = this.value">
+                   Porcentaje: <output id="value">50</output></p></div>
                    <div class="modal-footer flex-column border-top-0">
                    <button type="submit" class="btn btn-lg btn-dark w-100 mx-0">Guardar cambios</button>
                    <button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">Cerrar</button>
