@@ -106,7 +106,7 @@ function operateFormatter(value, row, index) {
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${row.id_recommendation}" value="false">
                 <input id="valor-escondido-${row.id_recommendation}" value="${row.id_recommendation}" hidden>
                 <input class="form-check-input" type="checkbox" id="id-questionari-${row.id_questionary}" value="false">
-                <select id="gestion-tareas-${row.id_recommendation}" name="gestion-tareas" class="gestion-tareas" disabled>
+                <select id="gestion-tareas-${row.id_recommendation}" name="gestion-tareas-${row.id_recommendation}" class="gestion-tareas" disabled>
                     <option value="">Seleccionar una opción</option>
                     <option value="Pymeralia">Lo gestiona Pymeralia</option>
                     <option value="Personalmente">Lo gestiono personalmente</option>
