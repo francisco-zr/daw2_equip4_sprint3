@@ -104,11 +104,28 @@ class Presupost
     }
 
 
-
-    public function crearPressupost($presupost_1, $presupost_2, $presupost_3)
+    
+    /**
+     * Method crearPressupost
+     *
+     * Método para crear un presupuesto vacío
+     * 
+     * return void
+     */
+    public function crearPressupost()
     {
+        //include del fitxer de connexió a la BBDD
+        include '../config/connexioBDD.php';
+
+        //Consulta per a fer l'insert a la BBDD
+        $sql = "INSERT INTO `budgets`(`price`, `accepted`, `status`) VALUES (0.0 ,null,'Pending')";
+
+        //Generem la consulta i la guardem a una variable
+        $result = mysqli_query($connexioDB, $sql);
     }
 
+
+    
     public function calcularPressupost($presupost_1, $presupost_2, $presupost_3)
     {
     }

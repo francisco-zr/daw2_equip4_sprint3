@@ -15,31 +15,39 @@ window.operateEvents = {
       
       /** Evento que se ejecuta cuando en el desplegable se selecciona una opción */
       gestion.addEventListener("change", function () {
+
         //Comprueba si el valor de gestion no está vacio
         if (gestion.value != "") {
+          //insertamos en el array la tarea seleccionada
           tareas.push({
             id: row.id_recommendation,
             accepted: true,
             gestion: gestion.value,
-          }); //insertamos en el array la tarea seleccionada
+          }); 
+
+          /** PARA MODIFICAR EL VALOR DEL SELECTOR
+           * HACER UN ON TARGET ENCIMA DEL SELECTOR PARA SABER EN QUE FILA ESTÁ SITUADA,
+           *  ASÍ SIEMPRE ESTARÁ FOCUSEADA ENCIMA DE LA FILA CORRESPONDIENTE Y SABRÁ QUE FILA HA DE ELIMINAR  */
 
           var contador = 0;
 
           tareas.forEach(e => {
             //Comprueba si el id de la tarea que estamos trabajando es igual que vamos a insertar, si es igual borrará todos los anteriores y creará uno nuevo con la nueva gestión seleccionada
-          
+          console.log(e.id)
               if(e.id == row.id_recommendation){
                 console.log("El índice es" + contador);
 
-                tareas.splice(contador, 1) //elimina
+                //elimina en la posicion de contador 1 campo
+                tareas.splice(contador, 1) 
               
-                
-                tareas[contador] = {
+                //Inserta un nuevo campo en esa posicion del array Tareas
+                tareas[contador] = { 
                   id: row.id_recommendation,
                   accepted: true,
                   gestion: gestion.value,
                   } 
 
+                //Reinicia el contador a 0
                 contador = 0;
               }else{
                 contador++;
@@ -67,19 +75,13 @@ window.operateEvents = {
 
           tareas.forEach(e => {
             //Comprueba si el id de la tarea que estamos trabajando es igual que vamos a insertar, si es igual borrará todos los anteriores y creará uno nuevo con la nueva gestión seleccionada
-            /*if(tareas.id_recommendation == e.id_recommendation){
-              tareas.splice(e.id_recommendation, 1, {
-                id: row.id_recommendation,
-                accepted: true,
-                gestion: gestion.value,
-              });*/
               if(e.id == row.id_recommendation){
                 tareas.splice(contador2, 1) //elimina
-                tareas.push({
-                  id: row.id_recommendation,
-                  accepted: false,
-                  gestion: "",
-                });
+                // tareas.push({
+                //   id: row.id_recommendation,
+                //   accepted: false,
+                //   gestion: "",
+                // });
                 contador2 = 0;
               }else{
                 contador2++;
@@ -95,8 +97,6 @@ window.operateEvents = {
 
 
 function operateFormatter(value, row, index) {
-  
-
   return `
                 <div class="right">
                 <div class="form-check form-switch">
@@ -113,67 +113,68 @@ function operateFormatter(value, row, index) {
 
 
 
+
+
+
+
+
+
+  
+
+
+
+
 /** RELLENAR EL ARRAY CON DATOS VACIOS AL INCIAR EL DOCUMENTO */
 $(document).ready(function () {
+  /** POSIBLE CODIGO PARA INSERTAR TODOS LOS VALORES VACIOS AL INICIAR EL DOCUMENTO *//** NO PRIORITARIO */
+/*const largoTabla = $tabla.bootstrapTable('getData').length;
+  for(let i = 1; i <= largoTabla ; i++){
+    console.log(i);
+  }
 
-const largoTabla = $("#table").bootstrapTable('getData').length;
-//const largoTabla = [12, 13, 67];
-console.log(largoTabla);
+  var selector = $("#flexSwitchCheckDefault-row-1");
+  console.log(selector);
 
-for(let i = 1; i <= largoTabla ; i++){
-  console.log(i);
-}
+  if (!selector.is(":checked")) {
+    contador = 1;
+    
+    tareas.push({
+      id: contador,
+      accepted: false,
+      gestion: "",
+    });
+    console.log("El elemento no está seleccionado")
+    console.log(tareas)*/
+
+  $("#enviar-tareas").click(function () {
+    const datosArray = JSON.stringify(tareas);
+    $.ajax({
+      type: "POST",
+      url: "enviarTasquesAcceptadesJSON.php",
+      data: {datosArray: datosArray},
+      success: function(response){
+          // Handle the success
+          console.log("Success: " + response);
+      },
+      error: function(xhr, status, error){
+          // Handle the error
+          console.log("Error: " + error);
+  }
+    });
+    
+  })
+})
 
 
 
-var selector = $("#flexSwitchCheckDefault-row-1");
-console.log(selector);
+    
+      
+    
+                   
 
-//Si los selectores no estan chequeados
-if (!selector.is(":checked")) {
-  contador = 1;
-  
-  tareas.push({
-    id: contador,
-    accepted: false,
-    gestion: "",
-  });
-  console.log("El elemento no está seleccionado")
-  console.log(tareas)
-}
   
   
  
    
  
-   // $("#enviar-tareas").click(function () {
-   //   /** poner aqui el envio del json al php 
-   //                  const options = {
-   //                       method: 'POST',
-   //                       headers: {
-   //                           'Content-Type': 'application/json'
-   //                       },
-   //                       body: JSON.stringify(tareas)
-   //                  } 
- 
-   //                   fetch('../public/enviarTasquesAcceptadesJSON.php', options)
-   //                       .then(response => response.json())
-   //                       .then(data => console.log(tareas))*/
- 
- 
- 
-     
-   //   // Crea un nuevo objeto XMLHttpRequest
-   //   var request = new XMLHttpRequest();
- 
-   //   // Configura la solicitud
-   //   request.open("POST", "../public/enviarTasquesAcceptadesJSON.php", true);
- 
-   //   // Establece la cabecera para indicar que se enviará una cadena de texto
-   //   request.setRequestHeader("Content-Type", "application/json");
- 
-   //   // Envía la solicitud con el array como carga
-   //   request.send(JSON.stringify(tareas));
-   //   console.log(tareas);
-   // });
- });
+  
