@@ -10,15 +10,15 @@ INSERT INTO `users` (`id_user`, `dni`, `name_user`, `last_name`, `phone_number`,
 -- Volcado de datos para la tabla `questionnaries`
 --
 
-INSERT INTO `questionnaries` (`id_questionary`, `name_questionary`, `autor_questionary`, `date_questionary`, `hidden`, `id_user`) VALUES
-(1, 'Questionario1', NULL, NULL, NULL, 1);
+INSERT INTO `questionnaries` (`id_questionary`, `name_questionary`, `autor_questionary`, `date_questionary`, `hidden`) VALUES
+(1, 'Questionario1', NULL, NULL, NULL);
 
 --
 -- Volcado de datos para la tabla `questions`
 --
 
-INSERT INTO `questions` (`id_question`, `name_question`, `description_question`, `hidden`, `id_questionary`) VALUES
-(1, '¿Pregunta 1?', 'Descripción de la pregunta 1', NULL, 1);
+INSERT INTO `questions` (`id_question`, `name_question`, `description_question`, `hidden`) VALUES
+(1, '¿Pregunta 1?', 'Descripción de la pregunta 1', NULL);
 --
 -- Volcado de datos para la tabla `answers`
 --
@@ -30,8 +30,8 @@ INSERT INTO `answers` (`id_answer`, `name_answer`, `description_answer`, `hidden
 -- Volcado de datos para la tabla `recommendations`
 --
 
-INSERT INTO `recommendations` (`id_recommendation`, `name_recommendation`, `description_recommendation`, `hidden`, `id_answer`) VALUES
-(1, 'Recomendación 1', 'Descripción de la recomendación 1', NULL, 1);
+INSERT INTO `recommendations` (`id_recommendation`, `name_recommendation`, `description_recommendation`, `hidden`) VALUES
+(1, 'Recomendación 1', 'Descripción de la recomendación 1', NULL);
 
 --
 -- Volcado de datos para la tabla `tasks`
