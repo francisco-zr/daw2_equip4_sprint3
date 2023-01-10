@@ -11,12 +11,16 @@ var_dump($data);
 if($data != null){
     //Creamos un presupuesto con valores vacios
     $crearPresupuesto = new Presupost();
-    $crearPresupuesto->crearPressupost();
+    $presupuestoId = $crearPresupuesto->crearPressupost();
+    $presupuestoId['id_budget'];
+    echo $presupuestoId['id_budget'];
 
     /** BUCLE PARA QUE ITERE TODO EL ARRAY RECIBIDO */ /** FALTA RECOGER DATOS EN EL MÉTODO PARA QUE SE AUTOCOMPLETEN, DEL CAMPO DANGER */
     foreach ($data as $arrayTasques){
         $insertarTareas = new Tasca($arrayTasques['questionary'], $arrayTasques['id'], $id_sesion);
         $insertarTareas->crearTasca();
     }
+
+
 }
 ?>
