@@ -106,9 +106,9 @@ class Tasca
 
    public static function showFormularis()
    { //es un metode estatic per a mostrar els camps de la base de dades a la web
-      include_once "../config/connexioBDD.php"; //fitxe de conexio a la base de dades
+      include_once "../config/connexioBDD.php"; //fitxer de conexio a la base de dades
       //consulta
-      $sql = "SELECT tasks.state, users.name_user, users.last_name, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary;      ";
+      $sql = "SELECT tasks.state, users.name_user, users.last_name, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary FROM tasks INNER JOIN users ON tasks.id_user = users.id_user INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary GROUP BY tasks.state, users.name_user, companies.name_company, questionnaries.name_questionary, questionnaries.date_questionary";
       $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
       return $result;
    }
@@ -167,7 +167,8 @@ class Tasca
    {
       include '../config/connexioBDD.php';
 
-      $query = "INSERT INTO `tasks`(`accepted`, `state`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `percentage`, `importance`) VALUES (1, 'ToDo', 0, '$this->nomGestionador', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, 0, 'danger')";
+      $query = "INSERT INTO `tasks`(`accepted`, `state`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`,  `percentage`) 
+      VALUES (1, 'ToDo', 0, '$this->nomGestionador', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, 1, 0)";
 
       mysqli_query($connexioDB, $query);
    }
@@ -291,18 +292,22 @@ class Tasca
          INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`;";
       return $connexioDB->query($query);
    }
-
+   
+   /**
+    * Method mostrarRecomendacionTarea
+    *
+    * return void
+    */
    function mostrarRecomendacionTarea()
    {
       //Conexión a base de datos
       include '../config/connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`recommendations`.`description_recommendation`, `questionnaries`.`id_questionary`
-      FROM `recommendations`
-      INNER JOIN answers ON recommendations.id_answer = answers.id_answer
-      INNER JOIN questions ON answers.id_question = questions.id_question
-      INNER JOIN questionnaries ON questions.id_questionary = questionnaries.id_questionary
+      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`recommendations`.`description_recommendation`, `questionnaries`.`id_questionary`, `answers`.`id_impact` 
+      FROM `recommendations` 
+      INNER JOIN `questions` ON `answers`.`id_question` = `questions`.`id_question` 
+      LEFT JOIN `recommendations` ON `answers`.`id_recommendation` = `recommendations`.`id_recommendation`, `questionnaries` 
       WHERE questionnaries.id_questionary = $this->id";
 
       //Generamos la consulta contra la conexión a la BBDD
