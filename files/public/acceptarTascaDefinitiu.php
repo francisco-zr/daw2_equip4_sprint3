@@ -1,8 +1,20 @@
 <?php
 require_once("../src/class/TascaClass.php");
 
-/** CREACIÓN COOKIE DE INICIO */
+//CONDICIÓN DE RECEPCION DE PARAMETROS POR GET PARA VER 
+if(isset($_GET["id_questionnary_user"])){
+    $cuestionarioGet = $_GET["id_questionnary_user"];
+}else{
+    $cuestionarioGet = 1;
+}
+
+
+/** FALTA: COMPROVACION DE SI LLEGA POR GET Y COINCIDE CON EL CUESTIONARIO DE UN USUARIO QUE NO PUEDA MOVERSE DE VENTANA */
+
+
+/** CREACIÓN COOKIES DE SESIÓN Y DE CUESTIONARIO*/
 $expire = time() + (7 * 24 * 60 * 60); // 7 days
+setcookie('cookieIdQuestionari', $cuestionarioGet, $expire);
 setcookie('cookieSesion', $id_sesion, $expire);
 ?>
 
@@ -31,7 +43,7 @@ setcookie('cookieSesion', $id_sesion, $expire);
         </div>
 
         <div class="container table-responsive">
-            <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequest" data-page-list="[1, 5, 15, 100, all]" data-page-size="100">
+            <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequestTasques" data-page-list="[1, 5, 15, 100, all]" data-page-size="100">
                 <thead>
                     <tr>
                         <th data-sortable="true" data-field="id_questionary" data-visible="false">Id Cuestionario</th>
@@ -54,8 +66,6 @@ setcookie('cookieSesion', $id_sesion, $expire);
     <footer class="bg-black text-center text-lg-center mt-auto">
         <?php require_once("../src/includes/footer.php"); ?>
     </footer>
-    <script src="../js/enviarTasquesAcceptades.js"></script>
-    <script src="../js/ajaxRequestAcceptarTasca.js"></script>
     <script src="../js/gestioAcceptacioTasques.js"></script>
 </body>
 

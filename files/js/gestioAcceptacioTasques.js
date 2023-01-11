@@ -1,4 +1,31 @@
-var tareas = []; //Array donde guardamos todas las tareas aceptadas
+//Array donde guardamos todas las tareas que aceptará o no el usuario
+var tareas = []; 
+
+// Ajax que recoge los valores de una query para despues mostrarlos en el html acceptarTascaDefinitiu.php
+function ajaxRequestTasques(params) {
+    var url = './getTasques.php'; //url de donde se va a sacar los datos
+    $.get(url + '?' + $.param(params.data)).then(function (res) {
+      /** insertamos todos los campos que recojemos en el array en blanco */
+      //pasamos los datos a tipo JSON y lo guardamos en una variable
+      var respuesta = JSON.parse(res);
+
+      //recorremos un bucle por cada dato recibido y le hacemos un push al array con los datos vacios
+      respuesta.forEach((e) =>{
+        tareas.push({
+          id: e.id_recommendation,
+          accepted: false,
+          gestion: "",
+          questionary: e.id_questionary,
+          impacto: e.id_impact
+        })
+      });
+      
+      //línea de código que transforma el JSON en un formato que mediante JavaScript se pueda consultar facilmente
+      params.success(JSON.parse(res)); 
+    })
+}
+
+
 
 
 /** evento de la BootStrap Table */
@@ -11,95 +38,79 @@ window.operateEvents = {
     ); //recuperamos el desplegable mediante el DOM
 
     if (checkeado == true) {
-      document.getElementById( "gestion-tareas-" + row.id_recommendation + "").disabled = false; //habilitamos el desplegable para poder seleccionar quien gestiona la tarea
-      
+      document.getElementById(
+        "gestion-tareas-" + row.id_recommendation + ""
+      ).disabled = false; //habilitamos el desplegable para poder seleccionar quien gestiona la tarea
+
       /** Evento que se ejecuta cuando en el desplegable se selecciona una opción */
       gestion.addEventListener("change", function () {
-
+        var found = false;
         //Comprueba si el valor de gestion no está vacio
         if (gestion.value != "") {
-          //insertamos en el array la tarea seleccionada
-          tareas.push({
-            id: row.id_recommendation,
-            accepted: true,
-            gestion: gestion.value,
-            questionary: row.id_questionary,
-            impacto: row.id_impact
-          }); 
+          for (var i = 0; i < tareas.length; i++) {
+            if (tareas[i].id == row.id_recommendation) {
+              console.log(tareas[i]);
+              tareas[i].accepted = true;
+              tareas[i].gestion = gestion.value;
+              tareas[i].questionary = row.id_questionary;
+              tareas[i].impacto = row.id_impact;
+              found = true;
+            }
+          }
 
-          /** PARA MODIFICAR EL VALOR DEL SELECTOR
-           * HACER UN ON TARGET ENCIMA DEL SELECTOR PARA SABER EN QUE FILA ESTÁ SITUADA,
-           * ASÍ SIEMPRE ESTARÁ FOCUSEADA ENCIMA DE LA FILA CORRESPONDIENTE Y SABRÁ QUE FILA HA DE ELIMINAR  */
-
-          var contador = 0;
-
-          tareas.forEach(e => {
-            //Comprueba si el id de la tarea que estamos trabajando es igual que vamos a insertar, si es igual borrará todos los anteriores y creará uno nuevo con la nueva gestión seleccionada
-          console.log(e.id)
-              if(e.id == row.id_recommendation){
-                console.log("El índice es" + contador);
-
-                //elimina en la posicion de contador 1 campo
-                tareas.splice(contador, 1) 
-              
-                //Inserta un nuevo campo en esa posicion del array Tareas
-                tareas[contador] = { 
-                  id: row.id_recommendation,
-                  accepted: true,
-                  gestion: gestion.value,
-                  questionary: row.id_questionary,
-                  impacto: row.id_impact
-                  } 
-
-                //Reinicia el contador a 0
-                contador = 0;
-              }else{
-                contador++;
-              }
-          });
-
+          if (!found) {
+            //insertamos en el array la tarea seleccionada
+            tareas.push({
+              id: row.id_recommendation,
+              accepted: true,
+              gestion: gestion.value,
+              questionary: row.id_questionary,
+              impacto: row.id_impact
+            });
+          }
           console.log(tareas);
         } else {
+
           console.log(tareas);
         }
       });
       console.log(tareas);
+    } else {
 
-    } else { //Si checked es igual a false
+      //Si checked es igual a false inhabilita el desplegable
       document.getElementById(
         "gestion-tareas-" + row.id_recommendation + ""
       ).disabled = true;
 
+      //Si checked es igual a false cambia el valor de gestion a " "
       document.getElementById(
         "gestion-tareas-" + row.id_recommendation + ""
       ).value = "";
 
-
-      var contador2 = 0;
-
-          tareas.forEach(e => {
-            //Comprueba si el id de la tarea que estamos trabajando es igual que vamos a insertar, si es igual borrará todos los anteriores y creará uno nuevo con la nueva gestión seleccionada
-              if(e.id == row.id_recommendation){
-                tareas.splice(contador2, 1) //elimina
-                // tareas.push({
-                //   id: row.id_recommendation,
-                //   accepted: false,
-                //   gestion: "",
-                //   questionary: row.id_questionary,
-                //   impacto: row.id_impact
-                // });
-                contador2 = 0;
-              }else{
-                contador2++;
-              }
-          });
       
-      //tareas.splice(row.id_recommendation, 1);
+      //Bucle que recorre el array y cambia el valor de esa posición por los valores que se pasan dentro de la condición
+        for (var i = 0; i < tareas.length; i++) {
+          if (tareas[i].id == row.id_recommendation) {
+            console.log(tareas[i]);
+            tareas[i].gestion = "";
+            tareas[i].accepted = false;
+            tareas[i].questionary = row.id_questionary;
+            tareas[i].impacto = row.id_impact;
+          }
+        }
+      
       console.log(e);
       console.log(tareas);
     }
   },
 };
+
+
+
+
+
+
+
 
 
 function operateFormatter(value, row, index) {
@@ -121,80 +132,38 @@ function operateFormatter(value, row, index) {
 
 
 
+
+
+
+
+
 /** RELLENAR EL ARRAY CON DATOS VACIOS AL INCIAR EL DOCUMENTO */
 $(document).ready(function () {
-  /** POSIBLE CODIGO PARA INSERTAR TODOS LOS VALORES VACIOS AL INICIAR EL DOCUMENTO *//** NO PRIORITARIO */
-/*const largoTabla = $tabla.bootstrapTable('getData').length;
-  for(let i = 1; i <= largoTabla ; i++){
-    console.log(i);
-  }
-
-  var selector = $("#flexSwitchCheckDefault-row-1");
-  console.log(selector);
-
-  if (!selector.is(":checked")) {
-    contador = 1;
-    
-    tareas.push({
-      id: contador,
-      accepted: false,
-      gestion: "",
-      questionary: row.id_questionary,
-      impacto: row.id_impact 
-    });
-    console.log("El elemento no está seleccionado")
-    console.log(tareas)*/
-
-  $("#enviar-tareas").click(function () {
+    $("#enviar-tareas").click(function () {
     //Comprovación de si el array está vacio
-    if(tareas.length != 0){
-
-      tareas.forEach(e => {
-        if(tareas['gestion'] === ""){
-            console.log("está vacio");
-        }
-      });  
-
-
-    /** ENVIO DE DATOS POR AJAX */
-    const datosArray = JSON.stringify(tareas);
-    $.ajax({
-      type: "POST",
-      url: "enviarTasquesAcceptadesJSON.php",
-      data: {datosArray: datosArray},
-      success: function(response){
+    if (tareas.length != 0) {
+      /** ENVIO DE DATOS POR AJAX */
+      const datosArray = JSON.stringify(tareas);
+      $.ajax({
+        type: "POST",
+        url: "enviarTasquesAcceptadesJSON.php",
+        data: { datosArray: datosArray },
+        success: function (response) {
           // Handle the success
           console.log("Success: " + response);
-      },
-      error: function(xhr, status, error){
+        },
+        error: function (xhr, status, error) {
           // Handle the error
           console.log("Error: " + error);
-      }
-    });
+        },
+      });
 
-    /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
-    window.location.href = 'LlistatPresupost.php';
+      /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
+      window.location.href = "LlistatPresupost.php";
+    } else {
+      console.log("No se ha seleccionado ninguna opción");
     }
-    else{
-    console.log("No se ha seleccionado ninguna opción");
-    }
-    
-  })
-})
+  });
+});
 
 /** SELECCIÓN DE DATOS PARA PINTAR EN EL HTML FUERA DE LA TABLA  */
-
-
-
-
-    
-      
-    
-                   
-
-  
-  
- 
-   
- 
-  

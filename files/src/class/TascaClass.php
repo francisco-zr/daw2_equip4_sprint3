@@ -328,6 +328,7 @@ class Tasca
          //Guarda los resultaos de $row en el $array
          $array[] = $row;
       }
+      
       //Retornamos un Json al que le guardamos el array
       return json_encode($array);
    }
