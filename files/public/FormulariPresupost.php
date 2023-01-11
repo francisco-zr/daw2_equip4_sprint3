@@ -45,7 +45,7 @@ if (isset($_GET['id_presupuesto'])) {
                     $resultat = $presupuesto->mostrarTasca();
 
                     foreach ($resultat as $row) {
-                        echo '<div class="mb-3 col-md-6">',
+                        echo '<div class="mb-3 col-md-9">',
                         '<label for="preg2" class="form-label mb-0"><p class="h5">' . $row['name_recommendation'] . '</p></label>',
                         '<div class="input-group has-validation mb-3">',
                         '<span class="input-group-text">€</span>',
