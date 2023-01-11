@@ -28,12 +28,40 @@ MDScreen:
                             id: tareas  
 
             MDScreen:
+                name: "DetallesTarea"
+                MDBoxLayout:
+                    padding:0, 70, 0, 0
+                    MDLabel:
+                        id: desc
+                        text:"Bienvenido a Pymeshield, haz click en el menú para navegar entre secciones"
+                        halign: "center"
+                        font_style: "H3"
+                    MDScrollView:
+                        MDList:
+                            id: detalles 
+
+            
+
+            MDScreen:
                 name: "Presupuesto"
                 MDBoxLayout:
                     padding:0, 70, 0, 0
                     MDScrollView:
                         MDList:
                             id: presupuesto  
+            
+            MDScreen:
+                name: "DetallesPresupuesto"
+                MDBoxLayout:
+                    padding:0, 70, 0, 0
+                    MDLabel:
+                        id: preudata
+                        text:"Bienvenido a Pymeshield, haz click en el menú para navegar entre secciones"
+                        halign: "center"
+                        font_style: "H3"
+                    MDScrollView:
+                        MDList:
+                            id: detallesPre 
 
             MDScreen:
                 name: "Gantt"

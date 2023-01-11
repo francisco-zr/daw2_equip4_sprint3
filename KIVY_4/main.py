@@ -44,6 +44,48 @@ class MyApp (MDApp):
         
         return Builder.load_file("main2.kv")
 
+    id_presupost = ""
+    def detallesPre(self,row):
+        id_presupost = row.id
+        print(f"Pressed {row.id}")
+        self.root.ids['screen_manager'].current = "DetallesPresupuesto"
+        script_location = Path(__file__).absolute().parent 
+        with open(script_location / "data.json","rt") as json_file:
+            data = json.load(json_file)
+        id_presupost = int(row.id[10:])
+        print(id_presupost)
+
+        for i in data:
+            id = i['id']
+            text= f"{i['name']} - {i['preu']} - {i['data']}"
+
+            self.root.ids.preudata.text = text
+
+            if id == id_presupost:
+                break
+
+    id_tasca = ""
+    def detalles(self,row):
+        id_tasca = row.id
+        print(f"Pressed {row.id}")
+        self.root.ids['screen_manager'].current = "DetallesTarea"
+        script_location = Path(__file__).absolute().parent 
+        with open(script_location / "tareas.json","rt") as json_file:
+            data2 = json.load(json_file)
+        id_tasca = int(row.id[5:])
+        print(id_tasca)
+
+        for i in data2:
+            id = i['id']
+            text= f"{i['name']} - {i['descripcion']}"
+
+            self.root.ids.desc.text = text
+
+            if id == id_tasca:
+                break
+
+    
+
     def on_start(self): #creamos la clase on_start
         #sirve para que cargue bien el json desde cualquier directorio
         script_location = Path(__file__).absolute().parent 
@@ -58,15 +100,18 @@ class MyApp (MDApp):
                 
         for i in data: #bucle que recorre el rango que le pasemos como parametro
             self.root.ids.presupuesto.add_widget( #añade widgets, despues de ids. va el id con el que podremos trabajar en el documento .kv
-                
                 ThreeLineIconListItem( #método que nos deja trabajar con 3 lineas que previamente lo hemos importado en la parte superior
                     IconLeftWidget( #método que nos permite agregar un icono
                         icon="account-cash"
                     ),
                     
                     text = f"Presupuesto {i['id']}",
-                    secondary_text=f"Precio {i['preu']}", #línea 2
-                    tertiary_text=f"Fecha {i['data']}", #línea 3
+                    secondary_text=f"Nombre {i['name']}", #línea 2
+                    tertiary_text=f"Precio {i['preu']}", #línea 3
+                    # quartiary_text=f"Fecha {i['data']}", #línea 4
+                    on_press = self.detallesPre
+
+
                 )
             )## Lista que muestra los cuestionarios
 
@@ -80,8 +125,10 @@ class MyApp (MDApp):
                         icon="table"
                     ),
                     
-                    text = f"Tarea {i['id']}",
+                    id = f"Tarea {i['id']}",
+                    text = f"Tarea {i['name']}",
                     secondary_text=f"Descripcion {i['descripcion']}", #línea 2
+                    on_press = self.detalles
                 )
             )## Lista que muestra los cuestionarios
             
