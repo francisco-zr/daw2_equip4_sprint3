@@ -162,9 +162,12 @@ $(document).ready(function () {
         },
       });
 
+      //Deshabilitamos la tabla
       $("#contenedorContenidoTabla").attr('hidden', true);
 
-      $("#contendorContenidoCargando").attr('hidden', false);
+      //Habilitamos la animación de carga
+      $("#contendorContenidoCargando").attr("hidden", false);
+      
       
       /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
       setTimeout(() => {

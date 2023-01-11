@@ -25,7 +25,7 @@ setcookie('cookieSesion', $id_sesion, $expire);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../css/animacion-boton-tasca.css">
+    <link rel="stylesheet" href="../css/animaciones-tasques.css">
     <title>Pymeshield Aceptar Tareas</title>
     <?php require_once("../src/includes/head.php"); ?>
 </head>
@@ -39,36 +39,6 @@ setcookie('cookieSesion', $id_sesion, $expire);
     <!--main-->
     <main>
         <div id="contenedorGeneral">
-
-            <div class="contendorContenidoCargando">
-                <div class="spinner-grow text-primary" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <div class="spinner-grow text-secondary" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <div class="spinner-grow text-success" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <div class="spinner-grow text-danger" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <div class="spinner-grow text-warning" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <div class="spinner-grow text-info" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <div class="spinner-grow text-light" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-                <div class="spinner-grow text-dark" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
-            </div>
-
-
-
             <div id="contenedorContenidoTabla">
                 <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3">
                     <h1 class="h2" id="titulo-tareas">Aceptar Tareas</h1>
@@ -92,8 +62,21 @@ setcookie('cookieSesion', $id_sesion, $expire);
                         <button class="btn btn-primary" id="enviar-tareas" type="button" value="cualquier">Enviar Tareas</button>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div><!--id="contenedorContenidoTabla"-->
+
+
+            <div id="contendorContenidoCargando" hidden>
+                <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3">
+                    <div class="lds-ring">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <h2 id="textoEnviando" style="text-align: center;">Enviando...</h2>
+            </div><!--id="contendorContenidoCargando"-->
+        </div><!--id="contenedorGeneral"-->
     </main>
 
     <!--footer-->
