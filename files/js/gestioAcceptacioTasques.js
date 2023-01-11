@@ -143,7 +143,11 @@ $(document).ready(function () {
     //Comprovación de si el array está vacio
     if (tareas.length != 0) {
       /** ENVIO DE DATOS POR AJAX */
+
+      //Convierte el array en un string
       const datosArray = JSON.stringify(tareas);
+
+      //Genera la petición AJAX
       $.ajax({
         type: "POST",
         url: "enviarTasquesAcceptadesJSON.php",
@@ -158,12 +162,17 @@ $(document).ready(function () {
         },
       });
 
+      $("#contenedorContenidoTabla").attr('hidden', true);
+
+      $("#contendorContenidoCargando").attr('hidden', false);
+      
       /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
+      setTimeout(() => {
       window.location.href = "LlistatPresupost.php";
+      }, "3000");
+      
     } else {
       console.log("No se ha seleccionado ninguna opción");
     }
   });
 });
-
-/** SELECCIÓN DE DATOS PARA PINTAR EN EL HTML FUERA DE LA TABLA  */
