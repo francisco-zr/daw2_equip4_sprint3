@@ -15,6 +15,7 @@ class Tasca
    private $idRecomanacio;
    private $idUsuariSessio;
    private $idPressupost;
+   private $nomGestionador;
 
    /**
     * __construct
@@ -55,12 +56,13 @@ class Tasca
       $this->Estat = $Estat;
    }
 
-   function __construct4($idQuestionari, $idRecomendacio, $idUsuari, $idPressupost)
+   function __construct5($idQuestionari, $idRecomendacio, $idUsuari, $idPressupost, $nomGestionador)
    {
       $this->idRecomanacio = $idRecomendacio;
       $this->idQuestionari = $idQuestionari;
       $this->idUsuariSessio = $idUsuari;
       $this->idPressupost = $idPressupost;
+      $this->nomGestionador = $nomGestionador;
    }
 
    public function getId()
@@ -110,7 +112,6 @@ class Tasca
       $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
       return $result;
    }
-
 
 
    /*  function crearTasca(){
@@ -165,7 +166,7 @@ class Tasca
    function crearTasca(){
       include '../config/connexioBDD.php';
 
-      $query = "INSERT INTO `tasks`(`accepted`, `state`, `price`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `percentage`, `importance`) VALUES (1, 'ToDo', 0, $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, 0, 'danger')";
+      $query = "INSERT INTO `tasks`(`accepted`, `state`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `percentage`, `importance`) VALUES (1, 'ToDo', 0, '$this->nomGestionador', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, 0, 'danger')";
 
       mysqli_query($connexioDB, $query);
    }

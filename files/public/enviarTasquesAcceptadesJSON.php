@@ -16,7 +16,7 @@ if($data != null){
 
     /** BUCLE PARA QUE ITERE TODO EL ARRAY RECIBIDO */ /** FALTA RECOGER DATOS EN EL MÉTODO PARA QUE SE AUTOCOMPLETEN, DEL CAMPO DANGER */
     foreach ($data as $arrayTasques){
-        $insertarTareas = new Tasca($arrayTasques['questionary'], $arrayTasques['id'], $_COOKIE['cookieSesion'], $presupuestoId);
+        $insertarTareas = new Tasca($arrayTasques['questionary'], $arrayTasques['id'], $_COOKIE['cookieSesion'], $presupuestoId, $arrayTasques['gestion']);
         $insertarTareas->crearTasca();
     }
 }

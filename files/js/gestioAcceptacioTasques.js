@@ -28,7 +28,7 @@ window.operateEvents = {
 
           /** PARA MODIFICAR EL VALOR DEL SELECTOR
            * HACER UN ON TARGET ENCIMA DEL SELECTOR PARA SABER EN QUE FILA ESTÁ SITUADA,
-           *  ASÍ SIEMPRE ESTARÁ FOCUSEADA ENCIMA DE LA FILA CORRESPONDIENTE Y SABRÁ QUE FILA HA DE ELIMINAR  */
+           * ASÍ SIEMPRE ESTARÁ FOCUSEADA ENCIMA DE LA FILA CORRESPONDIENTE Y SABRÁ QUE FILA HA DE ELIMINAR  */
 
           var contador = 0;
 
@@ -118,13 +118,6 @@ function operateFormatter(value, row, index) {
 
 
 
-
-
-
-
-
-  
-
 /** RELLENAR EL ARRAY CON DATOS VACIOS AL INCIAR EL DOCUMENTO */
 $(document).ready(function () {
   /** POSIBLE CODIGO PARA INSERTAR TODOS LOS VALORES VACIOS AL INICIAR EL DOCUMENTO *//** NO PRIORITARIO */
@@ -148,6 +141,17 @@ $(document).ready(function () {
     console.log(tareas)*/
 
   $("#enviar-tareas").click(function () {
+    //Comprovación de si el array está vacio
+    if(tareas.length != 0){
+
+      tareas.forEach(e => {
+        if(tareas['gestion'] === ""){
+            console.log("está vacio");
+        }
+      });  
+
+
+    /** ENVIO DE DATOS POR AJAX */
     const datosArray = JSON.stringify(tareas);
     $.ajax({
       type: "POST",
@@ -160,11 +164,21 @@ $(document).ready(function () {
       error: function(xhr, status, error){
           // Handle the error
           console.log("Error: " + error);
-  }
+      }
     });
+
+    /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
+    window.location.href = 'LlistatPresupost.php';
+    }
+    else{
+    console.log("No se ha seleccionado ninguna opción");
+    }
     
   })
 })
+
+/** SELECCIÓN DE DATOS PARA PINTAR EN EL HTML FUERA DE LA TABLA  */
+
 
 
 
