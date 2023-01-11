@@ -163,7 +163,7 @@ class Presupost
         INNER JOIN users ON users.id_user = tasks.id_user
         INNER JOIN questionnary_user ON questionnary_user.id_user = users.id_user
         INNER JOIN questionnaries ON questionnaries.id_questionary = questionnary_user.id_questionary
-        WHERE users.id_user = 1;";
+        WHERE users.id_user = 1 GROUP BY budgets.id_budget;";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {
