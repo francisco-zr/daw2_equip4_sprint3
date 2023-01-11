@@ -23,7 +23,8 @@ window.operateEvents = {
             id: row.id_recommendation,
             accepted: true,
             gestion: gestion.value,
-            questionary: row.id_questionary
+            questionary: row.id_questionary,
+            impacto: row.id_impact
           }); 
 
           /** PARA MODIFICAR EL VALOR DEL SELECTOR
@@ -46,7 +47,8 @@ window.operateEvents = {
                   id: row.id_recommendation,
                   accepted: true,
                   gestion: gestion.value,
-                  questionary: row.id_questionary
+                  questionary: row.id_questionary,
+                  impacto: row.id_impact
                   } 
 
                 //Reinicia el contador a 0
@@ -83,7 +85,8 @@ window.operateEvents = {
                 //   id: row.id_recommendation,
                 //   accepted: false,
                 //   gestion: "",
-                //   questionary: row.id_questionary
+                //   questionary: row.id_questionary,
+                //   impacto: row.id_impact
                 // });
                 contador2 = 0;
               }else{
@@ -136,6 +139,8 @@ $(document).ready(function () {
       id: contador,
       accepted: false,
       gestion: "",
+      questionary: row.id_questionary,
+      impacto: row.id_impact 
     });
     console.log("El elemento no está seleccionado")
     console.log(tareas)*/

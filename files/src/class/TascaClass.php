@@ -16,6 +16,7 @@ class Tasca
    private $idUsuariSessio;
    private $idPressupost;
    private $nomGestionador;
+   private $idImpacto;
 
    /**
     * __construct
@@ -56,13 +57,14 @@ class Tasca
       $this->Estat = $Estat;
    }
 
-   function __construct5($idQuestionari, $idRecomendacio, $idUsuari, $idPressupost, $nomGestionador)
+   function __construct6($idQuestionari, $idRecomendacio, $idUsuari, $idPressupost, $nomGestionador, $idImpacto)
    {
       $this->idRecomanacio = $idRecomendacio;
       $this->idQuestionari = $idQuestionari;
       $this->idUsuariSessio = $idUsuari;
       $this->idPressupost = $idPressupost;
       $this->nomGestionador = $nomGestionador;
+      $this->idImpacto = $idImpacto;
    }
 
    public function getId()
@@ -168,7 +170,7 @@ class Tasca
       include '../config/connexioBDD.php';
 
       $query = "INSERT INTO `tasks`(`accepted`, `state`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`,  `percentage`) 
-      VALUES (1, 'ToDo', 0, '$this->nomGestionador', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, 1, 0)";
+      VALUES (1, 'ToDo', 0, '$this->nomGestionador', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, $this->idImpacto, 0)";
 
       mysqli_query($connexioDB, $query);
    }
@@ -278,6 +280,10 @@ class Tasca
                </div>';
       }
    }
+
+
+
+
    /**
     * imprimirTareas
     *
@@ -305,9 +311,10 @@ class Tasca
       include '../config/connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`recommendations`.`description_recommendation`, `questionnaries`.`id_questionary`, `answers`.`id_impact` 
-      FROM `recommendations` 
-      INNER JOIN `questions` ON `answers`.`id_question` = `questions`.`id_question` 
+      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`recommendations`.`description_recommendation`, `questionnaries`.`id_questionary`, `answers`.`id_impact`, `impacts`.`name_type_impact` 
+      FROM `answers` 
+      LEFT JOIN `questions` ON `answers`.`id_question` = `questions`.`id_question` 
+      LEFT JOIN `impacts` ON `answers`.`id_impact` = `impacts`.`id_impact` 
       LEFT JOIN `recommendations` ON `answers`.`id_recommendation` = `recommendations`.`id_recommendation`, `questionnaries` 
       WHERE questionnaries.id_questionary = $this->id";
 
