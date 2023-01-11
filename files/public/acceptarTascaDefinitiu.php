@@ -2,9 +2,9 @@
 require_once("../src/class/TascaClass.php");
 
 //CONDICIÓN DE RECEPCION DE PARAMETROS POR GET PARA VER 
-if(isset($_GET["id_questionnary_user"])){
+if (isset($_GET["id_questionnary_user"])) {
     $cuestionarioGet = $_GET["id_questionnary_user"];
-}else{
+} else {
     $cuestionarioGet = 1;
 }
 
@@ -38,26 +38,60 @@ setcookie('cookieSesion', $id_sesion, $expire);
 
     <!--main-->
     <main>
-        <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3">
-            <h1 class="h2" id="titulo-tareas">Aceptar Tareas</h1>
-        </div>
+        <div id="contenedorGeneral">
 
-        <div class="container table-responsive">
-            <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequestTasques" data-page-list="[1, 5, 15, 100, all]" data-page-size="100">
-                <thead>
-                    <tr>
-                        <th data-sortable="true" data-field="id_questionary" data-visible="false">Id Cuestionario</th>
-                        <th data-sortable="true" data-field="id_impact" data-visible="false">Id Impacto</th>
-                        <th data-sortable="true" data-field="description_recommendation">Descripción</th>
-                        <th data-sortable="true" data-field="name_recommendation">Recomendación</th>
-                        <th data-sortable="true" data-field="name_type_impact">Nivel de Peligro</th>
-                        <th data-sortable="true" data-events="operateEvents" data-formatter="operateFormatter">Aceptación de tareas</th>
-                    </tr>
-                </thead>
-            </table>
+            <div class="contendorContenidoCargando">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-secondary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-success" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-info" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <div class="spinner-grow text-dark" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" id="enviar-tareas" type="button" value="cualquier">Enviar Tareas</button>
+
+
+            <div id="contenedorContenidoTabla">
+                <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3">
+                    <h1 class="h2" id="titulo-tareas">Aceptar Tareas</h1>
+                </div>
+
+                <div class="container table-responsive">
+                    <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequestTasques" data-page-list="[1, 5, 15, 100, all]" data-page-size="100">
+                        <thead>
+                            <tr>
+                                <th data-sortable="true" data-field="id_questionary" data-visible="false">Id Cuestionario</th>
+                                <th data-sortable="true" data-field="id_impact" data-visible="false">Id Impacto</th>
+                                <th data-sortable="true" data-field="description_recommendation">Descripción</th>
+                                <th data-sortable="true" data-field="name_recommendation">Recomendación</th>
+                                <th data-sortable="true" data-field="name_type_impact">Nivel de Peligro</th>
+                                <th data-sortable="true" data-events="operateEvents" data-formatter="operateFormatter">Aceptación de tareas</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button class="btn btn-primary" id="enviar-tareas" type="button" value="cualquier">Enviar Tareas</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
