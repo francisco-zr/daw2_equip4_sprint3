@@ -49,7 +49,6 @@ window.operateEvents = {
         if (gestion.value != "") {
           for (var i = 0; i < tareas.length; i++) {
             if (tareas[i].id == row.id_recommendation) {
-              console.log(tareas[i]);
               tareas[i].accepted = true;
               tareas[i].gestion = gestion.value;
               tareas[i].questionary = row.id_questionary;
@@ -68,13 +67,8 @@ window.operateEvents = {
               impacto: row.id_impact
             });
           }
-          console.log(tareas);
-        } else {
-
-          console.log(tareas);
         }
       });
-      console.log(tareas);
     } else {
 
       //Si checked es igual a false inhabilita el desplegable
@@ -98,9 +92,6 @@ window.operateEvents = {
             tareas[i].impacto = row.id_impact;
           }
         }
-      
-      console.log(e);
-      console.log(tareas);
     }
   },
 };
