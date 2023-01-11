@@ -24,7 +24,7 @@
               <li>
                 <hr class="dropdown-divider">
               </li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-shield-halved"></i>Admin</a></li>
+              <li><a class="dropdown-item" href="../../public/formularisAPD.php"><i class="fa-solid fa-shield-halved"></i>Admin</a></li>
             </ul>
           </li>
       </div>
