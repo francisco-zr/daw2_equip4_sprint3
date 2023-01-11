@@ -200,7 +200,8 @@ class Presupost
         FROM `tasks` 
         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` 
         INNER JOIN impacts ON impacts.id_impact = tasks.id_impact 
-        WHERE tasks.id_budget = $this->presupost";
+        WHERE tasks.id_budget = $this->presupost
+        ORDER BY `tasks`.id_task";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {
