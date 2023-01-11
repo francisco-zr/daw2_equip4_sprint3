@@ -194,10 +194,10 @@ class Presupost
     {
         include '../config/connexioBDD.php';
         //imprime tareas según id_budget para aceptar el presupuesto global
-        $query = "SELECT tasks.id_task, tasks.name_task, tasks.description_task, tasks.accepted, task_budget.price
-        FROM `task_budget` 
-	    INNER JOIN `tasks` ON `task_budget`.`id_task` = `tasks`.`id_task`
-        WHERE task_budget.id_budget = $this->presupost";
+        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation, tasks.accepted, tasks.price
+        FROM `tasks` 
+            INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`
+        WHERE tasks.id_budget = $this->presupost";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {

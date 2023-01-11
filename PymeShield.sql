@@ -149,6 +149,7 @@ CREATE TABLE `tasks` (
   `start_date` datetime,
   `final_date` datetime,
   `price` float NOT NULL,
+  `manages` varchar(255),
   `id_user` int,
   `id_questionary` int NOT NULL,
   `id_recommendation` int NOT NULL,
