@@ -21,7 +21,7 @@ setcookie('cookieSesion', $id_sesion, $expire);
 <body class="d-flex flex-column min-vh-100">
     <!--header-->
     <header class="sticky-top">
-        <?php require_once("../src/includes/header.php"); ?>
+        <?php require_once("../src/includes/header_client.php"); ?>
     </header>
 
     <!--main-->
