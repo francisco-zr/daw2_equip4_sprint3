@@ -13,7 +13,7 @@ require_once("../src/class/TascaClass.php");
   <?php require_once("../src/includes/head.php"); ?>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" onload="hideLoader()">
 
 
   <header class="sticky-top">
@@ -21,8 +21,8 @@ require_once("../src/class/TascaClass.php");
   </header>
   <main>
   <div class="loading">
-  <p class="loading-text">Loading...</p>
-  </div>
+    <img class="loading-image" src="../img/logo_pymeshield.png" alt="Loading">
+</div>
 
 </div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3 border-bottom">
@@ -63,6 +63,9 @@ function operateFormatter(value, row, index) {
       '</a>  '
     ].join('')
   }
+  setTimeout(function(){
+    document.querySelector(".loading").style.display = "none";
+});
 
   </script>
 

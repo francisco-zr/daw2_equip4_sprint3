@@ -1,0 +1,16 @@
+[{
+    "id": "Pressupost 1",
+    "preu": "50968$",
+    "data": "22-02-2022"
+},
+{
+    "id": "Pressupost 2",
+    "preu": "456789$",
+    "data": "12-02-2022"
+},
+{
+    "id": "Pressupost 3",
+    "preu": "3$",
+    "data": "07-02-2022"
+}
+]

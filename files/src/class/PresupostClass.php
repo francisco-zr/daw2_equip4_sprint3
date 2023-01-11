@@ -158,8 +158,7 @@ class Presupost
         //query a mejorar, ahora solo imprime tareas en general
         $query = "SELECT budgets.*, users.id_user, questionnaries.name_questionary 
         FROM budgets 
-        INNER JOIN task_budget ON task_budget.id_budget = budgets.id_budget
-        INNER JOIN tasks ON tasks.id_task = task_budget.id_task
+        INNER JOIN tasks ON tasks.id_budget = budgets.id_budget
         INNER JOIN users ON users.id_user = tasks.id_user
         INNER JOIN questionnary_user ON questionnary_user.id_user = users.id_user
         INNER JOIN questionnaries ON questionnaries.id_questionary = questionnary_user.id_questionary
