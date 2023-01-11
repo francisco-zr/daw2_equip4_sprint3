@@ -293,12 +293,11 @@ class Tasca
    {
       include '../config/connexioBDD.php';
       //query a mejorar, ahora solo imprime tareas en general
-      $query = "SELECT * FROM `tasks`";
+      $query = "SELECT recommendations.name_recommendation AS name_task, recommendations.description_recommendation AS description_task, tasks.state, tasks.percentage
+      FROM `tasks` 
+         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`;";
       return $connexioDB->query($query);
    }
-
-
-
    
    /**
     * Method mostrarRecomendacionTarea
