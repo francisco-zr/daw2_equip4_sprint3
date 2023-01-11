@@ -62,18 +62,18 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id_answer`, `name_answer`, `description_answer`, `hidden`, `id_risk`, `id_interventions`, `id_type_measure`, `id_probability`, `id_impact`, `id_question`, `id_recommendation`) VALUES
-(1, 'Respuesta 1', 'Descripción de la respuesta 1', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(2, 'Respuesta 2', 'Descripción de la respuesta 2', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(3, 'Respuesta 3', 'Descripción de la respuesta 3', NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL),
-(4, 'Respuesta 4', 'Descripción de la respuesta 4', NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL),
-(5, 'Respuesta 5', 'Descripción de la respuesta 5', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL),
-(6, 'Respuesta 6', 'Descripción de la respuesta 6', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL),
-(7, 'Respuesta 7', 'Descripción de la respuesta 7', NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL),
-(8, 'Respuesta 8', 'Descripción de la respuesta 8', NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL),
-(9, 'Respuesta 9', 'Descripción de la respuesta 9', NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL),
-(10, 'Respuesta 10', 'Descripción de la respuesta 10', NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL),
-(11, 'Respuesta 11', 'Descripción de la respuesta 11', NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL),
-(12, 'Respuesta 12', 'Descripción de la respuesta 12', NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL);
+(1, 'Respuesta 1', 'Descripción de la respuesta 1', NULL, NULL, NULL, NULL, NULL, 1, 1, 1),
+(2, 'Respuesta 2', 'Descripción de la respuesta 2', NULL, NULL, NULL, NULL, NULL, 2, 1, 2),
+(3, 'Respuesta 3', 'Descripción de la respuesta 3', NULL, NULL, NULL, NULL, NULL, 2, 2, 3),
+(4, 'Respuesta 4', 'Descripción de la respuesta 4', NULL, NULL, NULL, NULL, NULL, 3, 2, 4),
+(5, 'Respuesta 5', 'Descripción de la respuesta 5', NULL, NULL, NULL, NULL, NULL, 1, 3, 5),
+(6, 'Respuesta 6', 'Descripción de la respuesta 6', NULL, NULL, NULL, NULL, NULL, 3, 3, 6),
+(7, 'Respuesta 7', 'Descripción de la respuesta 7', NULL, NULL, NULL, NULL, NULL, 3, 4, 7),
+(8, 'Respuesta 8', 'Descripción de la respuesta 8', NULL, NULL, NULL, NULL, NULL, 2, 4, 8),
+(9, 'Respuesta 9', 'Descripción de la respuesta 9', NULL, NULL, NULL, NULL, NULL, 2, 5, 9),
+(10, 'Respuesta 10', 'Descripción de la respuesta 10', NULL, NULL, NULL, NULL, NULL, 1, 5, 10),
+(11, 'Respuesta 11', 'Descripción de la respuesta 11', NULL, NULL, NULL, NULL, NULL, 1, 6, 11),
+(12, 'Respuesta 12', 'Descripción de la respuesta 12', NULL, NULL, NULL, NULL, NULL, 3, 6, 12);
 
 -- --------------------------------------------------------
 
