@@ -37,6 +37,7 @@ if (isset($_GET['presupuesto'])) {
           <tr>
             <th data-sortable="true" data-field="name_task" data-footer-formatter="idFormatter">Nombre</th>
             <th data-sortable="true" data-field="description_task">Descripción</th>
+            <th data-sortable="true" data-field="name_type_impact">Peligro</th>
             <th data-sortable="true" data-field="accepted" data-formatter="statusFormatter">Estado</th>
             <th data-sortable="true" data-field="price" data-footer-formatter="priceFormatter">Precio</th>
           </tr>
