@@ -15,7 +15,7 @@ require_once("../src/class/TascaClass.php");
 
 <body class="d-flex flex-column min-vh-100">
   <header class="sticky-top">
-    <?php require_once("../src/includes/header.php"); ?>
+    <?php require_once("../src/includes/header_client.php"); ?>
   </header>
   <main>
     <div class="container-fluid text-center">
