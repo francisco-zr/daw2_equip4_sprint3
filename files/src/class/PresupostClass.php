@@ -104,7 +104,7 @@ class Presupost
     }
 
 
-    
+
     /**
      * Method crearPressupost
      *
@@ -121,21 +121,20 @@ class Presupost
         $sql = "INSERT INTO `budgets` (`price`, `accepted`, `status`) 
         VALUES (0.0 ,null,'Pending');";
 
-        
+
 
         //Generem la consulta
         $connexioDB->query($sql);
 
         //Recuperar el ID del último registro insertado
         $last_id = $connexioDB->insert_id;
-        
+
         //Devuelve el valor de la variable $last_id
         return $last_id;
-        
     }
 
 
-    
+
     public function calcularPressupost($presupost_1, $presupost_2, $presupost_3)
     {
     }
@@ -159,12 +158,11 @@ class Presupost
         //query a mejorar, ahora solo imprime tareas en general
         $query = "SELECT budgets.*, users.id_user, questionnaries.name_questionary 
         FROM budgets 
-        INNER JOIN task_budget ON task_budget.id_budget = budgets.id_budget
-        INNER JOIN tasks ON tasks.id_task = task_budget.id_task
+        INNER JOIN tasks ON tasks.id_budget = budgets.id_budget
         INNER JOIN users ON users.id_user = tasks.id_user
         INNER JOIN questionnary_user ON questionnary_user.id_user = users.id_user
         INNER JOIN questionnaries ON questionnaries.id_questionary = questionnary_user.id_questionary
-        WHERE users.id_user = 1;";
+        WHERE users.id_user = 1 GROUP BY budgets.id_budget;";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {
@@ -177,7 +175,11 @@ class Presupost
     {
         include '../config/connexioBDD.php';
 
-        $query = "SELECT recommendations.name_recommendation, tasks.id_task, tasks.price, tasks.start_date, tasks.final_date FROM `tasks` INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
+        $query = "SELECT recommendations.name_recommendation, tasks.id_task, tasks.price, tasks.start_date, tasks.final_date 
+        FROM `tasks` 
+        INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation 
+        INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary 
+        WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
         return $connexioDB->query($query);
     }
 
@@ -189,15 +191,17 @@ class Presupost
 
         return $connexioDB->query($query);
     }
-    
+
     public function mostrarAceptarPresupuesto()
     {
         include '../config/connexioBDD.php';
         //imprime tareas según id_budget para aceptar el presupuesto global
-        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation, tasks.accepted, tasks.price
+        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task, tasks.accepted, tasks.price, impacts.name_type_impact 
         FROM `tasks` 
-            INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`
-        WHERE tasks.id_budget = $this->presupost";
+        INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` 
+        INNER JOIN impacts ON impacts.id_impact = tasks.id_impact 
+        WHERE tasks.id_budget = $this->presupost
+        ORDER BY `tasks`.id_task";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {

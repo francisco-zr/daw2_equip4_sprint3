@@ -13,18 +13,21 @@ require_once("../src/class/TascaClass.php");
   <?php require_once("../src/includes/head.php"); ?>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100" onload="hideLoader()">
 
 
   <header class="sticky-top">
     <?php require_once("../src/includes/header_client.php"); ?>
   </header>
   <main>
-  <div class="loading">
-  <p class="loading-text">Loading...</p>
-  </div>
+    <!-- <div class="loading">
+      <img class="loading-image" src="../img/logo_pymeshield.png" alt="Loading">
+    </div> 
+-->
 
-</div>
+ <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+
+    </div>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3 border-bottom">
       <h1 class="h2">Listados Presupuestos</h1>
     </div>
@@ -46,26 +49,28 @@ require_once("../src/class/TascaClass.php");
 
   <script>
     document.addEventListener("DOMContentLoaded", function(){
-      document.querySelector(".loading").classList.add("loading-visible");
+      document.querySelector("lds-ring").classList.add("loading-visible");
     });
 
     window.onload = function(){
-      document.querySelector(".loading").classList.remove("loading-visible");
+      document.querySelector("lds-ring").classList.remove("loading-visible");
     };
   </script>
 
 </body>
 <script>
-function operateFormatter(value, row, index) {
-    return [
-      '<a class="like" href="javascript:void(0)" title="Like">',
-      '<i class="fa fa-info"></i>',
-      '</a>  '
-    ].join('')
+  function operateFormatter(value, row, index) {
+    return `
+      <a class="like" href="user_aceptarPresupuesto.php?presupuesto=${row.id_budget}" title="Presupuesto${row.id_budget}">
+      <i class="fa fa-info"></i>
+      </a>
+      `;
   }
+  setTimeout(function(){
+    document.querySelector(".lds-ring").style.display = "none";
+});
 
-  </script>
 
+</script>
 
-  </script>
 </html>
