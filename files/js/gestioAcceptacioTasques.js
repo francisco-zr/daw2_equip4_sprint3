@@ -23,12 +23,13 @@ window.operateEvents = {
             id: row.id_recommendation,
             accepted: true,
             gestion: gestion.value,
-            questionary: row.id_questionary
+            questionary: row.id_questionary,
+            impacto: row.id_impact
           }); 
 
           /** PARA MODIFICAR EL VALOR DEL SELECTOR
            * HACER UN ON TARGET ENCIMA DEL SELECTOR PARA SABER EN QUE FILA ESTÁ SITUADA,
-           *  ASÍ SIEMPRE ESTARÁ FOCUSEADA ENCIMA DE LA FILA CORRESPONDIENTE Y SABRÁ QUE FILA HA DE ELIMINAR  */
+           * ASÍ SIEMPRE ESTARÁ FOCUSEADA ENCIMA DE LA FILA CORRESPONDIENTE Y SABRÁ QUE FILA HA DE ELIMINAR  */
 
           var contador = 0;
 
@@ -46,7 +47,8 @@ window.operateEvents = {
                   id: row.id_recommendation,
                   accepted: true,
                   gestion: gestion.value,
-                  questionary: row.id_questionary
+                  questionary: row.id_questionary,
+                  impacto: row.id_impact
                   } 
 
                 //Reinicia el contador a 0
@@ -83,7 +85,8 @@ window.operateEvents = {
                 //   id: row.id_recommendation,
                 //   accepted: false,
                 //   gestion: "",
-                //   questionary: row.id_questionary
+                //   questionary: row.id_questionary,
+                //   impacto: row.id_impact
                 // });
                 contador2 = 0;
               }else{
@@ -106,7 +109,7 @@ function operateFormatter(value, row, index) {
                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault-row-${row.id_recommendation}" value="false">
                 <input id="valor-escondido-${row.id_recommendation}" value="${row.id_recommendation}" hidden>
                 <input class="form-check-input" type="checkbox" id="id-questionari-${row.id_questionary}" value="false">
-                <select id="gestion-tareas-${row.id_recommendation}" name="gestion-tareas" class="gestion-tareas" disabled>
+                <select id="gestion-tareas-${row.id_recommendation}" name="gestion-tareas-${row.id_recommendation}" class="gestion-tareas" disabled>
                     <option value="">Seleccionar una opción</option>
                     <option value="Pymeralia">Lo gestiona Pymeralia</option>
                     <option value="Personalmente">Lo gestiono personalmente</option>
@@ -117,13 +120,6 @@ function operateFormatter(value, row, index) {
 
 
 
-
-
-
-
-
-
-  
 
 /** RELLENAR EL ARRAY CON DATOS VACIOS AL INCIAR EL DOCUMENTO */
 $(document).ready(function () {
@@ -143,11 +139,24 @@ $(document).ready(function () {
       id: contador,
       accepted: false,
       gestion: "",
+      questionary: row.id_questionary,
+      impacto: row.id_impact 
     });
     console.log("El elemento no está seleccionado")
     console.log(tareas)*/
 
   $("#enviar-tareas").click(function () {
+    //Comprovación de si el array está vacio
+    if(tareas.length != 0){
+
+      tareas.forEach(e => {
+        if(tareas['gestion'] === ""){
+            console.log("está vacio");
+        }
+      });  
+
+
+    /** ENVIO DE DATOS POR AJAX */
     const datosArray = JSON.stringify(tareas);
     $.ajax({
       type: "POST",
@@ -160,11 +169,21 @@ $(document).ready(function () {
       error: function(xhr, status, error){
           // Handle the error
           console.log("Error: " + error);
-  }
+      }
     });
+
+    /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
+    window.location.href = 'LlistatPresupost.php';
+    }
+    else{
+    console.log("No se ha seleccionado ninguna opción");
+    }
     
   })
 })
+
+/** SELECCIÓN DE DATOS PARA PINTAR EN EL HTML FUERA DE LA TABLA  */
+
 
 
 

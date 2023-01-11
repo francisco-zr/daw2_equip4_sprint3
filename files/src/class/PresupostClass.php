@@ -110,7 +110,7 @@ class Presupost
      *
      * Método para crear un presupuesto vacío
      * 
-     * return void
+     * return last_id
      */
     public function crearPressupost()
     {
@@ -119,19 +119,19 @@ class Presupost
 
         //Consulta per a fer l'insert a la BBDD
         $sql = "INSERT INTO `budgets` (`price`, `accepted`, `status`) 
-        VALUES (0.0 ,null,'Pending'); SELECT LAST_INSERT_ID";
+        VALUES (0.0 ,null,'Pending');";
 
         
 
-        //Generem la consulta i la retornem
-        //$connexioDB->query($sql);
-
+        //Generem la consulta
         $connexioDB->query($sql);
-         
-        printf("Hola funciona porfavor, ", $connexion->insert_id);
-        echo $connexion->insert_id;
-        return $connexion->insert_id;
-        //mysqli_insert_id($connexioDB);
+
+        //Recuperar el ID del último registro insertado
+        $last_id = $connexioDB->insert_id;
+        
+        //Devuelve el valor de la variable $last_id
+        return $last_id;
+        
     }
 
 
@@ -194,10 +194,10 @@ class Presupost
     {
         include '../config/connexioBDD.php';
         //imprime tareas según id_budget para aceptar el presupuesto global
-        $query = "SELECT tasks.id_task, tasks.name_task, tasks.description_task, tasks.accepted, task_budget.price
-        FROM `task_budget` 
-	    INNER JOIN `tasks` ON `task_budget`.`id_task` = `tasks`.`id_task`
-        WHERE task_budget.id_budget = $this->presupost";
+        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation, tasks.accepted, tasks.price
+        FROM `tasks` 
+            INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`
+        WHERE tasks.id_budget = $this->presupost";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {

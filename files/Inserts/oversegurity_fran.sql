@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 10-01-2023 a las 19:54:39
+-- Tiempo de generación: 11-01-2023 a las 09:33:30
 -- Versión del servidor: 10.6.11-MariaDB-1:10.6.11+maria~ubu2004
 -- Versión de PHP: 8.0.19
 
@@ -62,18 +62,18 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id_answer`, `name_answer`, `description_answer`, `hidden`, `id_risk`, `id_interventions`, `id_type_measure`, `id_probability`, `id_impact`, `id_question`, `id_recommendation`) VALUES
-(1, 'Respuesta 1', 'Descripción de la respuesta 1', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(2, 'Respuesta 2', 'Descripción de la respuesta 2', NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-(3, 'Respuesta 3', 'Descripción de la respuesta 3', NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL),
-(4, 'Respuesta 4', 'Descripción de la respuesta 4', NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL),
-(5, 'Respuesta 5', 'Descripción de la respuesta 5', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL),
-(6, 'Respuesta 6', 'Descripción de la respuesta 6', NULL, NULL, NULL, NULL, NULL, NULL, 3, NULL),
-(7, 'Respuesta 7', 'Descripción de la respuesta 7', NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL),
-(8, 'Respuesta 8', 'Descripción de la respuesta 8', NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL),
-(9, 'Respuesta 9', 'Descripción de la respuesta 9', NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL),
-(10, 'Respuesta 10', 'Descripción de la respuesta 10', NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL),
-(11, 'Respuesta 11', 'Descripción de la respuesta 11', NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL),
-(12, 'Respuesta 12', 'Descripción de la respuesta 12', NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL);
+(1, 'Respuesta 1', 'Descripción de la respuesta 1', NULL, NULL, NULL, NULL, NULL, 1, 1, 1),
+(2, 'Respuesta 2', 'Descripción de la respuesta 2', NULL, NULL, NULL, NULL, NULL, 2, 1, 2),
+(3, 'Respuesta 3', 'Descripción de la respuesta 3', NULL, NULL, NULL, NULL, NULL, 2, 2, 3),
+(4, 'Respuesta 4', 'Descripción de la respuesta 4', NULL, NULL, NULL, NULL, NULL, 3, 2, 4),
+(5, 'Respuesta 5', 'Descripción de la respuesta 5', NULL, NULL, NULL, NULL, NULL, 1, 3, 5),
+(6, 'Respuesta 6', 'Descripción de la respuesta 6', NULL, NULL, NULL, NULL, NULL, 3, 3, 6),
+(7, 'Respuesta 7', 'Descripción de la respuesta 7', NULL, NULL, NULL, NULL, NULL, 3, 4, 7),
+(8, 'Respuesta 8', 'Descripción de la respuesta 8', NULL, NULL, NULL, NULL, NULL, 2, 4, 8),
+(9, 'Respuesta 9', 'Descripción de la respuesta 9', NULL, NULL, NULL, NULL, NULL, 2, 5, 9),
+(10, 'Respuesta 10', 'Descripción de la respuesta 10', NULL, NULL, NULL, NULL, NULL, 1, 5, 10),
+(11, 'Respuesta 11', 'Descripción de la respuesta 11', NULL, NULL, NULL, NULL, NULL, 1, 6, 11),
+(12, 'Respuesta 12', 'Descripción de la respuesta 12', NULL, NULL, NULL, NULL, NULL, 3, 6, 12);
 
 -- --------------------------------------------------------
 
@@ -88,6 +88,13 @@ CREATE TABLE `budgets` (
   `hidden` date DEFAULT NULL,
   `status` enum('Pending','Done','Waiting') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `budgets`
+--
+
+INSERT INTO `budgets` (`id_budget`, `price`, `accepted`, `hidden`, `status`) VALUES
+(1, 2000, 0, NULL, 'Waiting');
 
 -- --------------------------------------------------------
 
@@ -298,6 +305,24 @@ CREATE TABLE `questionnary_question` (
   `id_question` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `questionnary_question`
+--
+
+INSERT INTO `questionnary_question` (`id_questionnary_question`, `id_questionary`, `id_question`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 1, 9),
+(10, 1, 10),
+(11, 1, 11),
+(12, 1, 12);
+
 -- --------------------------------------------------------
 
 --
@@ -340,7 +365,13 @@ INSERT INTO `questions` (`id_question`, `name_question`, `description_question`,
 (3, '¿Pregunta 3?', 'Descripción de la pregunta 3', NULL),
 (4, '¿Pregunta 4?', 'Descripción de la pregunta 4', NULL),
 (5, '¿Pregunta 5?', 'Descripción de la pregunta 5', NULL),
-(6, '¿Pregunta 6?', 'Descripción de la pregunta 6', NULL);
+(6, '¿Pregunta 6?', 'Descripción de la pregunta 6', NULL),
+(7, '¿Pregunta 7?', 'Descripción de la pregunta 7', NULL),
+(8, '¿Pregunta 8?', 'Descripción de la pregunta 8', NULL),
+(9, '¿Pregunta 9?', 'Descripción de la pregunta 9', NULL),
+(10, '¿Pregunta 10?', 'Descripción de la pregunta 10', NULL),
+(11, '¿Pregunta 11?', 'Descripción de la pregunta 11', NULL),
+(12, '¿Pregunta 12?', 'Descripción de la pregunta 12', NULL);
 
 -- --------------------------------------------------------
 
@@ -493,6 +524,7 @@ CREATE TABLE `tasks` (
   `start_date` datetime DEFAULT NULL,
   `final_date` datetime DEFAULT NULL,
   `price` float NOT NULL,
+  `manages` varchar(250) DEFAULT NULL,
   `id_user` int(11) DEFAULT NULL,
   `id_questionary` int(11) NOT NULL,
   `id_recommendation` int(11) NOT NULL,
@@ -501,6 +533,18 @@ CREATE TABLE `tasks` (
   `percentage` int(11) NOT NULL,
   `hidden` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tasks`
+--
+
+INSERT INTO `tasks` (`id_task`, `accepted`, `state`, `start_date`, `final_date`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`, `percentage`, `hidden`) VALUES
+(1, 0, 'ToDo', '2022-05-12 00:00:00', '2022-05-13 00:00:00', 100, NULL, 1, 1, 1, 1, 1, 0, NULL),
+(2, 1, 'ToDo', '2022-05-13 00:00:00', '2022-05-14 00:00:00', 100, NULL, 1, 1, 2, 1, 2, 0, NULL),
+(3, 1, 'InProgress', '2022-05-14 00:00:00', '2022-05-17 00:00:00', 100, NULL, 1, 1, 3, 1, 3, 50, NULL),
+(4, 1, 'InProgress', '2022-05-17 00:00:00', '2022-05-22 00:00:00', 100, NULL, 1, 1, 4, 1, 2, 50, NULL),
+(5, 1, 'InProgress', '2022-05-19 00:00:00', '2022-05-24 00:00:00', 100, NULL, 1, 1, 5, 1, 1, 50, NULL),
+(6, 1, 'Done', '2022-05-12 00:00:00', '2022-05-20 00:00:00', 100, NULL, 1, 1, 6, 1, 2, 100, NULL);
 
 -- --------------------------------------------------------
 
@@ -847,7 +891,7 @@ ALTER TABLE `answers`
 -- AUTO_INCREMENT de la tabla `budgets`
 --
 ALTER TABLE `budgets`
-  MODIFY `id_budget` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_budget` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
@@ -931,7 +975,7 @@ ALTER TABLE `questionnaries`
 -- AUTO_INCREMENT de la tabla `questionnary_question`
 --
 ALTER TABLE `questionnary_question`
-  MODIFY `id_questionnary_question` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_questionnary_question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `questionnary_user`
@@ -943,7 +987,7 @@ ALTER TABLE `questionnary_user`
 -- AUTO_INCREMENT de la tabla `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id_question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_question` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `ratings`
@@ -1003,7 +1047,7 @@ ALTER TABLE `risks`
 -- AUTO_INCREMENT de la tabla `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_task` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `types_measures`
