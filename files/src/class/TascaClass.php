@@ -199,7 +199,7 @@ class Tasca
       $query = "SELECT `tasks`.*, `impacts`.`name_type_impact` AS importance, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task
       FROM `tasks` 
          INNER JOIN `impacts` ON `tasks`.`id_impact` = `impacts`.`id_impact` 
-         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` WHERE tasks.state = '$this->Estat';";
+         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` WHERE tasks.state = '$this->Estat' ORDER BY name_task;";
       $result = mysqli_query($connexioDB, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($connexioDB), E_USER_ERROR);
       while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
          echo '<div class="alert alert-' . $row["importance"] . ' card-kanban" id="tasca' . $row["id_task"] . '" data-bs-toggle="modal" data-bs-target="#modal' . $row["id_task"] . '" draggable="true" ondragstart="drag(event)">';
