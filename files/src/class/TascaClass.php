@@ -115,7 +115,6 @@ class Tasca
       return $result;
    }
 
-
    /*  function crearTasca(){
         
     }*/
@@ -164,7 +163,6 @@ class Tasca
       }
    }
 
-
    function crearTasca()
    {
       include '../config/connexioBDD.php';
@@ -174,9 +172,6 @@ class Tasca
 
       mysqli_query($connexioDB, $query);
    }
-
-
-
 
    function assignarTasca()
    {
@@ -281,9 +276,6 @@ class Tasca
       }
    }
 
-
-
-
    /**
     * imprimirTareas
     *
@@ -298,7 +290,7 @@ class Tasca
          INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`;";
       return $connexioDB->query($query);
    }
-   
+
    /**
     * Method mostrarRecomendacionTarea
     *
@@ -328,7 +320,7 @@ class Tasca
          //Guarda los resultaos de $row en el $array
          $array[] = $row;
       }
-      
+
       //Retornamos un Json al que le guardamos el array
       return json_encode($array);
    }
