@@ -163,7 +163,8 @@ class Tasca
    }
 
 
-   function crearTasca(){
+   function crearTasca()
+   {
       include '../config/connexioBDD.php';
 
       $query = "INSERT INTO `tasks`(`accepted`, `state`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `percentage`, `importance`) VALUES (1, 'ToDo', 0, '$this->nomGestionador', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, 0, 'danger')";
@@ -195,7 +196,10 @@ class Tasca
       include '../config/connexioBDD.php';
       /* query por mejorar, ahora solo lista todas por estado, 
       habrá que filtrar por id de usuario(con la sesión cargada en el objeto por ejemplo)*/
-      $query = "SELECT * FROM `tasks` WHERE `state` = '$this->Estat';";
+      $query = "SELECT `tasks`.*, `impacts`.`name_type_impact` AS importance, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task
+      FROM `tasks` 
+         INNER JOIN `impacts` ON `tasks`.`id_impact` = `impacts`.`id_impact` 
+         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` WHERE tasks.state = '$this->Estat';";
       $result = mysqli_query($connexioDB, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($connexioDB), E_USER_ERROR);
       while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
          echo '<div class="alert alert-' . $row["importance"] . ' card-kanban" id="tasca' . $row["id_task"] . '" data-bs-toggle="modal" data-bs-target="#modal' . $row["id_task"] . '" draggable="true" ondragstart="drag(event)">';
@@ -226,7 +230,7 @@ class Tasca
    function jsonGantt()
    {
       include '../config/connexioBDD.php';
-      $query = $connexioDB->prepare('SELECT name_task, `start_date`, final_date, importance, `percentage`, id_task FROM `tasks`');
+      $query = $connexioDB->prepare('SELECT `recommendations`.`name_recommendation` AS name_task, `tasks`.`start_date`, tasks.final_date, `impacts`.`name_type_impact` AS importance, tasks.percentage, tasks.id_task FROM `tasks` INNER JOIN `impacts` ON `tasks`.`id_impact` = `impacts`.`id_impact` INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` ORDER BY name_task;');
       $query->execute();
       $result = $query->get_result();
       $outp = $result->fetch_all();
@@ -242,7 +246,10 @@ class Tasca
    {
       include '../config/connexioBDD.php';
       // query por mejorar, idem como el método listarKanban
-      $query = "SELECT * FROM `tasks`";
+      $query = "SELECT `tasks`.id_task, tasks.start_date, tasks.final_date, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task
+      FROM `tasks` 
+         INNER JOIN `impacts` ON `tasks`.`id_impact` = `impacts`.`id_impact` 
+         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`";
       $modal = $connexioDB->query($query);
       while ($row = mysqli_fetch_array($modal, MYSQLI_ASSOC)) {
          echo '<div class="modal fade" id="modal' . $row["id_task"] . '" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
