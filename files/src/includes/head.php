@@ -1,5 +1,6 @@
 <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/tema.js"></script>
 <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">

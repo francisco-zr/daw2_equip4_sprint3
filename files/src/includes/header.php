@@ -17,9 +17,46 @@
                   Perfil</a></li>
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-language"></i>Idioma</a>
               </li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-palette"></i>Tema</a>
-              </li>
               <li><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i>Cerrar Sesión</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+                <i class="theme-icon-active">
+                  <use href="#circle-half"></use>
+                </i>Tema
+              </li>
+              <li>
+                <button type="button" class="dropdown-item" data-bs-theme-value="light">
+                  <i class="fa-solid fa-sun opacity-50 theme-icon">
+                    <use href="#sun-fill"></use>
+                  </i>
+                  Claro
+                  <svg class="bi ms-auto d-none">
+                    <use href="#check2"></use>
+                  </svg>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item" data-bs-theme-value="dark">
+                  <i class="fa-solid fa-moon opacity-50 theme-icon">
+                    <use href="#moon-stars-fill"></use>
+                  </i>
+                  Oscuro
+                  <svg class="bi ms-auto d-none">
+                    <use href="#check2"></use>
+                  </svg>
+                </button>
+              </li>
+              <li>
+                <button type="button" class="dropdown-item active" data-bs-theme-value="auto">
+                  <i class="fa-solid fa-circle-half-stroke opacity-50 theme-icon">
+                    <use href="#circle-half"></use>
+                  </i>
+                  Auto
+                  <svg class="bi ms-auto d-none">
+                    <use href="#check2"></use>
+                  </svg>
+                </button>
               </li>
               <li>
                 <hr class="dropdown-divider">

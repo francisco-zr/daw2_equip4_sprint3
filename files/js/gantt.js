@@ -36,7 +36,7 @@ class Gantt {
     * @returns {Sting} Html code
     */
     buildTableHeader() {
-        var html = '<table class="table table-borderless animate glow"><thead><tr class="table-dark" style="line-height: 30px;">';
+        var html = '<table class="table table-borderless animate glow"><thead><tr class="table-primary" style="line-height: 30px;">';
         var diffDays = this.diffInDays(this.maxDate, this.minDate) + 1;
         const actual = new Date(this.minDate);
 
@@ -71,7 +71,7 @@ class Gantt {
             if (this.minDate == dMin) daysBefore = 0;
             if (this.maxDate == dMax) daysAfter = 0;
 
-            html += '<tr class="table-light">';
+            html += '<tr class="table">';
             if (daysBefore > 0) for (let j = 0; j < daysBefore; j++) html += '<td></td>';
             // añado esto para añadir opacidad a las tareas al 100%
             let opaco = (task[4] == 100);
