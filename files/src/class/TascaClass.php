@@ -331,12 +331,18 @@ class Tasca
       include '../config/connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `questionnaries`.`name_questionary`,`recommendations`.`description_recommendation`, `questionnaries`.`id_questionary`, `answers`.`id_impact`, `impacts`.`name_type_impact` 
-      FROM `answers` 
-      LEFT JOIN `questions` ON `answers`.`id_question` = `questions`.`id_question` 
-      LEFT JOIN `impacts` ON `answers`.`id_impact` = `impacts`.`id_impact` 
-      LEFT JOIN `recommendations` ON `answers`.`id_recommendation` = `recommendations`.`id_recommendation`, `questionnaries` 
-      WHERE questionnaries.id_questionary = $this->id";
+      $query = "SELECT questionnaries.name_questionary, questionnaries.id_questionary, `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `recommendations`.`description_recommendation`, `answers`.`id_impact`, impacts.name_type_impact  
+      FROM questionnary_question
+      INNER JOIN questionnaries ON questionnary_question.id_questionary = questionnaries.id_questionary
+      INNER JOIN questions ON questions.id_question = questionnary_question.id_question
+      INNER JOIN answers ON answers.id_question = questions.id_question
+      INNER JOIN recommendations ON answers.id_recommendation = recommendations.id_recommendation
+      INNER JOIN impacts ON answers.id_impact = impacts.id_impact
+      INNER JOIN questionnary_user ON questionnary_user.id_questionary = questionnaries.id_questionary
+      INNER JOIN users ON users.id_user = questionnary_user.id_user
+      INNER JOIN reports ON reports.id_user = users.id_user
+      INNER JOIN results ON results.id_report = reports.id_report
+      WHERE reports.id_user = $this->id AND questionnaries.id_questionary = $this->Estat GROUP BY recommendations.id_recommendation";
 
       //Generamos la consulta contra la conexión a la BBDD
       $mostrarResultado = $connexioDB->query($query);
