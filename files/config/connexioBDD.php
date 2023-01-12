@@ -10,3 +10,4 @@
   if ($connexioDB->connect_error) {
     die("Connexió fallida: " . $connexioDB->connect_error);
   }
+?>

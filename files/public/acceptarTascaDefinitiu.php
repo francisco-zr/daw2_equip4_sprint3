@@ -9,13 +9,27 @@ if (isset($_GET["id_questionnary_user"])) {
 }
 
 
-/** FALTA: COMPROVACION DE SI LLEGA POR GET Y COINCIDE CON EL CUESTIONARIO DE UN USUARIO QUE NO PUEDA MOVERSE DE VENTANA */
+$guardarResultado = new Tasca($id_sesion, $cuestionarioGet);
+$variableNueva = $guardarResultado->comprovacionUserQuestionnaries();
 
 
 /** CREACIÓN COOKIES DE SESIÓN Y DE CUESTIONARIO*/
-$expire = time() + (7 * 24 * 60 * 60); // 7 days
+$expire = time() + (7 * 24 * 60 * 60); // 7 dias para que expire la cookie
 setcookie('cookieIdQuestionari', $cuestionarioGet, $expire);
 setcookie('cookieSesion', $id_sesion, $expire);
+
+
+/** COMPROVACIÓN PARA QUE EL USUARIO NO PUEDA SALTAR A OTROS CUESTIONARIOS QUE NO LES CORRESPONDA */
+$fila = mysqli_fetch_array($variableNueva, MYSQLI_ASSOC);
+
+if ($fila["id_questionnary_user"] == $cuestionarioGet) {
+    if ($fila["id_user"] == $id_sesion) {
+    }
+} else {
+    //header("Location: https://www.udemy.com/");
+    //arreglo cutre de redirección de página...ARREGLAR!
+    echo '<meta http-equiv="refresh" content="0; URL=http://www.google.com">';
+};
 ?>
 
 <!DOCTYPE html>
@@ -41,8 +55,9 @@ setcookie('cookieSesion', $id_sesion, $expire);
         <div id="contenedorGeneral">
             <div id="contenedorContenidoTabla">
                 <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3">
-                    <h1 class="h2" id="titulo-tareas">Aceptar Tareas</h1>
+                    <h1 class="h2" id="titulo-tareas">Aceptar Tareas Cuestionario <?php echo $cuestionarioGet ?></h1>
                 </div>
+
 
                 <div class="container table-responsive">
                     <table id="table" data-locale="es-ES" data-toggle="table" data-pagination="true" data-search="true" data-ajax="ajaxRequestTasques" data-page-list="[1, 5, 15, 100, all]" data-page-size="100">

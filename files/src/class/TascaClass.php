@@ -106,6 +106,13 @@ class Tasca
       $this->Estat = $Estat;
    }
 
+   /**
+    * Method showFormularis
+    *
+    * Método estático que muestra datos de los formularios 
+    *
+    * return void
+    */
    public static function showFormularis()
    { //es un metode estatic per a mostrar els camps de la base de dades a la web
       include_once "../config/connexioBDD.php"; //fitxer de conexio a la base de dades
@@ -115,12 +122,17 @@ class Tasca
       return $result;
    }
 
-   /*  function crearTasca(){
-        
-    }*/
+   public function comprovacionUserQuestionnaries()
+   {
+      include_once "../config/connexioBDD.php";
+      $sql = "SELECT * FROM `questionnary_user` WHERE id_user = $this->id AND id_questionnary_user = $this->Estat";
+      return mysqli_query($connexioDB, $sql);
+   }
+
    function eliminarTasca()
    {
    }
+
    /**
     * actualiza el estado del kanban y le pone un porcentaje acorde
     *
@@ -141,6 +153,8 @@ class Tasca
          mysqli_query($connexioDB, $query);
       }
    }
+
+
    /**
     * modifica el porcentaje en la sección gantt y también actualiza el estado para que concuerde con el kanban
     *
@@ -163,6 +177,13 @@ class Tasca
       }
    }
 
+   /**
+    * Method crearTasca
+    *
+    * Método que crea una tarea o una lista de tareas
+    *
+    * return void
+    */
    function crearTasca()
    {
       include '../config/connexioBDD.php';
@@ -171,6 +192,7 @@ class Tasca
       VALUES (1, 'ToDo', 0, '$this->nomGestionador', $this->idUsuariSessio, $this->idQuestionari, $this->idRecomanacio, $this->idPressupost, $this->idImpacto, 0)";
 
       mysqli_query($connexioDB, $query);
+      
    }
 
    function assignarTasca()
@@ -184,6 +206,7 @@ class Tasca
    function modificarEstatTasca()
    {
    }
+
    /**
     * Lista la fila del kanban según el estado del objeto, este puede ser; ToDo, InProgress, Done
     *
@@ -220,6 +243,7 @@ class Tasca
       }
       //mysqli_close($conn);
    }
+
    /**
     * Sirve para pasarle un json al archivo gantt.js y que pueda crear un objeto
     *
@@ -235,6 +259,7 @@ class Tasca
 
       echo json_encode($outp);
    }
+
    /**
     * Modal para la sección Gantt
     *
@@ -279,6 +304,8 @@ class Tasca
    /**
     * imprimirTareas
     *
+    * Método que imprime las tareas
+    *
     * return void
     */
    function imprimirTareas()
@@ -293,6 +320,8 @@ class Tasca
 
    /**
     * Method mostrarRecomendacionTarea
+    *
+    * Método que recoge las tareas del cuestionario y también otros datos para mostrarselos al usuario
     *
     * return void
     */
@@ -325,18 +354,16 @@ class Tasca
       return json_encode($array);
    }
 
+   /**
+    * Method modTarea
+    *
+    * return void
+    */
    function modTarea()
    {
       include '../config/connexioBDD.php';
       $query = "UPDATE `tasks` SET `accepted` = $this->Estat WHERE `tasks`.`id_task` = $this->id";
       $connexioDB->query($query);
    }
-
-   #public static function enviarTasquesAcceptades(){
-   #print_r("Hola");
-   # }
-
-   #public static function enviarTasquesAcceptades(){
-   # print_r("Hola");
-   #}
 }
+?>

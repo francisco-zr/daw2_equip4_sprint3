@@ -1,28 +1,28 @@
 //Array donde guardamos todas las tareas que aceptará o no el usuario
-var tareas = []; 
+var tareas = [];
 
 // Ajax que recoge los valores de una query para despues mostrarlos en el html acceptarTascaDefinitiu.php
 function ajaxRequestTasques(params) {
-    var url = './getTasques.php'; //url de donde se va a sacar los datos
-    $.get(url + '?' + $.param(params.data)).then(function (res) {
-      /** insertamos todos los campos que recojemos en el array en blanco */
-      //pasamos los datos a tipo JSON y lo guardamos en una variable
-      var respuesta = JSON.parse(res);
+  var url = './getTasques.php'; //url de donde se va a sacar los datos
+  $.get(url + '?' + $.param(params.data)).then(function (res) {
+    /** insertamos todos los campos que recojemos en el array en blanco */
+    //pasamos los datos a tipo JSON y lo guardamos en una variable
+    var respuesta = JSON.parse(res);
 
-      //recorremos un bucle por cada dato recibido y le hacemos un push al array con los datos vacios
-      respuesta.forEach((e) =>{
-        tareas.push({
-          id: e.id_recommendation,
-          accepted: false,
-          gestion: "",
-          questionary: e.id_questionary,
-          impacto: e.id_impact
-        })
-      });
-      
-      //línea de código que transforma el JSON en un formato que mediante JavaScript se pueda consultar facilmente
-      params.success(JSON.parse(res)); 
-    })
+    //recorremos un bucle por cada dato recibido y le hacemos un push al array con los datos vacios
+    respuesta.forEach((e) => {
+      tareas.push({
+        id: e.id_recommendation,
+        accepted: false,
+        gestion: "",
+        questionary: e.id_questionary,
+        impacto: e.id_impact
+      })
+    });
+
+    //línea de código que transforma el JSON en un formato que mediante JavaScript se pueda consultar facilmente
+    params.success(JSON.parse(res));
+  })
 }
 
 
@@ -81,17 +81,17 @@ window.operateEvents = {
         "gestion-tareas-" + row.id_recommendation + ""
       ).value = "";
 
-      
+
       //Bucle que recorre el array y cambia el valor de esa posición por los valores que se pasan dentro de la condición
-        for (var i = 0; i < tareas.length; i++) {
-          if (tareas[i].id == row.id_recommendation) {
-            console.log(tareas[i]);
-            tareas[i].gestion = "";
-            tareas[i].accepted = false;
-            tareas[i].questionary = row.id_questionary;
-            tareas[i].impacto = row.id_impact;
-          }
+      for (var i = 0; i < tareas.length; i++) {
+        if (tareas[i].id == row.id_recommendation) {
+          console.log(tareas[i]);
+          tareas[i].gestion = "";
+          tareas[i].accepted = false;
+          tareas[i].questionary = row.id_questionary;
+          tareas[i].impacto = row.id_impact;
         }
+      }
     }
   },
 };
@@ -130,7 +130,7 @@ function operateFormatter(value, row, index) {
 
 /** RELLENAR EL ARRAY CON DATOS VACIOS AL INCIAR EL DOCUMENTO */
 $(document).ready(function () {
-    $("#enviar-tareas").click(function () {
+  $("#enviar-tareas").click(function () {
     //Comprovación de si el array está vacio
     if (tareas.length != 0) {
       /** ENVIO DE DATOS POR AJAX */
@@ -158,13 +158,14 @@ $(document).ready(function () {
 
       //Habilitamos la animación de carga
       $("#contendorContenidoCargando").attr("hidden", false);
-      
-      
+
+
       /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
+      //tiempo de espera para poder ver la animación antes de la redirección
       setTimeout(() => {
-      window.location.href = "LlistatPresupost.php";
-      }, "3000");
-      
+        window.location.href = "LlistatPresupost.php";
+      }, "1000");
+
     } else {
       console.log("No se ha seleccionado ninguna opción");
     }
