@@ -266,7 +266,7 @@ class Tasca
                    <input type="range" name="porcentaje" class="form-range" min="0" max="100" id="customRange" oninput="this.nextElementSibling.value = this.value">
                    Porcentaje: <output id="value">50</output></p></div>
                    <div class="modal-footer flex-column border-top-0">
-                   <button type="submit" class="btn btn-lg btn-dark w-100 mx-0">Guardar cambios</button>
+                   <button type="submit" class="btn btn-lg btn-warning w-100 mx-0">Guardar cambios</button>
                    <button type="button" class="btn btn-lg btn-light w-100 mx-0" data-bs-dismiss="modal">Cerrar</button>
                   </form>
                   </div>
