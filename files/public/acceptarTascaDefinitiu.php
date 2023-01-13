@@ -23,7 +23,6 @@ setcookie('cookieSesion', $id_sesion, $expire);
 $fila = mysqli_fetch_array($variableNueva, MYSQLI_ASSOC);
 
 if ($fila["id_questionnary_user"] == $cuestionarioGet && $fila["id_user"] == $id_sesion) {
-    
 } else {
     //header("Location: https://www.udemy.com/");
     //arreglo cutre de redirección de página...ARREGLAR!
@@ -56,6 +55,17 @@ if ($fila["id_questionnary_user"] == $cuestionarioGet && $fila["id_user"] == $id
                 <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3">
                     <h1 class="h2" id="titulo-tareas">Aceptar Tareas Cuestionario <?php echo $cuestionarioGet ?></h1>
                 </div>
+
+                <div id="mensajeErrorAjax" hidden>
+                    <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center px-2 pb-2 mb-3">
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation" id="iconoAlertaErrorAjax"></i>
+                            <div>
+                                <h1>Error de petición Ajax...</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--id="mensajeErrorAjax"-->
 
 
                 <div class="container table-responsive">
@@ -90,6 +100,8 @@ if ($fila["id_questionnary_user"] == $cuestionarioGet && $fila["id_user"] == $id
                 </div>
                 <h2 id="textoEnviando" style="text-align: center;">Enviando...</h2>
             </div><!--id="contendorContenidoCargando"-->
+
+
         </div><!--id="contenedorGeneral"-->
     </main>
 

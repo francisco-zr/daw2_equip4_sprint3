@@ -77,3 +77,9 @@
         background-color: #3292D1;
     }
  }
+
+ /** TAMAÑO DE ICONO ALERTA AJAX PETICIÓN ERRÓNEA**/
+#iconoAlertaErrorAjax {
+    font-size: 30px;
+    margin-right: 15px;
+}

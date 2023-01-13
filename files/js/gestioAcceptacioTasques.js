@@ -27,7 +27,6 @@ function ajaxRequestTasques(params) {
 
 
 
-
 /** evento de la BootStrap Table */
 window.operateEvents = {
   /** Eventos que se ejecutan cuando se hace click en el elemento con la clase form-check-input */
@@ -99,11 +98,6 @@ window.operateEvents = {
 
 
 
-
-
-
-
-
 function operateFormatter(value, row, index) {
   return `
                 <div class="right">
@@ -123,15 +117,11 @@ function operateFormatter(value, row, index) {
 
 
 
-
-
-
-
-
 /** RELLENAR EL ARRAY CON DATOS VACIOS AL INCIAR EL DOCUMENTO */
 $(document).ready(function () {
   $("#enviar-tareas").click(function () {
     //Comprovación de si el array está vacio
+
     if (tareas.length != 0) {
       /** ENVIO DE DATOS POR AJAX */
 
@@ -141,30 +131,48 @@ $(document).ready(function () {
       //Genera la petición AJAX
       $.ajax({
         type: "POST",
-        url: "enviarTasquesAcceptadesJSON.php",
+        url: "enviarTasquesAcceptadesJS.php",
         data: { datosArray: datosArray },
         success: function (response) {
-          // Handle the success
+          // Mensaje de control de petición satisfactoria
           console.log("Success: " + response);
+
+          //Deshabilitamos la tabla
+          $("#contenedorContenidoTabla").attr('hidden', true);
+
+          //Habilitamos la animación de carga
+          $("#contendorContenidoCargando").attr("hidden", false);
+
+          /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
+          //tiempo de espera para poder ver la animación antes de la redirección
+          setTimeout(() => {
+            window.location.href = "LlistatPresupost.php";
+          }, "1000");
         },
         error: function (xhr, status, error) {
-          // Handle the error
+          // Mensaje de control de petición denegada
           console.log("Error: " + error);
+
+          //Deshabilitamos la animación de carga
+          $("#contendorContenidoCargando").attr("hidden", true);
+          
+          
+          //Habilitamos el mensaje de error
+          $("#mensajeErrorAjax").fadeIn(250).attr("hidden", false);
+          
+
+          //tiempo de espera para poder ver la animación antes de la redirección
+          setTimeout(() => {
+            window.location.href = "";
+          }, "3000");
+
         },
       });
 
-      //Deshabilitamos la tabla
-      $("#contenedorContenidoTabla").attr('hidden', true);
-
-      //Habilitamos la animación de carga
-      $("#contendorContenidoCargando").attr("hidden", false);
 
 
-      /** REDIRECCIÓN A UNA PÁGINA NUEVA AL ENVIAR DATOS */
-      //tiempo de espera para poder ver la animación antes de la redirección
-      setTimeout(() => {
-        window.location.href = "LlistatPresupost.php";
-      }, "1000");
+
+
 
     } else {
       console.log("No se ha seleccionado ninguna opción");
