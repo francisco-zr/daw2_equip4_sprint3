@@ -13,7 +13,7 @@ $guardarResultado = new Tasca($id_sesion, $cuestionarioGet);
 $variableNueva = $guardarResultado->comprovacionUserQuestionnaries();
 
 
-/** CREACIÓN COOKIES DE SESIÓN Y DE CUESTIONARIO*/
+/** CREACIÓN COOKIES DE SESIÓN, REPORT Y DE CUESTIONARIO*/
 $expire = time() + (7 * 24 * 60 * 60); // 7 dias para que expire la cookie
 setcookie('cookieIdQuestionari', $cuestionarioGet, $expire);
 setcookie('cookieSesion', $id_sesion, $expire);
@@ -22,9 +22,8 @@ setcookie('cookieSesion', $id_sesion, $expire);
 /** COMPROVACIÓN PARA QUE EL USUARIO NO PUEDA SALTAR A OTROS CUESTIONARIOS QUE NO LES CORRESPONDA */
 $fila = mysqli_fetch_array($variableNueva, MYSQLI_ASSOC);
 
-if ($fila["id_questionnary_user"] == $cuestionarioGet) {
-    if ($fila["id_user"] == $id_sesion) {
-    }
+if ($fila["id_questionnary_user"] == $cuestionarioGet && $fila["id_user"] == $id_sesion) {
+    
 } else {
     //header("Location: https://www.udemy.com/");
     //arreglo cutre de redirección de página...ARREGLAR!
