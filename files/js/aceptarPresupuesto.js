@@ -44,6 +44,19 @@ function statusFormatter(value, row, index) {
       </div>
     `;
 }
+
+function enviar() {
+    //desactivando botones
+    $('#enviar_presupuesto').prop("disabled", true);
+    $('#editando').prop("disabled", true);
+    $('.form-check-input').prop("disabled", true);
+    //spinner y un timeout para que se vea
+    enviar_presupuesto.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Enviando...';
+    setTimeout(() => {
+        window.location.href = "LlistatPresupost.php";
+    }, "1000");
+}
+
 // para activar los checkboxs al pulsar modificar presupuesto
 $(document).ready(function () {
     var editar = false;
@@ -98,14 +111,13 @@ $(document).ready(function () {
     $('#enviar_presupuesto').click(function () {
         if ($("#table").data("changed")) {
             // submit the form
-            console.log("Presupuesto enviado para modificar");
             var tareas = JSON.stringify($('#table').bootstrapTable('getData'));
             $.ajax({
                 url: 'ajaxAceptarPresupuesto.php',
                 data: { tareas: tareas, presupuesto: presupuesto },
                 type: 'POST',
                 success: function () {
-                    console.log("enviado la modificación");
+                    enviar();
                 }
             });
         }
@@ -118,9 +130,7 @@ $(document).ready(function () {
                 data: { presupuesto: presupuesto },
                 cache: false,
                 success: function () {
-                    // mostrar toast
-                    //$(".toast").toast("show")
-                    console.log("enviar presupuesto sin más")
+                    enviar();
                 }
             });
         }
