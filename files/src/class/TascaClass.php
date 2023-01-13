@@ -125,7 +125,8 @@ class Tasca
    public function comprovacionUserQuestionnaries()
    {
       include_once "../config/connexioBDD.php";
-      $sql = "SELECT * FROM `questionnary_user` WHERE id_user = $this->id AND id_questionnary_user = $this->Estat";
+      $sql = "SELECT * FROM `questionnary_user` 
+      WHERE id_user = $this->id AND id_questionnary_user = $this->Estat";
       return mysqli_query($connexioDB, $sql);
    }
 
@@ -331,7 +332,7 @@ class Tasca
       include '../config/connexioBDD.php';
 
       //Generamos la consulta
-      $query = "SELECT questionnaries.name_questionary, questionnaries.id_questionary, `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `recommendations`.`description_recommendation`, `answers`.`id_impact`, impacts.name_type_impact  
+      $query = "SELECT questionnaries.name_questionary, questionnary_user.id_questionary, `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `recommendations`.`description_recommendation`, `answers`.`id_impact`, impacts.name_type_impact  
       FROM questionnary_question
       INNER JOIN questionnaries ON questionnary_question.id_questionary = questionnaries.id_questionary
       INNER JOIN questions ON questions.id_question = questionnary_question.id_question
@@ -342,7 +343,27 @@ class Tasca
       INNER JOIN users ON users.id_user = questionnary_user.id_user
       INNER JOIN reports ON reports.id_user = users.id_user
       INNER JOIN results ON results.id_report = reports.id_report
-      WHERE reports.id_user = $this->id AND questionnaries.id_questionary = $this->Estat GROUP BY recommendations.id_recommendation";
+      WHERE reports.id_user = $this->id AND questionnary_user.id_questionary = $this->Estat GROUP BY answers.id_question";
+
+      /**
+       * 
+       * FUTURA QUERY MEJORADA PARA QUE RECIBA 2 PARAMETROS POR EL MÉTODO GET DE ID CUESTIONARIO Y DEL REPORT QUE QUEREMOS SACAR LAS RESPUESTAS
+       * EL MÉTODO GET LO RECIBIRÁ CUANDO SE SELECCIONE PARA RELLENAR TAREAS Y PASARÁN EL TIPO DE REPORT QUE CORRESPONDE PARA PODER FILTRAR MEJOR
+       * 
+       * 
+      * SELECT questionnaries.name_questionary, questionnary_user.id_questionary, `recommendations`.`name_recommendation`, `recommendations`.`id_recommendation`, `recommendations`.`description_recommendation`, `answers`.`id_impact`, impacts.name_type_impact  
+      * FROM questionnary_question
+      * INNER JOIN questionnaries ON questionnary_question.id_questionary = questionnaries.id_questionary
+      * INNER JOIN questions ON questions.id_question = questionnary_question.id_question
+      * INNER JOIN answers ON answers.id_question = questions.id_question
+      * INNER JOIN recommendations ON answers.id_recommendation = recommendations.id_recommendation
+      * INNER JOIN impacts ON answers.id_impact = impacts.id_impact
+      * INNER JOIN questionnary_user ON questionnary_user.id_questionary = questionnaries.id_questionary
+      * INNER JOIN users ON users.id_user = questionnary_user.id_user
+      * INNER JOIN reports ON reports.id_user = users.id_user
+      * INNER JOIN results ON results.id_report = reports.id_report
+      * WHERE reports.id_user = 1 AND questionnary_user.id_questionary = 2 AND reports.id_report = 1 GROUP BY answers.id_question;
+      */
 
       //Generamos la consulta contra la conexión a la BBDD
       $mostrarResultado = $connexioDB->query($query);

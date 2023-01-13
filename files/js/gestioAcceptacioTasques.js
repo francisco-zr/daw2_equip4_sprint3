@@ -14,7 +14,7 @@ function ajaxRequestTasques(params) {
       tareas.push({
         id: e.id_recommendation,
         accepted: false,
-        gestion: "",
+        gestion: null,
         questionary: e.id_questionary,
         impacto: e.id_impact
       })
@@ -86,7 +86,7 @@ window.operateEvents = {
       for (var i = 0; i < tareas.length; i++) {
         if (tareas[i].id == row.id_recommendation) {
           console.log(tareas[i]);
-          tareas[i].gestion = "";
+          tareas[i].gestion = null;
           tareas[i].accepted = false;
           tareas[i].questionary = row.id_questionary;
           tareas[i].impacto = row.id_impact;
