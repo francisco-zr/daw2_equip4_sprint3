@@ -179,7 +179,7 @@ class Presupost
         FROM `tasks` 
         INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation 
         INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary 
-        WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
+        WHERE questionnaries.id_questionary = $this->presupost";
         return $connexioDB->query($query);
     }
 
@@ -196,7 +196,7 @@ class Presupost
     {
         include '../config/connexioBDD.php';
         //imprime tareas según id_budget para aceptar el presupuesto global
-        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task, tasks.accepted, tasks.price, impacts.name_type_impact 
+        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task, tasks.accepted, tasks.price, tasks.manages, impacts.name_type_impact 
         FROM `tasks` 
         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` 
         INNER JOIN impacts ON impacts.id_impact = tasks.id_impact 
@@ -213,14 +213,16 @@ class Presupost
     public function aceptarPresupuesto()
     {
         include '../config/connexioBDD.php';
-        $query = "UPDATE `budgets` SET `accepted` = '1', `status` = 'Done' WHERE `budgets`.`id_budget` = $this->presupost";
+        $query = "UPDATE `budgets` SET `accepted` = '1', price = (SELECT SUM(price) 
+        FROM tasks WHERE tasks.id_budget = $this->presupost AND tasks.accepted = 1), `status` = 'Done' WHERE `budgets`.`id_budget` = $this->presupost;";
         $connexioDB->query($query);
     }
 
     public function modificarPresupuesto()
     {
         include '../config/connexioBDD.php';
-        $query = "UPDATE `budgets` SET `accepted` = '0', `status` = 'Waiting' WHERE `budgets`.`id_budget` = $this->presupost";
+        $query = "UPDATE `budgets` SET `accepted` = '0', price = (SELECT SUM(price) 
+        FROM tasks WHERE tasks.id_budget = $this->presupost AND tasks.accepted = 1), `status` = 'Waiting' WHERE `budgets`.`id_budget` = $this->presupost;";
         $connexioDB->query($query);
     }
 }

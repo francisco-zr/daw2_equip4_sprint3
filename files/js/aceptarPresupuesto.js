@@ -13,7 +13,12 @@ function idFormatter(data) {
 function priceFormatter(data) {
     var field = this.field
     return '€' + data.map(function (row) {
-        return +row[field].substring(0)
+        // sumará en función de si está aceptado o no
+        if (row.accepted == 1) {
+            return +row[field].substring(0)
+        } else {
+            return +row[field].substring(1)
+        }
     }).reduce(function (sum, i) {
         return sum + i
     }, 0)
@@ -45,6 +50,15 @@ function statusFormatter(value, row, index) {
     `;
 }
 
+function manejaFormatter(value, row, index) {
+    return `
+        <select class="form-select form-select-sm" aria-label=".form-select-sm gestiona" id="maneja${index}" disabled>
+        <option value="1" ${value == null || value == 'Lo gestiona Pymeralia' ? 'selected="selected"' : ''}>Lo gestiona Pymeralia</option>
+        <option value="2" ${value == 'Lo gestiono personalmente' ? 'selected="selected"' : ''}>Lo gestiono personalmente</option>
+        </select>
+    `;
+}
+
 function enviar() {
     //desactivando botones
     $('#enviar_presupuesto').prop("disabled", true);
@@ -65,6 +79,7 @@ $(document).ready(function () {
             enviar_presupuesto.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Enviar modificación';
             editando.innerHTML = '<i class="fa-solid fa-xmark"></i>Cancelar edición';
             $('.form-check-input').prop("disabled", false);
+            $('.form-select-sm').prop("disabled", false);
             editar = true;
         } else {
             $('#table').bootstrapTable('refresh')
@@ -79,26 +94,29 @@ $(document).ready(function () {
 // para ver si se ha modificado el presupuesto
 $(document).ready(function () {
     $('#table').on('change', 'input[type=checkbox]', function () {
+        let indice = $(this).attr('id').replace(/customSwitch/, ''); // variable para pasarle el índice abajo
         if (!this.checked) {
-            $('#table').bootstrapTable('updateCell', {
+            $('#table').bootstrapTable('updateRow', {
                 // aquí se saca la id del checkbox
-                index: $(this).attr('id').replace(/customSwitch/, ''),
-                field: 'accepted',
-                value: `0`,
-                reinit: false
-            })
-            $('.form-check-input').prop("disabled", false);
-        }
-        else if (this.checked) {
-            //$(this).attr("checked", true);
-            $('#table').bootstrapTable('updateCell', {
-                // aquí se saca la id del checkbox
-                index: $(this).attr('id').replace(/customSwitch/, ''),
+                index: indice,
                 field: 'accepted',
                 value: `1`,
                 reinit: false
             })
             $('.form-check-input').prop("disabled", false);
+            $('.form-select-sm').prop("disabled", false);
+        }
+        else if (this.checked) {
+            //$(this).attr("checked", true);
+            $('#table').bootstrapTable('updateCell', {
+                // aquí se saca la id del checkbox
+                index: indice,
+                field: 'accepted',
+                value: `1`,
+                reinit: false
+            })
+            $('.form-check-input').prop("disabled", false);
+            $('.form-select-sm').prop("disabled", false);
         }
         $('#table').data("changed", true);
     });
