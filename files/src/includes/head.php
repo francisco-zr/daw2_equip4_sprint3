@@ -8,7 +8,6 @@
 <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/FormulariPressupost.scss">
-<link rel="stylesheet" href="../../css/formularisAPD.css">
 <link href="../node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css" rel="stylesheet">
 <link href="../node_modules/@fortawesome/fontawesome-free/css/brands.min.css" rel="stylesheet">
 <link href="../node_modules/@fortawesome/fontawesome-free/css/solid.min.css" rel="stylesheet">
