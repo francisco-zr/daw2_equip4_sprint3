@@ -9,67 +9,85 @@ require_once("../src/class/PresupostClass.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pymeshield Kanban</title>
+
   <?php require_once("../src/includes/head.php"); ?>
-  <script src="../JavaScript/kanban.js"></script>
-  <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.13.1/bootstrap-table.min.js"></script>
-
-<!-- Latest compiled and minified Locales -->
- 
-<script src="https://unpkg.com/bootstrap-table@1.21.2/dist/bootstrap-table.min.js"></script>
-
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <header class="sticky-top">
     <?php require_once("../src/includes/header.php"); ?>
+
   </header>
-  <table
-    data-toggle="table"
-    data-search="true"
-    data-show-columns="true"
-    data-pagination="true"
-    data-page-size="10">
-    <thead>
-      <tr class="tr-class-1">
-        <th class="text-center" colspan="5">Presupuestos de cada cliente</th>
-      </tr>
-      <tr>
-        <th class="text-center" data-field="Estado">Estado</th>
-        <th class="text-center" data-field="Nombre Cliente">Nombre Cliente</th>
-        <th class="text-center" data-field="Apellido Cliente">Apellido Cliente</th>
-        <th class="text-center" data-field="Nombre Empresa">Nombre Empresa</th>
-        <th class="text-center" data-field="Nombre Cuestionario">Presupuesto</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-        $result = Presupost::showPresupost();// Pressupost es el nom de la clase . showFormularis()es un metode
-        while($mostrar = mysqli_fetch_array($result)){ //crear bucle
-      ?>
-        <tr class="table-warning">
-          <!-- Per mostrar els camps fem lo seguent i fiquem lo nom de les columnes que volem mostrar -->
-          <td><center><?php echo $mostrar['status'] ?></center> </td>
-          <td><center><?php echo $mostrar['name_user'] ?></center> </td>
-          <td><center><?php echo $mostrar['last_name'] ?></center> </td>
-          <td><center><?php echo $mostrar['name_company'] ?></center></td>
-          <td><center><?php echo $mostrar['price']?></center></td>
-        </tr> 
-  <?php
-        } //Tanquem bucle
-      ?>
-    </tbody>
-    <style>
-      .bootstrap-table .fixed-table-pagination {
-        justify-content: center;
+
+  <th class="mix-btn">
+    <div class="button-container">
+      <button id="ascendente" class="btn draw-border">Ascendente</button>
+      <button id="descendente" class="btn draw-border2">Descendente</button>
+    </div>
+  </th>
+
+  <!-- Taula amb bootstrap-tables-->
+  <div class="row">
+    <div class="col">
+      <table class="table" data-locale="es-ES" style="width: 1200px; margin-left: 3%; text-align: center" data-toggle="table" data-search="true" data-pagination="true" data-page-size="10">
+
+        <thead>
+          <tr class="tr-class-1">
+            <th class="text-center table-active" colspan="6">Presupuestos de cada cliente</th>
+          </tr>
+
+          <tr class="mix-btn">
+            <th class="text-center">Nombre cliente</th>
+            <th class="text-center">Apellido</th>
+            <th class="text-center">Nombre empresa</th>
+            <th class="text-center">Fecha de inicio</th>
+            <th class="text-center">Fecha final</th>
+            <th class="text-center">Estado</th>
+          </tr>
+        </thead>
+        <tbody id="miTabla">
+          <?php
+          $result = Presupost::showPresupost();
+          while ($mostrar = mysqli_fetch_array($result)) {
+          ?>
+            <tr>
+              <td class="table-warning"><a href="https://www.google.es/" style="color: black;">
+                  <center><?php echo $mostrar['name_user'] ?></center>
+                </a></td>
+              <td class="table-warning"><a href="https://www.google.es/" style="color: black;">
+                  <center><?php echo $mostrar['last_name'] ?></center>
+                </a></td>
+              <td class="table-warning"><a href="https://www.google.es/" style="color: black;">
+                  <center><?php echo $mostrar['name_company'] ?></center>
+                </a></td>
+              <td class="table-warning"><a href=" https://www.google.es/" style="color: black;">
+                  <center><?php echo $mostrar['start_date'] ?></center>
+                </a></td>
+              <td class="table-warning"><a href=" https://www.google.es/" style="color: black;">
+                  <center><?php echo $mostrar['final_date'] ?></center>
+                </a></td>
+              <td class="table-warning"><a href=" https://www.google.es/" style="color: black;">
+                  <center><?php echo $mostrar['status'] ?></center>
+                </a></td>
+            </tr>
+          <?php
           }
-    </style>
+          ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+
+  </tbody>
   </table>
-  <footer class="bg-black text-center text-lg-center mt-auto">  
+
+  </div>
+  </div>
+  <footer class="bg-black text-center text-lg-center mt-auto">
     <?php require_once("../src/includes/footer.php"); ?>
   </footer>
+  <script src="../js/formularisAPD.js"></script>
 </body>
+
 </html>
