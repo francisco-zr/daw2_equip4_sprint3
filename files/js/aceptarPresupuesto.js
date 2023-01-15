@@ -1,4 +1,7 @@
-// your custom ajax request here
+//boolean para activar/desactivar edición
+var editar = false;
+
+// aquí se recogen los datos
 function ajaxRequest(params) {
     var url = '../public/getPresupuesto.php'
     $.get(url).then(function (res) {
@@ -44,7 +47,7 @@ function footerStyle(column) {
 function statusFormatter(value, row, index) {
     return `
       <div class="form-check form-switch">
-        <input type="checkbox" class="form-check-input" role="switch" id="customSwitch${index}" disabled ${value == true ? 'checked' : ''}>
+        <input type="checkbox" class="form-check-input" role="switch" id="customSwitch${index}" ${!editar ? 'disabled' : ''} ${value == true ? 'checked' : ''}>
         <label class="form-check-label" for="customSwitch${index}"></label>
       </div>
     `;
@@ -52,11 +55,17 @@ function statusFormatter(value, row, index) {
 
 function manejaFormatter(value, row, index) {
     return `
-        <select class="form-select form-select-sm" aria-label=".form-select-sm gestiona" id="maneja${index}" disabled>
-        <option value="1" ${value == null || value == 'Lo gestiona Pymeralia' ? 'selected="selected"' : ''}>Lo gestiona Pymeralia</option>
-        <option value="2" ${value == 'Lo gestiono personalmente' ? 'selected="selected"' : ''}>Lo gestiono personalmente</option>
+        <select class="form-select form-select-sm" aria-label=".form-select-sm gestiona" onchange="getval(this);" id="maneja${index}" ${!editar ? 'disabled' : ''}>
+        <option value="Lo gestiona Pymeralia" ${value == null || value == 'Lo gestiona Pymeralia' ? 'selected="selected"' : ''}>Lo gestiona Pymeralia</option>
+        <option value="Lo gestiono personalmente" ${value == 'Lo gestiono personalmente' ? 'selected="selected"' : ''}>Lo gestiono personalmente</option>
         </select>
     `;
+}
+
+// actualizar quien gestiona
+function getval(sel) {
+    let pos = sel.id.replace(/maneja/, '');
+    actualizarTabla(pos, 'manages', sel.value)
 }
 
 function enviar() {
@@ -64,6 +73,7 @@ function enviar() {
     $('#enviar_presupuesto').prop("disabled", true);
     $('#editando').prop("disabled", true);
     $('.form-check-input').prop("disabled", true);
+    $('.form-select-sm').prop("disabled", false);
     //spinner y un timeout para que se vea
     enviar_presupuesto.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Enviando...';
     setTimeout(() => {
@@ -73,7 +83,6 @@ function enviar() {
 
 // para activar los checkboxs al pulsar modificar presupuesto
 $(document).ready(function () {
-    var editar = false;
     $('#editando').click(function () {
         if (!editar) {
             enviar_presupuesto.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>Enviar modificación';
@@ -91,37 +100,34 @@ $(document).ready(function () {
     });
 });
 
+function actualizarTabla(posicion, campo, valor) {
+
+    $('#table').bootstrapTable('updateCell', {
+        // aquí se saca la id del checkbox
+        index: posicion,
+        field: campo,
+        value: valor,
+        reinit: false
+    })
+    $('.form-check-input').prop("disabled", false);
+    $('.form-select-sm').prop("disabled", false);
+}
+
 // para ver si se ha modificado el presupuesto
 $(document).ready(function () {
     $('#table').on('change', 'input[type=checkbox]', function () {
-        let indice = $(this).attr('id').replace(/customSwitch/, ''); // variable para pasarle el índice abajo
+        let posicion = $(this).attr('id').replace(/customSwitch/, '');
         if (!this.checked) {
-            $('#table').bootstrapTable('updateRow', {
-                // aquí se saca la id del checkbox
-                index: indice,
-                field: 'accepted',
-                value: `1`,
-                reinit: false
-            })
-            $('.form-check-input').prop("disabled", false);
-            $('.form-select-sm').prop("disabled", false);
+            actualizarTabla(posicion, 'accepted', 0);
         }
         else if (this.checked) {
-            //$(this).attr("checked", true);
-            $('#table').bootstrapTable('updateCell', {
-                // aquí se saca la id del checkbox
-                index: indice,
-                field: 'accepted',
-                value: `1`,
-                reinit: false
-            })
-            $('.form-check-input').prop("disabled", false);
-            $('.form-select-sm').prop("disabled", false);
+            actualizarTabla(posicion, 'accepted', 1);
         }
         $('#table').data("changed", true);
     });
 });
 
+// enviando datos por ajax
 $(document).ready(function () {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -141,7 +147,6 @@ $(document).ready(function () {
         }
 
         else {
-            console.log(presupuesto);
             $.ajax({
                 url: "ajaxAceptarPresupuesto.php",
                 type: "POST",
