@@ -17,6 +17,7 @@ class Tasca
    private $idPressupost;
    private $nomGestionador;
    private $idImpacto;
+   private $porcentaje;
 
    /**
     * __construct
@@ -55,6 +56,13 @@ class Tasca
    {
       $this->id = $id;
       $this->Estat = $Estat;
+   }
+
+   function __construct3($id, $porcentaje, $idUsuariSessio)
+   {
+      $this->id = $id;
+      $this->porcentaje = $porcentaje;
+      $this->idUsuariSessio = $idUsuariSessio;
    }
 
    function __construct6($idQuestionari, $idRecomendacio, $idUsuari, $idPressupost, $nomGestionador, $idImpacto)
@@ -140,17 +148,17 @@ class Tasca
     * @param  mixed $id
     * return void
     */
-   function modificarTasca($id)
+   function modificarTasca()
    {
       include '../config/connexioBDD.php';
       if ($this->Estat == "InProgress") {
-         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 50 WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 50 WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else if ($this->Estat == "Done") {
-         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 100 WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 100 WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else {
-         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 0 WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 0 WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       }
    }
@@ -163,17 +171,17 @@ class Tasca
     * @param  mixed $porcentaje
     * return void
     */
-   function modificarPorcentaje($id, $porcentaje)
+   function modificarPorcentaje()
    {
       include '../config/connexioBDD.php';
-      if ($porcentaje > 0 && $porcentaje < 100) {
-         $query = "UPDATE `tasks` SET `state` = 'InProgress', `percentage` = $porcentaje WHERE `tasks`.`id_task` = $id";
+      if ($this->porcentaje > 0 && $this->porcentaje < 100) {
+         $query = "UPDATE `tasks` SET `state` = 'InProgress', `percentage` = $this->porcentaje WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else if ($porcentaje == 100) {
-         $query = "UPDATE `tasks` SET `state` = 'Done', `percentage` = $porcentaje WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = 'Done', `percentage` = $this->porcentaje WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else {
-         $query = "UPDATE `tasks` SET `state` = 'ToDo', `percentage` = $porcentaje WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = 'ToDo', `percentage` = $this->porcentaje WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       }
    }
@@ -393,4 +401,3 @@ class Tasca
       $connexioDB->query($query);
    }
 }
-?>
