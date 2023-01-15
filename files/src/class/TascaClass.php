@@ -402,7 +402,7 @@ class Tasca
    function modTarea()
    {
       include '../config/connexioBDD.php';
-      if($this->idUsuariSessio == "Lo gestiono personalmente"){
+      if($this->idUsuariSessio == "Lo gestiono personalmente" && $this->porcentaje == 1){
       $query = "UPDATE `tasks` SET `accepted` = $this->porcentaje, `manages` = '$this->idUsuariSessio' WHERE `tasks`.`id_task` = $this->id";
    } else {
       $query = "UPDATE `tasks` SET `accepted` = $this->porcentaje, `manages` = 'Lo gestiona Pymeralia' WHERE `tasks`.`id_task` = $this->id";
