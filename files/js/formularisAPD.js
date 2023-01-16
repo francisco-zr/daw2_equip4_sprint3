@@ -25,8 +25,8 @@
       rows = table.rows;
       for (i = 0; i < (rows.length - 1); i++) {
         shouldSwitch = false;
-        x = rows[i].getElementsByTagName("TD")[5];
-        y = rows[i + 1].getElementsByTagName("TD")[5];
+        x = rows[i].getElementsByTagName("TD")[6];
+        y = rows[i + 1].getElementsByTagName("TD")[6];
         if (order == -1) {
           if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
             shouldSwitch = true;
