@@ -57,7 +57,7 @@ if (isset($_GET['id_presupuesto'])) {
                     };
                     ?>
                     <hr class="my-4">
-                    <button class="w-100 btn btn-dark btn-lg" type="submit" id="enviar"><i class="fa-solid fa-hand-holding-dollar"></i>Enviar Presupuesto</button>
+                    <button class="w-100 btn btn-warning btn-lg" type="submit" id="enviar"><i class="fa-solid fa-hand-holding-dollar"></i>Enviar Presupuesto</button>
                 </form>
             </div>
             </div>
