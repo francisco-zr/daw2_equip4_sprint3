@@ -15,8 +15,6 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget #import para c
 import json #importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path #cargar ruta del script
 
-samuel
-
 
 class ContentNavigationDrawer(MDBoxLayout):
     manager = ObjectProperty()
@@ -44,25 +42,25 @@ class MyApp (MDApp):
         
         return Builder.load_file("main2.kv")
 
-    id_tasca = ""
-    def detalles(self,row):
-        id_tasca = row.id
-        print(f"Pressed {row.id}")
-        self.root.ids['screen_manager'].current = "DetallesTarea"
-        script_location = Path(__file__).absolute().parent 
-        with open(script_location / "tareas.json","rt") as json_file:
-            data2 = json.load(json_file)
-        id_tasca = row.id[5:]
-        print(id_tasca)
+    id_tasca = "" #creamos una variable vacia
+    def detalles(self,row): #inicializamos una clase con el parametro row
+        id_tasca = row.id #le damos un valor a id_tasca que recuperamos del parametro de la clase
+        print(f"Pressed {row.id}") #imprimimos el valor
+        self.root.ids['screen_manager'].current = "DetallesTarea" #instruccion donde ruteamos con la pantalla que ha de verse
+        script_location = Path(__file__).absolute().parent #indicamos donde se encuentra el archivo actual
+        with open(script_location / "tareas.json","rt") as json_file: #abre el archivo en modo texto, en este caso el json de donde sacamos los datos
+            data2 = json.load(json_file) #guardamos en una variable los datos del json cargados
+        id_tasca = row.id[5:] #asignamos un valor a id_tasca accediendo con el parametro row y con id que es un campo del json
+        print(id_tasca) #imprimos el valor de id_tasca
 
-        for i in data2:
-            id = i['id']
-            text= f"{i['name']} - {i['descripcion']}"
+        for i in data2: #recorremos los valores de la variable data2 que guarda los datos del json
+            id = i['id'] #asignamos el nuevo valos a la variable id
+            text= f"{i['name']} - {i['descripcion']}" #asignamos un nuevo valor a la variable text recuperando datos del archivo json
 
-            self.root.ids.desc.text = text
+            self.root.ids.desc.text = text #damos valor a la variable
 
-            if id == id_tasca:
-                break
+            if id == id_tasca: #comprovamos si id es igual a id_tasca
+                break   #si los valores son iguales generamos un break en la ejecución del código
 
 
     id_presupost = ""
