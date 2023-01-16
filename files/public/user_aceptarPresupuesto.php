@@ -22,6 +22,13 @@ if (isset($_GET['presupuesto'])) {
     <?php require_once("../src/includes/header_client.php"); ?>
   </header>
   <main>
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="LlistatPresupost.php">Presupuestos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Presupuesto <?php echo $presupuesto; ?></li>
+      </ol>
+    </nav>
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
       <h1 class="h2">Aceptar Presupuesto</h1>
       <div class="btn-toolbar mb-2 mb-md-0">

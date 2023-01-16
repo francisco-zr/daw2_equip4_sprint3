@@ -19,6 +19,13 @@ if (isset($_GET['id_presupuesto'])) {
         <?php require_once("../src/includes/header.php"); ?>
     </header>
     <main>
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+        <li class="breadcrumb-item"><a href="formularisAPD.php">Presupuestos</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Presupuestar Tareas <?php echo $id; ?></li>
+      </ol>
+    </nav>
         <div class="container p-1">
             <div class="row justify-content-between">
                 <div class="col-4">
