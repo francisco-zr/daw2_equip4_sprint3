@@ -48,7 +48,7 @@
 }
 
 .draw-border:hover {
-  color: #01f901;
+  color: #398c39;
 }
 
 .draw-border:hover::before, .draw-border:hover::after {
@@ -100,7 +100,7 @@
 }
 
 .draw-border2:hover {
-  color: #f90101;
+  color: #a41b1b;
 }
 
 .draw-border2:hover::before, .draw-border2:hover::after {
