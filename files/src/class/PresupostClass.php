@@ -94,12 +94,13 @@ class Presupost
 
     /* Mètodes / Funcions */
 
-    public static function showPresupost()
+   public static function showPresupost()
     { //es un metode estatic per a mostrar els camps de la base de dades a la web
+        //un metode estatic es un metode que pertany a la propia classe que en aquest cas la classe es Presupost
         include '../config/connexioBDD.php';        //fitxe de conexio a la base de dades
         //consulta
-        $sql = "SELECT users.name_user, users.last_name, companies.name_company, tasks.start_date, tasks.final_date, budgets.status FROM users INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN tasks ON users.id_user = tasks.id_user INNER JOIN budgets ON tasks.id_budget = budgets.id_budget ORDER BY budgets.status;";
-        $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
+        $sql = "SELECT users.name_user, users.last_name, companies.name_company, tasks.start_date, tasks.final_date, budgets.status, budgets.id_budget FROM users INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN tasks ON users.id_user = tasks.id_user INNER JOIN budgets ON tasks.id_budget = budgets.id_budget ORDER BY budgets.status;";
+        $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php, per a executar
         return $result;
     }
 
