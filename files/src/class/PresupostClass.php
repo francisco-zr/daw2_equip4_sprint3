@@ -94,12 +94,13 @@ class Presupost
 
     /* Mètodes / Funcions */
 
-    public static function showPresupost()
+   public static function showPresupost()
     { //es un metode estatic per a mostrar els camps de la base de dades a la web
+        //un metode estatic es un metode que pertany a la propia classe que en aquest cas la classe es Presupost
         include '../config/connexioBDD.php';        //fitxe de conexio a la base de dades
         //consulta
-        $sql = "SELECT users.name_user, users.last_name, companies.name_company, tasks.start_date, tasks.final_date, budgets.status FROM users INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN tasks ON users.id_user = tasks.id_user INNER JOIN budgets ON tasks.id_budget = budgets.id_budget ORDER BY budgets.status;";
-        $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
+        $sql = "SELECT users.name_user, users.last_name, companies.name_company, tasks.start_date, tasks.final_date, budgets.status, budgets.id_budget FROM users INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN tasks ON users.id_user = tasks.id_user INNER JOIN budgets ON tasks.id_budget = budgets.id_budget ORDER BY budgets.status;";
+        $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php, per a executar
         return $result;
     }
 
@@ -156,13 +157,11 @@ class Presupost
     {
         include '../config/connexioBDD.php';
         //query a mejorar, ahora solo imprime tareas en general
-        $query = "SELECT budgets.*, users.id_user, questionnaries.name_questionary 
-        FROM budgets 
+        $query = "SELECT budgets.*, questionnaries.name_questionary 
+        FROM budgets
         INNER JOIN tasks ON tasks.id_budget = budgets.id_budget
-        INNER JOIN users ON users.id_user = tasks.id_user
-        INNER JOIN questionnary_user ON questionnary_user.id_user = users.id_user
-        INNER JOIN questionnaries ON questionnaries.id_questionary = questionnary_user.id_questionary
-        WHERE users.id_user = 1 GROUP BY budgets.id_budget;";
+        INNER JOIN questionnaries ON questionnaries.id_questionary = tasks.id_questionary
+        WHERE tasks.id_user = 1 GROUP BY budgets.id_budget;";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {

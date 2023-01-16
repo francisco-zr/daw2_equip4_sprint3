@@ -34,7 +34,6 @@ require_once("../src/class/TascaClass.php");
     <table id="table" data-locale="es-ES" data-click-to-select="true" data-toggle="table" data-pagination="true" data-search="true" data-url="./getPresupuestos.php">
       <thead>
         <tr>
-          <th data-sortable="true" data-field="id_budget">ID Presupuesto</th>
           <th data-sortable="true" data-field="name_questionary">Nombre</th>
           <th data-sortable="true" data-field="price">Precio</th>
           <th data-sortable="true" data-field="accepted">Aceptado</th>

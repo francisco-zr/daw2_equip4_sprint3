@@ -69,7 +69,7 @@
   </div>
 </div>
 <!--Header Logo-->
-<nav class="navbar navbar-expand-lg p-0" id="main-navbar">
+<nav class="navbar navbar-expand-lg p-0" id="main-navbar" data-bs-theme="light">
   <div class="container-fluid">
     <span class="p-2">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
