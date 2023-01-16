@@ -44,6 +44,27 @@ class MyApp (MDApp):
         
         return Builder.load_file("main2.kv")
 
+    id_tasca = ""
+    def detalles(self,row):
+        id_tasca = row.id
+        print(f"Pressed {row.id}")
+        self.root.ids['screen_manager'].current = "DetallesTarea"
+        script_location = Path(__file__).absolute().parent 
+        with open(script_location / "tareas.json","rt") as json_file:
+            data2 = json.load(json_file)
+        id_tasca = row.id[5:]
+        print(id_tasca)
+
+        for i in data2:
+            id = i['id']
+            text= f"{i['name']} - {i['descripcion']}"
+
+            self.root.ids.desc.text = text
+
+            if id == id_tasca:
+                break
+
+
     id_presupost = ""
     def detallesPre(self,row):
         id_presupost = row.id
@@ -52,7 +73,7 @@ class MyApp (MDApp):
         script_location = Path(__file__).absolute().parent 
         with open(script_location / "data.json","rt") as json_file:
             data = json.load(json_file)
-        id_presupost = int(row.id[10:])
+        id_presupost = row.id[10:]
         print(id_presupost)
 
         for i in data:
@@ -64,25 +85,7 @@ class MyApp (MDApp):
             if id == id_presupost:
                 break
 
-    id_tasca = ""
-    def detalles(self,row):
-        id_tasca = row.id
-        print(f"Pressed {row.id}")
-        self.root.ids['screen_manager'].current = "DetallesTarea"
-        script_location = Path(__file__).absolute().parent 
-        with open(script_location / "tareas.json","rt") as json_file:
-            data2 = json.load(json_file)
-        id_tasca = int(row.id[5:])
-        print(id_tasca)
-
-        for i in data2:
-            id = i['id']
-            text= f"{i['name']} - {i['descripcion']}"
-
-            self.root.ids.desc.text = text
-
-            if id == id_tasca:
-                break
+   
 
     
 
