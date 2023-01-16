@@ -12,9 +12,9 @@ if ($presupuestoId != null && $tareas == null) {
 
 if ($presupuestoId != null && $tareas != null) {
     $modPresupuesto = new Presupost($presupuestoId);
-    $modPresupuesto->modificarPresupuesto();
     foreach ($tareas as $tarea) {
-        $modTarea = new Tasca($tarea['id_task'], $tarea['accepted']);
+        $modTarea = new Tasca($tarea['id_task'], $tarea['accepted'], $tarea['manages']);
         $modTarea->modTarea();
     }
+    $modPresupuesto->modificarPresupuesto();
 }

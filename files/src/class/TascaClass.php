@@ -17,6 +17,7 @@ class Tasca
    private $idPressupost;
    private $nomGestionador;
    private $idImpacto;
+   private $porcentaje;
 
    /**
     * __construct
@@ -55,6 +56,13 @@ class Tasca
    {
       $this->id = $id;
       $this->Estat = $Estat;
+   }
+
+   function __construct3($id, $porcentaje, $idUsuariSessio)
+   {
+      $this->id = $id;
+      $this->porcentaje = $porcentaje;
+      $this->idUsuariSessio = $idUsuariSessio;
    }
 
    function __construct6($idQuestionari, $idRecomendacio, $idUsuari, $idPressupost, $nomGestionador, $idImpacto)
@@ -140,17 +148,17 @@ class Tasca
     * @param  mixed $id
     * return void
     */
-   function modificarTasca($id)
+   function modificarTasca()
    {
       include '../config/connexioBDD.php';
       if ($this->Estat == "InProgress") {
-         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 50 WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 50 WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else if ($this->Estat == "Done") {
-         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 100 WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 100 WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else {
-         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 0 WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = '$this->Estat', `percentage` = 0 WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       }
    }
@@ -163,17 +171,17 @@ class Tasca
     * @param  mixed $porcentaje
     * return void
     */
-   function modificarPorcentaje($id, $porcentaje)
+   function modificarPorcentaje()
    {
       include '../config/connexioBDD.php';
-      if ($porcentaje > 0 && $porcentaje < 100) {
-         $query = "UPDATE `tasks` SET `state` = 'InProgress', `percentage` = $porcentaje WHERE `tasks`.`id_task` = $id";
+      if ($this->porcentaje > 0 && $this->porcentaje < 100) {
+         $query = "UPDATE `tasks` SET `state` = 'InProgress', `percentage` = $this->porcentaje WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else if ($porcentaje == 100) {
-         $query = "UPDATE `tasks` SET `state` = 'Done', `percentage` = $porcentaje WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = 'Done', `percentage` = $this->porcentaje WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       } else {
-         $query = "UPDATE `tasks` SET `state` = 'ToDo', `percentage` = $porcentaje WHERE `tasks`.`id_task` = $id";
+         $query = "UPDATE `tasks` SET `state` = 'ToDo', `percentage` = $this->porcentaje WHERE `tasks`.`id_task` = $this->id";
          mysqli_query($connexioDB, $query);
       }
    }
@@ -221,7 +229,8 @@ class Tasca
       $query = "SELECT `tasks`.*, `impacts`.`name_type_impact` AS importance, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task
       FROM `tasks` 
          INNER JOIN `impacts` ON `tasks`.`id_impact` = `impacts`.`id_impact` 
-         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` WHERE tasks.state = '$this->Estat' ORDER BY name_task;";
+         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` 
+         WHERE tasks.state = '$this->Estat' AND tasks.accepted = 1 ORDER BY name_task;";
       $result = mysqli_query($connexioDB, $query) or trigger_error("Consulta SQL fallida!: $query - Error: " . mysqli_error($connexioDB), E_USER_ERROR);
       while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
          echo '<div class="alert alert-' . $row["importance"] . ' card-kanban" id="tasca' . $row["id_task"] . '" data-bs-toggle="modal" data-bs-target="#modal' . $row["id_task"] . '" draggable="true" ondragstart="drag(event)">';
@@ -253,7 +262,11 @@ class Tasca
    function jsonGantt()
    {
       include '../config/connexioBDD.php';
-      $query = $connexioDB->prepare('SELECT `recommendations`.`name_recommendation` AS name_task, `tasks`.`start_date`, tasks.final_date, `impacts`.`name_type_impact` AS importance, tasks.percentage, tasks.id_task FROM `tasks` INNER JOIN `impacts` ON `tasks`.`id_impact` = `impacts`.`id_impact` INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` ORDER BY name_task;');
+      $query = $connexioDB->prepare("SELECT `recommendations`.`name_recommendation` AS name_task, `tasks`.`start_date`, tasks.final_date, `impacts`.`name_type_impact` AS importance, tasks.percentage, tasks.id_task 
+      FROM `tasks` INNER JOIN `impacts` ON `tasks`.`id_impact` = `impacts`.`id_impact` 
+      INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation`
+      WHERE tasks.accepted = 1 AND `tasks`.`id_user` = $this->id
+      ORDER BY name_task;");
       $query->execute();
       $result = $query->get_result();
       $outp = $result->fetch_all();
@@ -389,8 +402,11 @@ class Tasca
    function modTarea()
    {
       include '../config/connexioBDD.php';
-      $query = "UPDATE `tasks` SET `accepted` = $this->Estat WHERE `tasks`.`id_task` = $this->id";
+      if($this->idUsuariSessio == "Lo gestiono personalmente" && $this->porcentaje == 1){
+      $query = "UPDATE `tasks` SET `accepted` = $this->porcentaje, `manages` = '$this->idUsuariSessio' WHERE `tasks`.`id_task` = $this->id";
+   } else {
+      $query = "UPDATE `tasks` SET `accepted` = $this->porcentaje, `manages` = 'Lo gestiona Pymeralia' WHERE `tasks`.`id_task` = $this->id";
+   }
       $connexioDB->query($query);
    }
 }
-?>

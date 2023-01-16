@@ -168,12 +168,6 @@ $(document).ready(function () {
 
         },
       });
-
-
-
-
-
-
     } else {
       console.log("No se ha seleccionado ninguna opción");
     }

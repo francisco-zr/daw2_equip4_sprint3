@@ -94,12 +94,13 @@ class Presupost
 
     /* Mètodes / Funcions */
 
-    public static function showPresupost()
+   public static function showPresupost()
     { //es un metode estatic per a mostrar els camps de la base de dades a la web
+        //un metode estatic es un metode que pertany a la propia classe que en aquest cas la classe es Presupost
         include '../config/connexioBDD.php';        //fitxe de conexio a la base de dades
         //consulta
-        $sql = "SELECT DISTINCT budgets.status, users.name_user, users.last_name, companies.name_company, budgets.price FROM budgets INNER JOIN task_budget ON task_budget.id_budget = budgets.id_budget INNER JOIN tasks ON tasks.id_task = task_budget.id_task INNER JOIN users ON users.id_user = tasks.id_user INNER JOIN companies ON companies.id_company = users.id_company;";
-        $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php
+        $sql = "SELECT users.name_user, users.last_name, companies.name_company, tasks.start_date, tasks.final_date, budgets.status, budgets.id_budget FROM users INNER JOIN companies ON users.id_company = companies.id_company INNER JOIN tasks ON users.id_user = tasks.id_user INNER JOIN budgets ON tasks.id_budget = budgets.id_budget ORDER BY budgets.status;";
+        $result = mysqli_query($connexioDB, $sql); //mysqli_query es una funcio de php, per a executar
         return $result;
     }
 
@@ -177,7 +178,7 @@ class Presupost
         FROM `tasks` 
         INNER JOIN recommendations ON tasks.id_recommendation = recommendations.id_recommendation 
         INNER JOIN questionnaries ON tasks.id_questionary = questionnaries.id_questionary 
-        WHERE questionnaries.id_questionary = $this->presupost AND tasks.accepted = 1;";
+        WHERE questionnaries.id_questionary = $this->presupost";
         return $connexioDB->query($query);
     }
 
@@ -194,7 +195,7 @@ class Presupost
     {
         include '../config/connexioBDD.php';
         //imprime tareas según id_budget para aceptar el presupuesto global
-        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task, tasks.accepted, tasks.price, impacts.name_type_impact 
+        $query = "SELECT `tasks`.id_task, `recommendations`.`name_recommendation` AS name_task, recommendations.description_recommendation AS description_task, tasks.accepted, tasks.price, tasks.manages, impacts.name_type_impact 
         FROM `tasks` 
         INNER JOIN `recommendations` ON `tasks`.`id_recommendation` = `recommendations`.`id_recommendation` 
         INNER JOIN impacts ON impacts.id_impact = tasks.id_impact 
@@ -211,14 +212,16 @@ class Presupost
     public function aceptarPresupuesto()
     {
         include '../config/connexioBDD.php';
-        $query = "UPDATE `budgets` SET `accepted` = '1', `status` = 'Done' WHERE `budgets`.`id_budget` = $this->presupost";
+        $query = "UPDATE `budgets` SET `accepted` = '1', price = (SELECT SUM(price) 
+        FROM tasks WHERE tasks.id_budget = $this->presupost AND tasks.accepted = 1), `status` = 'Done' WHERE `budgets`.`id_budget` = $this->presupost;";
         $connexioDB->query($query);
     }
 
     public function modificarPresupuesto()
     {
         include '../config/connexioBDD.php';
-        $query = "UPDATE `budgets` SET `accepted` = '0', `status` = 'Waiting' WHERE `budgets`.`id_budget` = $this->presupost";
+        $query = "UPDATE `budgets` SET `accepted` = '0', price = (SELECT SUM(price) 
+        FROM tasks WHERE tasks.id_budget = $this->presupost AND tasks.accepted = 1), `status` = 'Waiting' WHERE `budgets`.`id_budget` = $this->presupost;";
         $connexioDB->query($query);
     }
 }
