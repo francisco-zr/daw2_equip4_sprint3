@@ -131,7 +131,7 @@ $(document).ready(function () {
       //Genera la petición AJAX
       $.ajax({
         type: "POST",
-        url: "enviarTasquesAcceptadesJS.php",
+        url: "enviarTasquesAcceptadesJSON.php",
         data: { datosArray: datosArray },
         success: function (response) {
           // Mensaje de control de petición satisfactoria
