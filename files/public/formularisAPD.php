@@ -11,6 +11,7 @@ require_once("../src/class/PresupostClass.php");
   <title>Pymeshield Kanban</title>
 
   <?php require_once("../src/includes/head.php"); ?>
+  <link rel="stylesheet" href="../css/formularisAPD.css">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
