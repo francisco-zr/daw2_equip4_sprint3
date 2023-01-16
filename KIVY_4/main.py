@@ -15,7 +15,7 @@ from kivymd.uix.list import ThreeLineIconListItem, IconLeftWidget #import para c
 import json #importamos la libreria de python que nos permite trabajar con json
 from pathlib import Path #cargar ruta del script
 
-
+samuel
 
 
 class ContentNavigationDrawer(MDBoxLayout):
