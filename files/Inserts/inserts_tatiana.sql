@@ -1,3 +1,6 @@
+INSERT INTO `budgets` (`id_budget`, `price`, `accepted`, `hidden`, `status`) VALUES ('2', '300', NULL, NULL, 'Done');
+INSERT INTO `budgets` (`id_budget`, `price`, `accepted`, `hidden`, `status`) VALUES ('3', '300', NULL, NULL, 'Pending');
+
 
 INSERT INTO `companies` (`id_company`, `name_company`, `email`, `phone_number`, `cif`, `hidden`) VALUES ('1', 'Company 1', 'company1@gmail.com', '643543789', 'IUASDNISO', NULL);
 
@@ -47,11 +50,9 @@ INSERT INTO `tasks` (`id_task`, `accepted`, `state`, `start_date`, `final_date`,
 
 INSERT INTO `tasks` (`id_task`, `accepted`, `state`, `start_date`, `final_date`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`, `percentage`, `hidden`) VALUES ('10', '1', NULL, '2022-09-12 00:00:00', '2022-09-20 00:00:00', '100', NULL, '5', '1', '1', '1', '3', '100', NULL);
 
-INSERT INTO `tasks` (`id_task`, `accepted`, `state`, `start_date`, `final_date`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`, `percentage`, `hidden`) VALUES ('11', '1', NULL, '2022-10-12 00:00:00', '2022-10-20 00:00:00', '100', NULL, '6', '1', '1', '3', '6', '100', NULL);
+INSERT INTO `tasks` (`id_task`, `accepted`, `state`, `start_date`, `final_date`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`, `percentage`, `hidden`) VALUES ('11', '1', NULL, '2022-10-12 00:00:00', '2022-10-20 00:00:00', '100', NULL, '6', '1', '1', '3', '1', '100', NULL);
 
-INSERT INTO `tasks` (`id_task`, `accepted`, `state`, `start_date`, `final_date`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`, `percentage`, `hidden`) VALUES ('12', '1', NULL, '2022-01-28 01:02:20', '2022-03-20 00:00:00', '100', NULL, '7', '1', '1', '2', '1', '10', NULL);
+INSERT INTO `tasks` (`id_task`, `accepted`, `state`, `start_date`, `final_date`, `price`, `manages`, `id_user`, `id_questionary`, `id_recommendation`, `id_budget`, `id_impact`, `percentage`, `hidden`) VALUES ('12', '1', NULL, '2022-01-28 01:02:20', '2022-03-20 00:00:00', '100', NULL, '7', '1', '1', '2', '1', '100', NULL);
 
 
 
-INSERT INTO `budgets` (`id_budget`, `price`, `accepted`, `hidden`, `status`) VALUES ('2', '300', NULL, NULL, 'Done');
-INSERT INTO `budgets` (`id_budget`, `price`, `accepted`, `hidden`, `status`) VALUES ('3', '300', NULL, NULL, 'Pending');
