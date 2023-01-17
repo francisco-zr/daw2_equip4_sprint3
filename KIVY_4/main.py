@@ -43,8 +43,8 @@ class MyApp (MDApp):
         return Builder.load_file("main2.kv")
 
     id_tasca = "" #creamos una variable vacia
-    def detalles(self,row): #inicializamos una clase con el parametro row
-        id_tasca = row.id #le damos un valor a id_tasca que recuperamos del parametro de la clase
+    def detalles(self,row): #inicializamos una función con el parametro row
+        id_tasca = row.id #le damos un valor a id_tasca que recuperamos del parametro de la función
         print(f"Pressed {row.id}") #imprimimos el valor
         self.root.ids['screen_manager'].current = "DetallesTarea" #instruccion donde ruteamos con la pantalla que ha de verse
         script_location = Path(__file__).absolute().parent #indicamos donde se encuentra el archivo actual
