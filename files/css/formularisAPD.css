@@ -15,8 +15,6 @@
   /* movemos hacia abajo 2px */
 }
 
-
-
 .draw-border {
   box-shadow: inset 0 0 0 4px #000000;
   color: #000000;
@@ -128,7 +126,7 @@
   line-height: 1.5;
   padding: 1em 2em;
   letter-spacing: 0.05rem;
-  margin-top: 10%;
+  margin-top: 1%;
 }
 
 .btn:focus {
