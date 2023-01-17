@@ -19,7 +19,7 @@ require_once("../src/class/PresupostClass.php");
     <?php require_once("../src/includes/header.php"); ?>
 
   </header>
-
+  <div class="container-fluid">
   <th class="mix-btn">
     <div class="button-container">
       <button id="ascendente" class="btn draw-border">Ascendente</button>
@@ -28,7 +28,7 @@ require_once("../src/class/PresupostClass.php");
   </th>
 
   <!-- Taula amb bootstrap-tables-->
-  <div class="row">
+ 
     <div class="col">
       <table class="table" data-locale="es-ES" style="width: 1200px; margin-left: 3%; text-align: center" data-toggle="table" data-search="true" data-pagination="true" data-page-size="10">
 
@@ -70,7 +70,7 @@ require_once("../src/class/PresupostClass.php");
                 </a></td>
               <td class="table-warning"><a style="color: black;">
                   <center><?php echo $mostrar['status'] ?></center>
-              <td class="table-warning"><a href="FormulariPresupost.php?id_presupuesto=<?php echo $mostrar['id_budget']?>" style="color: black;">
+              <td class="table-warning"><a href="FormulariPresupost.php?id_presupuesto=<?php echo $mostrar['id_budget'] ?>" style="color: black;">
                   <center><?php echo $mostrar['id_budget'] ?></center>
 
                 </a></td>
@@ -84,15 +84,13 @@ require_once("../src/class/PresupostClass.php");
   </div>
   </div>
 
-  </tbody>
-  </table>
 
-  </div>
-  </div>
+
+ 
   <footer class="bg-black text-center text-lg-center mt-auto">
     <?php require_once("../src/includes/footer.php"); ?>
   </footer>
-  <script src="../js/formularisAPD.js"></script>
+  <script src="../js/formularisAPD1.js"></script>
 </body>
 
 </html>
