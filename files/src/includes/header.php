@@ -79,7 +79,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-house"></i>Inicio</a></li>
         <li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['SCRIPT_NAME']) == 'formularisAPD.php') echo 'active'; ?>" href="../../public/formularisAPD.php"><i class="fa-solid fa-diagram-project"></i>Formularis APD</a></li>
-        <li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['SCRIPT_NAME']) == 'FormulariPresupost.php') echo 'active'; ?>" href="../../public/FormulariPresupost.php"><i class="fa-solid fa-square-poll-vertical"></i>Presupuestar Tareas</a></li>
+        <li class="nav-item"><a class="nav-link <?php if (basename($_SERVER['SCRIPT_NAME']) == 'FormulariPresupost.php') echo 'active'; ?>" href="#"><i class="fa-solid fa-square-poll-vertical"></i>Presupuestar Tareas</a></li>
         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-book"></i>EVA</a></li>
         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-qrcode"></i>QR</a>
         </li>
