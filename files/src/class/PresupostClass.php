@@ -167,7 +167,7 @@ class Presupost
         FROM budgets
         INNER JOIN tasks ON tasks.id_budget = budgets.id_budget
         INNER JOIN questionnaries ON questionnaries.id_questionary = tasks.id_questionary
-        WHERE tasks.id_user = 1 GROUP BY budgets.id_budget;";
+        WHERE tasks.id_user = 1 GROUP BY budgets.id_budget";
         $resultado = $connexioDB->query($query);
         $array = array();
         while ($row = mysqli_fetch_assoc($resultado)) {

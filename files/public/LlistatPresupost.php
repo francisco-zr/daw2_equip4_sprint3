@@ -36,7 +36,7 @@ require_once("../src/class/TascaClass.php");
         <tr>
           <th data-sortable="true" data-field="name_questionary">Nombre</th>
           <th data-sortable="true" data-field="price">Precio</th>
-          <th data-sortable="true" data-field="accepted">Aceptado</th>
+          <th data-sortable="true" data-field="status">Estado</th>
           <th data-sortable="true" data-formatter="operateFormatter">Detalles</th>
         </tr>
       </thead>
@@ -58,6 +58,7 @@ require_once("../src/class/TascaClass.php");
 
 </body>
 <script>
+
   function operateFormatter(value, row, index) {
     return `
       <a class="like" href="user_aceptarPresupuesto.php?presupuesto=${row.id_budget}" title="Presupuesto${row.id_budget}">
@@ -68,8 +69,6 @@ require_once("../src/class/TascaClass.php");
   setTimeout(function(){
     document.querySelector(".lds-ring").style.display = "none";
 });
-
-
 </script>
 
 </html>
